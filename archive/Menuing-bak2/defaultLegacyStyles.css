@@ -1,0 +1,14 @@
+
+.defaultNavButton {MARGIN:0px;PADDING-RIGHT:0px;PADDING-LEFT:0px;PADDING-BOTTOM:4px;PADDING-TOP:4px;white-space:nowrap;}
+A.defaultNavButton {MARGIN:0px;PADDING-RIGHT:6px;PADDING-LEFT:6px;PADDING-BOTTOM:4px;PADDING-TOP:4px;FONT-WEIGHT:normal;FONT-SIZE:11px;Z-INDEX:100;COLOR:black;FONT-STYLE:normal;FONT-FAMILY:verdana,arial,sans-serif;TEXT-DECORATION:none;white-space:nowrap;}
+A.defaultNavButton:hover {TEXT-DECORATION:none;color:white;Background-color:#669ACC;}
+A.defaultNavButton:visited {TEXT-DECORATION:none;}
+A.defaultNavButtonDown {TEXT-DECORATION:none;color:white;Background-color:#669ACC;}
+A.defaultNavButtonDown:hover {TEXT-DECORATION:none;}
+A.defaultNavButtonDown:visited {TEXT-DECORATION:none;}
+.defaultNavDelimiter {color:#808080;padding:0px;margin:0px;}
+.defaultNavPanel {BORDER:white 1px solid;Z-INDEX:101;VISIBILITY:hidden;POSITION:absolute;BACKGROUND-COLOR:#e0e0e0;TEXT-DECORATION:none;}
+A.defaultNavPanelButton {DISPLAY:block;BORDER-BOTTOM:#f0f0f0 1px solid;PADDING:4px;PADDING-LEFT:10px;PADDING-RIGHT:10px;FONT-WEIGHT:normal;FONT-SIZE:11px;FONT-STYLE:normal;FONT-FAMILY:verdana,arial,sans-serif;WHITE-SPACE:nowrap;TEXT-DECORATION:none;COLOR:black;}
+A.defaultNavPanelButton:hover {TEXT-DECORATION:none;COLOR:white;BACKGROUND-COLOR:#669ACC;}
+A.defaultNavPanelButton:visited {TEXT-DECORATION:none;}
+A.defaultNavPanelButtonDown {TEXT-DECORATION:none;COLOR:white;BACKGROUND-COLOR:#669ACC;}

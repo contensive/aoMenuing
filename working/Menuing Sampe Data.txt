@@ -1,0 +1,330 @@
+
+============================================================================================
+Data Sample
+
+	<menu name="Default">
+		<node sectionid="" pageid="" caption="Test wih no temlate" captionimage="" image="" imageover="" link="/Test-wih-no-temlate" name="698860288_15" newwindow="False" overview=""></node>
+		<node sectionid="" pageid="" caption="Home" captionimage="" imagesrc="" imageoversrc="" link="/Home" name="896215593_6" newwindow="False" overview="">
+			<node sectionid="" pageid="" caption="Home" captionimage="" imagesrc="" imageoversrc="" imagedownsrc="" imagedownoversrc="" link="/Home" name="896215593_6.ENTRY" newwindow="False" overview=""></node>
+			<node sectionid="" pageid="" caption="2 RSS on the same page" captionimage="" image="" imageover="" link="/2-RSS-on-the-same-page" name="896215593_10" newwindow="False" overview=""></node>
+			<node sectionid="" pageid="" caption="New Page added 6/18/2009 11:59:10 AM by root" captionimage="" image="" imageover="" link="?bid=8" name="896215593_8" newwindow="False" overview=""></node>
+			<node sectionid="" pageid="" caption="Send trigger email when you see this page" captionimage="" image="" imageover="" link="/Send-trigger-email-when-you-see-this-page" name="896215593_7" newwindow="False" overview=""></node>
+			<node sectionid="" pageid="" caption="test" captionimage="" image="" imageover="" link="/test" name="896215593_9" newwindow="False" overview="&lt;p&gt;This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. This is the overview for test. &lt;/p&gt;"></node>
+			<node sectionid="" pageid="" caption="Trigger Test Page" captionimage="" image="" imageover="" link="/Trigger-Test-Page" name="896215593_47" newwindow="False" overview=""></node>
+		</node>
+	</menu>
+
+
+============================================================================================
+List Menu Samples
+
+http://www.dynamicdrive.com/style/csslibrary/item/sliding-doors-vertical-menu/
+
+<ul class="slidedoormenu">
+<li><a href="http://www.dynamicdrive.com/">»  Dynamic Drive</a></li>
+<li><a href="http://www.dynamicdrive.com/style/" >»  CSS Examples</a></li>
+<li><a href="http://www.javascriptkit.com/jsref/">»  JavaScript Reference</a></li>
+<li><a href="http://www.javascriptkit.com/domref/">»  DOM Reference</a></li>
+<li><a href="http://www.cssdrive.com">»  CSS Drive</a></li>
+<li class="lastitem"><a href="http://www.codingforums.com/">»  Coding Forums</a></li>		
+</ul>
+
+http://www.dynamicdrive.com/style/csslibrary/item/nested_side_bar_menu/
+
+<div class="sidebarmenu">
+<ul id="sidebarmenu1">
+<li><a href="#">Item 1</a></li>
+<li><a href="#">Item 2</a></li>
+<li><a href="#">Folder 1</a>
+  <ul>
+  <li><a href="#">Sub Item 1.1</a></li>
+  <li><a href="#">Sub Item 1.2</a></li>
+  </ul>
+</li>
+<li><a href="#">Item 3</a></li>
+
+<li><a href="#">Folder 2</a>
+  <ul>
+  <li><a href="#">Sub Item 2.1</a></li>
+  <li><a href="#">Folder 2.1</a>
+    <ul>
+    <li><a href="#">Sub Item 2.1.1</a></li>
+    <li><a href="#">Sub Item 2.1.2</a></li>
+    <li><a href="#">Sub Item 2.1.3</a></li>
+    <li><a href="#">Sub Item 2.1.4</a></li>
+    </ul>
+  </li>
+</ul>
+</li>
+<li><a href="#">Item 4</a></li>
+</ul>
+</div>
+
+
+
+
+<style type="text/css">
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.sidebarmenu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+font: bold 13px Verdana;
+width: 180px; /* Main Menu Item widths */
+border-bottom: 1px solid #ccc;
+}
+ 
+.sidebarmenu ul li{
+position: relative;
+}
+
+/* Top level menu links style */
+.sidebarmenu ul li a{
+display: block;
+overflow: auto; /*force hasLayout in IE7 */
+color: white;
+text-decoration: none;
+padding: 6px;
+border-bottom: 1px solid #778;
+border-right: 1px solid #778;
+}
+
+.sidebarmenu ul li a:link, .sidebarmenu ul li a:visited, .sidebarmenu ul li a:active{
+background-color: #012D58; /*background of tabs (default state)*/
+}
+
+.sidebarmenu ul li a:visited{
+color: white;
+}
+
+.sidebarmenu ul li a:hover{
+background-color: black;
+}
+
+/*Sub level menu items */
+.sidebarmenu ul li ul{
+position: absolute;
+width: 170px; /*Sub Menu Items width */
+top: 0;
+visibility: hidden;
+}
+
+.sidebarmenu a.subfolderstyle{
+background: url(right.gif) no-repeat 97% 50%;
+}
+
+ 
+/* Holly Hack for IE \*/
+* html .sidebarmenu ul li { float: left; height: 1%; }
+* html .sidebarmenu ul li a { height: 1%; }
+/* End */
+
+</style>
+
+<script type="text/javascript">
+
+//Nested Side Bar Menu (Mar 20th, 09)
+//By Dynamic Drive: http://www.dynamicdrive.com/style/
+
+var menuids=["sidebarmenu1"] //Enter id(s) of each Side Bar Menu's main UL, separated by commas
+
+function initsidebarmenu(){
+ 	for (var i=0; i<menuids.length; i++){
+		var ultags=document.getElementById(menuids[i]).getElementsByTagName("ul")
+		for (var t=0; t<ultags.length; t++){
+			ultags[t].parentNode.getElementsByTagName("a")[0].className+=" subfolderstyle"
+			if (ultags[t].parentNode.parentNode.id==menuids[i]) { //if this is a first level submenu
+				ultags[t].style.left=ultags[t].parentNode.offsetWidth+"px" //dynamically position first level submenus to be width of main menu item
+			} else { //else if this is a sub level submenu (ul)
+				ultags[t].style.left=ultags[t-1].getElementsByTagName("a")[0].offsetWidth+"px" //position menu to the right of menu item that activated it
+			}
+			ultags[t].parentNode.onmouseover=function(){
+				this.getElementsByTagName("ul")[0].style.display="block"
+			}
+			ultags[t].parentNode.onmouseout=function(){
+				this.getElementsByTagName("ul")[0].style.display="none"
+			}
+		}
+		for (var t=ultags.length-1; t>-1; t--){ //loop through all sub menus again, and use "display:none" to hide menus (to prevent possible page scrollbars
+			ultags[t].style.visibility="visible"
+			ultags[t].style.display="none"
+		}
+	}
+}
+
+if (window.addEventListener) {
+	window.addEventListener("load", initsidebarmenu, false)
+} else if (window.attachEvent) {
+	window.attachEvent("onload", initsidebarmenu)
+}
+</script>
+
+============================================================================================
+A-Menu Sample
+
+<!-- Add-on Dynamic Menu -->
+
+<div style="WHITE-SPACE: nowrap;">
+	<a style="display:block;" class="ccDemoxxxxButton"    HREF="/index.asp?sid=19">
+		This is the new section name
+	</a>
+</div>
+<div style="WHITE-SPACE: nowrap;">
+	<a style="display:block;" class="ccDemoxxxxButton"    HREF="/Client-Login">
+		THis is a new Section
+	</a>
+</div>
+<div style="WHITE-SPACE: nowrap;">
+	<a style="display:block;" class="ccDemoxxxxButton"    HREF="/Mining-Information">
+		Mining Information
+	</a>
+</div>
+<div style="WHITE-SPACE: nowrap;">
+	<a style="display:block;" class="ccDemoxxxxButton"  onMouseOut=" ccFlyoutHoverMode(0);"   onMouseOver=" ccFlyoutHoverMode(1); return ccFlyoutButtonClick(event, 'id8522_1445642134_24','1','ccDemoxxxx','true');"   HREF="/Home-for-the-page">
+		Home
+	</a>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ccDemoxxxxPanel" id="id8522_1445642134_24" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ccDemoxxxxPanelButton" href="/1/2/3/4/5">
+			1/2/3/4/5 test
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Banner-management-and-campaigns">
+			Banner management and campaigns
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Block-text-sample">
+			Block text sample
+		</a>
+		<a class="ccDemoxxxxPanelButton" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelButtonHover(event,'id8522_1445642134_30','ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);" href="/Blog-Demo">
+			Blog Demo&nbsp;&#187;
+		</a>
+		<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ccDemoxxxxPanel" id="id8522_1445642134_30" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);">
+			<a class="ccDemoxxxxPanelButton" href="/This-is-the-new-page">
+				CCIA New Items
+			</a>
+		</div>
+
+		<a class="ccDemoxxxxPanelButton" href="/Calendar-Demo">
+			Calendar Demo
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Calendar-Demo-2">
+			Calendar Demo 2
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Camtasia-Video-Sample">
+			Camtasia Video Sample
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/CPDA-Chem-PAC-Fundraiser-Auction">
+			CPDA Chem-PAC Fundraiser Auction
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Forum-Demo">
+			Forum Demo
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Health-Matters-At-Work-Video">
+			Health Matters At Work Video
+		</a>
+		<a class="ccDemoxxxxPanelButton" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelButtonHover(event,'id8522_1445642134_50','ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);" href="/Pictures">Laurie's Wall O'Pictures&nbsp;&#187;</a><a class="ccDemoxxxxPanelButton" href="/Meeting-Registration">
+			Meeting Registration
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/reCAPTCHA-Form">
+			reCAPTCHA Form
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/RSS-">
+			RSS
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Shopping-Cart-Demo">
+			Shopping Cart Demo
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Steak-Diane-">
+			Learn to Cook Steak Diane
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Survey-Demo">
+			Survey Demo
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Text-Search-Demo">
+			Text Search Demo
+		</a>
+		<a class="ccDemoxxxxPanelButton" href="/Using-Google-OpenSocial-Apps-on-Contensive">
+			Using Google OpenSocial Apps on Contensive
+		</a>
+		<a class="ccDemoxxxxPanelButton" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelButtonHover(event,'id8522_1445642134_61','ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);" href="/Virginia-mortgage-Rates">
+			Virginia mortgage Rates&nbsp;&#187;
+		</a>
+	</div>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ccDemoxxxxPanel" id="id8522_1445642134_50" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ccDemoxxxxPanelButton" href="/This-is-the-headline">
+			This is the headline
+		</a>
+	</div>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ccDemoxxxxPanel" id="id8522_1445642134_61" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ccDemoxxxxPanelButton" href="/spongebob">spongebob</a>
+	</div>
+</div>
+<div style="WHITE-SPACE: nowrap;">
+	<a style="display:block;" class="ccDemoxxxxButton"  onMouseOut=" ccFlyoutHoverMode(0);"   onMouseOver=" ccFlyoutHoverMode(1); return ccFlyoutButtonClick(event, 'id8522_825119343_32','1','ccDemoxxxx','true');"   HREF="/Site-Samples">Site Samples</a>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ccDemoxxxxPanel" id="id8522_825119343_32" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ccDemoxxxxPanelButton" href="/ACMS">ACMS - Association Content Management System</a>
+		<a class="ccDemoxxxxPanelButton" href="/Association-Smart">Association Smart</a>
+		<a class="ccDemoxxxxPanelButton" href="/SAS">SAS - Small Association Solution</a>
+		<a class="ccDemoxxxxPanelButton" href="/This-is-the-Surety-new-Page">This is the Surety new Page</a>
+	</div>
+</div>
+<div style="WHITE-SPACE: nowrap;">
+	<a style="display:block;" class="ccDemoxxxxButton"  onMouseOut=" ccFlyoutHoverMode(0);"   onMouseOver=" ccFlyoutHoverMode(1); return ccFlyoutButtonClick(event, 'id8522_79576615_36','1','ccDemoxxxx','true');"   HREF="/Template-Demo">Template Demo</a>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ccDemoxxxxPanel" id="id8522_79576615_36" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ccDemoxxxx');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ccDemoxxxxPanelButton" href="/Hard-Template-Blue-Page">Hard Template Demo - Blue Page</a>
+		<a class="ccDemoxxxxPanelButton" href="/Hard-Template-Red-Page">Hard Template Demo - Red Page</a>
+		<a class="ccDemoxxxxPanelButton" href="/Soft-Template-Blue-Page">Soft Template Demo - Blue Page</a>
+		<a class="ccDemoxxxxPanelButton" href="/Soft-Template-Red-Page">Soft Template Demo - Red Page</a>
+		</div>
+	</div>
+	<div style="WHITE-SPACE: nowrap;">
+		<a style="display:block;" class="ccDemoxxxxButton"    HREF="/Support">Support</a>
+	</div>
+	<div style="WHITE-SPACE: nowrap;">
+		<a style="display:block;" class="ccDemoxxxxButton"    HREF="/Contensive.com">Contensive.com</a>
+	</div>
+	<div style="WHITE-SPACE: nowrap;">
+		<a style="display:block;" class="ccDemoxxxxButton"    HREF="/index.asp?sid=14">Client Login</a>
+	</div>
+	<!-- /Add-on Dynamic Menu --><br>
+</div>
+
+==========================================
+A-Menu graphics
+
+
+<span style="WHITE-SPACE: nowrap">
+	<SCRIPT language=javascript type=text/javascript>
+		var img14512775sn=new Image; 
+		img14512775sn.src='/ASBO/files/ccSections/MENUIMAGEFILENAME/000000000001/Home.gif'; 
+		var img14512775so=new Image; 
+		img14512775so.src='/ASBO/files/ccSections/MENUIMAGEOVERFILENAME/000000000001/Home_Over.gif'; 
+	</script>
+	<a style="display:inline;" class="ASBOButton"  onMouseOut=" document.img14512775s.src=img14512775sn.src; ccFlyoutHoverMode(0);"   onMouseOver=" document.img14512775s.src=img14512775so.src; ccFlyoutHoverMode(1); return ccFlyoutButtonClick(event, 'id803_1953108993_21698','0','ASBO','true');"   HREF="/index.asp?sid=1">
+		<img src="/ASBO/files/ccSections/MENUIMAGEFILENAME/000000000001/Home.gif" border="0" alt="Home" ID=img14512775s Name=img14512775s>
+	</a>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ASBOPanel" id="id803_1953108993_21698" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ASBO');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ASBOPanelButton" href="/index.asp?bid=22548">ASBO International Calendar</a>
+		<a class="ASBOPanelButton" href="?rc=42&amp;ri=25957">Members Only Website</a>
+		<a class="ASBOPanelButton" href="?rc=42&amp;ri=25961">Members Only: Set My Password</a>
+		<a class="ASBOPanelButton" href="/index.asp?bid=23077">Site Map</a>
+		<a class="ASBOPanelButton" href="/index.asp?bid=23481">Site Search</a>
+		<a class="ASBOPanelButton" href="/index.asp?bid=22774">Contact Us</a>
+	</div>
+</span>
+<span style="WHITE-SPACE: nowrap">
+	<SCRIPT language=javascript type=text/javascript>
+		var img176343750sn=new Image; 
+		img176343750sn.src='/ASBO/files/ccSections/MENUIMAGEFILENAME/000000000002/About.gif'; 
+		var img176343750so=new Image; 
+		img176343750so.src='/ASBO/files/ccSections/MENUIMAGEOVERFILENAME/000000000002/About_Over.gif'; 
+	</script>
+	<a style="display:inline;" class="ASBOButton"  onMouseOut=" document.img176343750s.src=img176343750sn.src; ccFlyoutHoverMode(0);"   onMouseOver=" document.img176343750s.src=img176343750so.src; ccFlyoutHoverMode(1); return ccFlyoutButtonClick(event, 'id803_622213073_22003','0','ASBO','true');"   HREF="/index.asp?sid=2">
+		<img src="/ASBO/files/ccSections/MENUIMAGEFILENAME/000000000002/About.gif" border="0" alt="About ASBO" ID=img176343750s Name=img176343750s>
+	</a>
+	<div style="position: absolute; left: 0px;visibility:hidden;" class="kmaMenu ASBOPanel" id="id803_622213073_22003" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelHover(event,'ASBO');" onmouseout="ccFlyoutHoverMode(0);">
+		<a class="ASBOPanelButton" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelButtonHover(event,'id803_622213073_22015','ASBO');" onmouseout="ccFlyoutHoverMode(0);" href="/index.asp?bid=22015">Join ASBO</a>
+		<a class="ASBOPanelButton" onmouseover="ccFlyoutHoverMode(1); ccFlyoutPanelButtonHover(event,'id803_622213073_22482','ASBO');" onmouseout="ccFlyoutHoverMode(0);" href="/index.asp?bid=22482">Governance</a>
+		<a class="ASBOPanelButton" href="/index.asp?bid=1068">ASBO's Professional Standards</a>
+		...

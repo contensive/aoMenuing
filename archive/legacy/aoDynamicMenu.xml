@@ -1,0 +1,16 @@
+<Collection name="Dynamic Menu" guid="{EA22C082-C723-41A6-858D-840B7801DB59}" version="2" system="1">
+  <Interfaces>
+    <Page name='Dynamic Menu' guid='{DB1821B3-F6E4-4766-A46E-48CA6C9E4C6E}'>
+      <Description></Description>
+      <Help></Help>
+      <HelpLink></HelpLink>
+      <IconLink></IconLink>
+      <Template>true</Template>
+      <Content>true</Content>
+      <Admin>true</Admin>
+      <ArgumentList>Menu Name=Default[list(Dynamic Menus)]</ArgumentList>
+      <ArgumentList>Create New Menu</ArgumentList>
+      <CopyText><![CDATA[<AC type="DynamicMenu" Name="Dynamic Menu" QueryString="Menu=$menu name$&amp;MenuNew=$Create New Menu$">]]></CopyText>
+    </Page>	
+  </Interfaces>
+</Collection>
