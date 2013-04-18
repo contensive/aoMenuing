@@ -72,6 +72,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
     Dim FlyoutDirection As Long
     Dim menuId As Long
     Dim isEditing As Boolean
+    Dim menuHtmlId As String
     '
     ' For Page Addons, return the result
     '
@@ -118,6 +119,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
                 ' ----- Process Requests
                 '
                 menuId = kmaEncodeInteger(GetXMLAttribute(IsFound, doc.documentElement, "recordid", "0"))
+                menuHtmlId = "menu" & menuId
                 menuName = GetXMLAttribute(IsFound, doc.documentElement, "name", "")
                 StylePrefix = GetXMLAttribute(IsFound, doc.documentElement, "styleprefix", "ccFlyout")
                 HorizontalLayout = kmaEncodeBoolean(GetXMLAttribute(IsFound, doc.documentElement, "layout", "1") = 1)
@@ -135,7 +137,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
                 'useJsFlyoutCode = kmaEncodeBoolean(GetXMLAttribute(IsFound, doc.documentElement, "usejsflyoutcode", "false"))
                 '
                 ClickIndicator = "&nbsp;&#187;"
-                Execute = Execute & GetButtons(doc, StylePrefix, HorizontalLayout, FlyoutOnHover, FlyoutDirection, ClickIndicator, isEditing, renderedPageId, renderedSectionId, menuId, isAdvancedEditing, menuName)
+                Execute = Execute & GetButtons(doc, StylePrefix, HorizontalLayout, FlyoutOnHover, FlyoutDirection, ClickIndicator, isEditing, renderedPageId, renderedSectionId, menuId, isAdvancedEditing, menuName, menuHtmlId)
                 'With doc.documentElement
                 '    For Each TopNode In .childNodes
                 '        If LCase(TopNode.baseName) = "node" Then
@@ -155,7 +157,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
                                 If LCase(node.baseName) = "jsfile" Then
                                     jsFile = GetXMLAttribute(IsFound, node, "name", "")
                                     If jsFile <> "" Then
-                                        Call Main.AddHeadScriptLink(Main.ServerFilePath & jsFile, "menuing")
+                                        Call Main.AddHeadScriptLink(Main.serverFilePath & jsFile, "menuing")
                                     End If
                                 End If
                                 If LCase(node.baseName) = "jsonload" Then
@@ -167,7 +169,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
                                 If LCase(node.baseName) = "cssfile" Then
                                     cssFile = GetXMLAttribute(IsFound, node, "name", "")
                                     If cssFile <> "" Then
-                                        Call Main.AddStylesheetLink2(Main.ServerFilePath & cssFile, "menuing")
+                                        Call Main.AddStylesheetLink2(Main.serverFilePath & cssFile, "menuing")
                                     End If
                                 End If
                             Next
@@ -180,7 +182,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
                         classAttr = ""
                     End If
                     Execute = "" _
-                        & vbCrLf & vbTab & "<ul" & classAttr & ">" _
+                        & vbCrLf & vbTab & "<ul id=""" & menuHtmlId & "List""" & classAttr & ">" _
                         & kmaIndent(Execute) _
                         & vbCrLf & vbTab & "</ul>"
                 End If
@@ -193,12 +195,12 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
         '
         If HorizontalLayout Then
             Execute = "" _
-                & vbCrLf & vbTab & "<div id=""menu" & menuId & """ class=""layoutHorizontal"">" _
+                & vbCrLf & vbTab & "<div id=""" & menuHtmlId & """ class=""layoutHorizontal"">" _
                 & kmaIndent(Execute) _
                 & vbCrLf & vbTab & "</div>"
         Else
             Execute = "" _
-                & vbCrLf & vbTab & "<div id=""menu" & menuId & """ class=""layoutVertical"">" _
+                & vbCrLf & vbTab & "<div id=""" & menuHtmlId & """ class=""layoutVertical"">" _
                 & kmaIndent(Execute) _
                 & vbCrLf & vbTab & "</div>"
         End If
@@ -226,7 +228,7 @@ End Function
 '       It also creates the menu data in a close string that is returned in GetMenuClose.
 '===============================================================================
 '
-Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, HorizontalLayout As Boolean, FlyoutOnHover As Boolean, FlyoutDirection As Long, ClickIndicator As String, isEditing As Boolean, renderedPageId As Long, renderedSectionId As Long, menuId As Long, isAdvancedEditing As Boolean, menuName As String) As String
+Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, HorizontalLayout As Boolean, FlyoutOnHover As Boolean, FlyoutDirection As Long, ClickIndicator As String, isEditing As Boolean, renderedPageId As Long, renderedSectionId As Long, menuId As Long, isAdvancedEditing As Boolean, menuName As String, topMenuHtmlId As String) As String
     On Error GoTo ErrorTrap
     '
     Dim classAttr As String
@@ -235,9 +237,9 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
     Dim aTag As String
     Dim Link As String
     Dim EntryPointer As Long
-    Dim MenuUniqueName As String
+    Dim panelHtmlId As String
     Dim MenuEntries As String
-    Dim Target As String
+    Dim target As String
     Dim itemStyle As String
     Dim HotSpotHTML As String
     Dim HotSpotHTMLHover As String
@@ -268,7 +270,7 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
     Dim flyoutParentClass As String
     Dim useJsFlyoutCode As Boolean
     Dim nodePtr As Long
-    Dim idAttr As String
+    Dim itemHtmlIdAttr As String
     Dim Copy As String
     Dim hoverItemClass As String
     '
@@ -297,13 +299,14 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
                     MouseOutCode = ""
                     ImageID = "img" & CStr(GetRandomInteger) & "s"
                     itemStyle = topItemClass
-                    MenuUniqueName = CStr(GetRandomInteger)
+                    'panelHtmlId = CStr(GetRandomInteger)
                     Link = kmaEncodeHTML(GetXMLAttribute(IsFound, node, "link", ""))
                     MenuSectionID = kmaEncodeInteger(GetXMLAttribute(IsFound, node, "SectionID", "menu"))
                     menuPageId = kmaEncodeInteger(GetXMLAttribute(IsFound, node, "PageID", "menu"))
+                    panelHtmlId = topMenuHtmlId & "Page" & menuPageId & "List"
                     Caption = GetXMLAttribute(IsFound, node, "Caption", "menu")
                     CaptionImageSrc = GetXMLAttribute(IsFound, node, "CaptionImage", "")
-                    idAttr = " id=""section" & MenuSectionID & """ "
+                    itemHtmlIdAttr = " id=""" & topMenuHtmlId & "Page" & menuPageId & """"
                     If nodePtr = 0 Then
                         If itemStyle = "" Then
                             itemStyle = firstItemClass
@@ -379,8 +382,8 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
                         IsTextHotSpot = True
                     End If
                     '
-                    FlyoutPanel = GetPanel(node, MenuUniqueName, "", StylePrefix, FlyoutOnHover, PanelButtonCount, ClickIndicator, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, useJsFlyoutCode, panelContainsActivePage, menuId, flyoutParentClass, hoverItemClass)
-                    'FlyoutPanel = GetPanel(node, MenuUniqueName, "", StylePrefix, FlyoutOnHover, PanelButtonCount, ClickIndicator, tierWrapperClass, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, useJsFlyoutCode, panelContainsActivePage, menuId, flyoutParentClass, hoverItemClass)
+                    FlyoutPanel = GetPanel(node, panelHtmlId, "", StylePrefix, FlyoutOnHover, PanelButtonCount, ClickIndicator, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, useJsFlyoutCode, panelContainsActivePage, menuId, flyoutParentClass, hoverItemClass, topMenuHtmlId)
+                    'FlyoutPanel = GetPanel(node, panelHtmlId, "", StylePrefix, FlyoutOnHover, PanelButtonCount, ClickIndicator, tierWrapperClass, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, useJsFlyoutCode, panelContainsActivePage, menuId, flyoutParentClass, hoverItemClass)
                     If (FlyoutPanel <> "") Then
                         itemStyle = Trim(itemStyle & " " & flyoutParentClass)
                     End If
@@ -391,14 +394,14 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
                     If useJsFlyoutCode Then
                         If PanelButtonCount > 0 Then
                             If FlyoutOnHover Then
-                                MouseOverCode = MouseOverCode & " lmHover(event,'" & hoverItemClass & "'); return lmOpenChildList(event, '" & MenuUniqueName & "','" & FlyoutDirection & "','" & StylePrefix & "',true,'" & hoverItemClass & "');"
+                                MouseOverCode = MouseOverCode & " lmHover(event,'" & hoverItemClass & "'); return lmOpenChildList(event, '" & panelHtmlId & "','" & FlyoutDirection & "','" & StylePrefix & "',true,'" & hoverItemClass & "');"
                                 MouseOutCode = MouseOutCode & " lmUnHover(event,'" & hoverItemClass & "');"
                             Else
                                 If IsTextHotSpot Then
                                     HotSpotHTML = HotSpotHTML & ClickIndicator
                                 End If
-                                MouseClickCode = MouseClickCode & " return lmOpenChildList(event, '" & MenuUniqueName & "','" & FlyoutDirection & "','" & StylePrefix & "',false,'" & hoverItemClass & "');"
-                                MouseOverCode = MouseOverCode & " lmButtonHover(event,'" & MenuUniqueName & "','" & FlyoutDirection & "','false','" & hoverItemClass & "');"
+                                MouseClickCode = MouseClickCode & " return lmOpenChildList(event, '" & panelHtmlId & "','" & FlyoutDirection & "','" & StylePrefix & "',false,'" & hoverItemClass & "');"
+                                MouseOverCode = MouseOverCode & " lmButtonHover(event,'" & panelHtmlId & "','" & FlyoutDirection & "','false','" & hoverItemClass & "');"
                             End If
                         Else
                             If FlyoutOnHover Then
@@ -408,19 +411,19 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
                                 If IsTextHotSpot Then
                                     HotSpotHTML = HotSpotHTML & ClickIndicator
                                 End If
-                                'MouseClickCode = MouseClickCode & " return lmOpenChildList(event, '" & MenuUniqueName & "','" & FlyoutDirection & "','" & StylePrefix & "',false,'" & hoverItemClass & "');"
-                                MouseOverCode = MouseOverCode & " lmButtonHover(event,'" & MenuUniqueName & "','" & FlyoutDirection & "','false','" & hoverItemClass & "');"
+                                'MouseClickCode = MouseClickCode & " return lmOpenChildList(event, '" & panelHtmlId & "','" & FlyoutDirection & "','" & StylePrefix & "',false,'" & hoverItemClass & "');"
+                                MouseOverCode = MouseOverCode & " lmButtonHover(event,'" & panelHtmlId & "','" & FlyoutDirection & "','false','" & hoverItemClass & "');"
                             End If
                     '
                     '        If FlyoutOnHover Then
-                    '            MouseOverCode = MouseOverCode & " lmSetHoverMode(1); return lmOpenChildList(event, '" & MenuUniqueName & "','" & FlyoutDirection & "','" & StylePrefix & "','true');"
+                    '            MouseOverCode = MouseOverCode & " lmSetHoverMode(1); return lmOpenChildList(event, '" & panelHtmlId & "','" & FlyoutDirection & "','" & StylePrefix & "','true');"
                     '            MouseOutCode = MouseOutCode & " lmSetHoverMode(0);"
                     '        Else
                     '            If IsTextHotSpot Then
                     '                HotSpotHTML = HotSpotHTML & ClickIndicator
                     '            End If
-                    '            MouseClickCode = MouseClickCode & " return lmOpenChildList(event, '" & MenuUniqueName & "','" & FlyoutDirection & "','" & StylePrefix & "');"
-                    '            MouseOverCode = MouseOverCode & " lmButtonHover(event,'" & MenuUniqueName & "','" & FlyoutDirection & "','false');"
+                    '            MouseClickCode = MouseClickCode & " return lmOpenChildList(event, '" & panelHtmlId & "','" & FlyoutDirection & "','" & StylePrefix & "');"
+                    '            MouseOverCode = MouseOverCode & " lmButtonHover(event,'" & panelHtmlId & "','" & FlyoutDirection & "','false');"
                     '        End If
                         End If
                     End If
@@ -452,10 +455,10 @@ Private Function GetButtons(doc As DOMDocument30, StylePrefix As String, Horizon
                     aTag = aTag & kmaIndent(FlyoutPanel)
                     If PanelButtonCount = 0 Then
                         GetButtons = GetButtons _
-                            & vbCrLf & vbTab & "<li" & idAttr & classAttr & MouseOutCode & MouseOverCode & MouseClickCode & ">" & aTag & "</li>"
+                            & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & MouseOutCode & MouseOverCode & MouseClickCode & ">" & aTag & "</li>"
                     Else
                         GetButtons = GetButtons _
-                            & vbCrLf & vbTab & "<li" & idAttr & classAttr & MouseOutCode & MouseOverCode & MouseClickCode & ">" & aTag _
+                            & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & MouseOutCode & MouseOverCode & MouseClickCode & ">" & aTag _
                             & vbCrLf & vbTab & "</li>"
                     End If
                     nodePtr = nodePtr + 1
@@ -565,8 +568,8 @@ ErrorTrap:
 '   Gets the Menu Branch for the Default Menu
 '===============================================================================
 '
-Private Function GetPanel(ParentNode As IXMLDOMNode, PanelUniqueName As String, UsedEntries As String, StyleSheetPrefix As String, FlyoutHover As Boolean, PanelButtonCnt As Long, ClickIndicator As String, tierListClass As String, tierItemClass As String, activeItemClass As String, firstItemClass As String, lastItemClass As String, renderedPageId As Long, useJsFlyoutCode As Boolean, ByRef return_PanelContainsActivePage As Boolean, menuId As Long, flyoutParentClass As String, hoverItemClass As String) As String
-'Private Function GetPanel(ParentNode As IXMLDOMNode, PanelUniqueName As String, UsedEntries As String, StyleSheetPrefix As String, FlyoutHover As Boolean, PanelButtonCnt As Long, ClickIndicator As String, tierWrapperClass As String, tierListClass As String, tierItemClass As String, activeItemClass As String, firstItemClass As String, lastItemClass As String, renderedPageId As Long, useJsFlyoutCode As Boolean, ByRef return_PanelContainsActivePage As Boolean, menuId As Long, flyoutParentClass As String, hoverItemClass As String) As String
+Private Function GetPanel(ParentNode As IXMLDOMNode, panelHtmlId As String, UsedEntries As String, StyleSheetPrefix As String, FlyoutHover As Boolean, PanelButtonCnt As Long, ClickIndicator As String, tierListClass As String, tierItemClass As String, activeItemClass As String, firstItemClass As String, lastItemClass As String, renderedPageId As Long, useJsFlyoutCode As Boolean, ByRef return_PanelContainsActivePage As Boolean, menuId As Long, flyoutParentClass As String, hoverItemClass As String, topMenuHtmlId As String) As String
+'Private Function GetPanel(ParentNode As IXMLDOMNode, panelHtmlId As String, UsedEntries As String, StyleSheetPrefix As String, FlyoutHover As Boolean, PanelButtonCnt As Long, ClickIndicator As String, tierWrapperClass As String, tierListClass As String, tierItemClass As String, activeItemClass As String, firstItemClass As String, lastItemClass As String, renderedPageId As Long, useJsFlyoutCode As Boolean, ByRef return_PanelContainsActivePage As Boolean, menuId As Long, flyoutParentClass As String, hoverItemClass As String) As String
     On Error GoTo ErrorTrap
     '
     Dim thisPanelContainsActivePage As Boolean
@@ -582,7 +585,7 @@ Private Function GetPanel(ParentNode As IXMLDOMNode, PanelUniqueName As String, 
     Dim iUsedEntries As String
     Dim SubMenuName As String
     Dim SubMenuCount As Long
-    Dim Target As String
+    Dim target As String
     Dim SubMenus As String
     Dim PanelChildren As String
     Dim PanelButtons As String
@@ -598,11 +601,11 @@ Private Function GetPanel(ParentNode As IXMLDOMNode, PanelUniqueName As String, 
     Dim ImageSrc As String
     Dim ImageOverSrc As String
     Dim CaptionImageSrc As String
-    Dim ChildPanelUniqueName As String
+    Dim childPanelHtmlId As String
     'Dim PanelButtonClass As String
     Dim PanelButtonPtr As Long
     Dim itemClass As String
-    Dim idAttr As String
+    Dim itemHtmlIdAttr As String
     '
     PanelButtonCnt = ParentNode.childNodes.length
     thisPanelContainsActivePage = False
@@ -618,18 +621,19 @@ If PanelButtonCnt > 0 Then
             If PanelButtonPtr = (PanelButtonCnt - 1) Then
                 itemClass = Trim(lastItemClass & " " & itemClass)
             End If
-            ChildPanelUniqueName = CStr(Main.GetRandomLong)
+            'childPanelHtmlId = CStr(Main.GetRandomLong)
             'PanelButtonStyle = "PanelButton"
             NewWindow = kmaEncodeBoolean(GetXMLAttribute(IsFound, node, "NewWindow", "menu"))
             Link = kmaEncodeHTML(GetXMLAttribute(IsFound, node, "link", ""))
             MenuSectionID = kmaEncodeInteger(GetXMLAttribute(IsFound, node, "SectionID", "menu"))
             menuPageId = kmaEncodeInteger(GetXMLAttribute(IsFound, node, "pageID", "menu"))
+            childPanelHtmlId = topMenuHtmlId & "Page" & menuPageId & "List"
             Caption = GetXMLAttribute(IsFound, node, "Caption", "menu")
             CaptionImageSrc = GetXMLAttribute(IsFound, node, "CaptionImage", "menu")
             '
-            idAttr = " id=""page" & menuPageId & """"
+            itemHtmlIdAttr = " id=""" & topMenuHtmlId & "Page" & menuPageId & """"
             childPanelContainsActivePage = False
-            PanelChildren = GetPanel(node, ChildPanelUniqueName, iUsedEntries, StyleSheetPrefix, FlyoutHover, ChildButtonCnt, ClickIndicator, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, useJsFlyoutCode, childPanelContainsActivePage, menuId, flyoutParentClass, hoverItemClass)
+            PanelChildren = GetPanel(node, childPanelHtmlId, iUsedEntries, StyleSheetPrefix, FlyoutHover, ChildButtonCnt, ClickIndicator, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, useJsFlyoutCode, childPanelContainsActivePage, menuId, flyoutParentClass, hoverItemClass, topMenuHtmlId)
             If (PanelChildren <> "") And (flyoutParentClass <> "") Then
                 itemClass = Trim(itemClass & " " & flyoutParentClass)
             End If
@@ -671,9 +675,9 @@ If PanelButtonCnt > 0 Then
 '                ImageOverSrc = kmaEncodeHTML(GetXMLAttribute(IsFound, Node, "ImageOverSrc", ""))
 '            End If
             
-            Target = ""
+            target = ""
             If NewWindow Then
-                Target = " target=""_blank"""
+                target = " target=""_blank"""
             End If
             If ImageSrc <> "" Then
                 HotSpotHTML = "<img src=""" & ImageSrc & """ border=""0"" alt=""" & Caption & """>"
@@ -686,7 +690,7 @@ If PanelButtonCnt > 0 Then
                 classAttr = ""
             End If
 '            childPanelContainsActivePage = False
-'            PanelChildren = GetPanel(Node, ChildPanelUniqueName, iUsedEntries, StyleSheetPrefix, FlyoutHover, ChildButtonCnt, ClickIndicator, tierWrapperClass, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, childPanelContainsActivePage)
+'            PanelChildren = GetPanel(Node, childPanelHtmlId, iUsedEntries, StyleSheetPrefix, FlyoutHover, ChildButtonCnt, ClickIndicator, tierWrapperClass, tierListClass, tierItemClass, activeItemClass, firstItemClass, lastItemClass, renderedPageId, childPanelContainsActivePage)
 '            If childPanelContainsActivePage Then
 '                thisPanelContainsActivePage = True
 '            End If
@@ -700,12 +704,12 @@ If PanelButtonCnt > 0 Then
                     '
                     ' ----- Link but no child panel
                     '
-                    aTag = "<a title=""" & Caption & """" & classAttr & "  href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & "</a>"
+                    aTag = "<a title=""" & Caption & """" & classAttr & "  href=""" & kmaEncodeHTML(Link) & """" & target & ">" & HotSpotHTML & "</a>"
                 End If
                 If useJsFlyoutCode Then
-                    GetPanel = GetPanel & vbCrLf & vbTab & "<li" & idAttr & classAttr & "  onmouseover=""lmHover(event,'" & hoverItemClass & "');"" onmouseout=""lmUnHover(event,'" & hoverItemClass & "');"">" & aTag & "</li>"
+                    GetPanel = GetPanel & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & "  onmouseover=""lmHover(event,'" & hoverItemClass & "');"" onmouseout=""lmUnHover(event,'" & hoverItemClass & "');"">" & aTag & "</li>"
                 Else
-                    GetPanel = GetPanel & vbCrLf & vbTab & "<li" & idAttr & classAttr & " >" & aTag & "</li>"
+                    GetPanel = GetPanel & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & " >" & aTag & "</li>"
                 End If
 '                If Link = "" Then
 '                    '
@@ -721,20 +725,20 @@ If PanelButtonCnt > 0 Then
 '                        aTag = "<a title=""" & Caption & """" & classAttr & "  href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & "</a>"
 '                    End If
 '                End If
-'                GetPanel = GetPanel & vbCrLf & vbTab & "<li" & idAttr & classAttr & " >" & aTag & "</li>"
+'                GetPanel = GetPanel & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & " >" & aTag & "</li>"
             Else
                 If Link = "" Then
                     '
                     ' ----- Child Panel and no link, block the href so menu "parent" buttons will not be clickable
                     '
-                    aTag = "<a title=""" & Caption & """" & classAttr & " onclick=""return false;"" href=""#""" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
+                    aTag = "<a title=""" & Caption & """" & classAttr & " onclick=""return false;"" href=""#""" & target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                    If Not useJsFlyoutCode Then
 '                        aTag = "<a title=""" & Caption & """" & classAttr & " onclick=""return false;"" href=""#""" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                    Else
 '                        If FlyoutHover Then
-'                            aTag = "<a title=""" & Caption & """" & classAttr & " onmouseover=""lmHover(event,'" & hoverItemClass & "'); lmListItemHover(event,'" & ChildPanelUniqueName & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');"" onmouseout=""lmUnHover(event,'" & hoverItemClass & "');"" onclick=""return false;"" href=""#""" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
+'                            aTag = "<a title=""" & Caption & """" & classAttr & " onmouseover=""lmHover(event,'" & hoverItemClass & "'); lmListItemHover(event,'" & childPanelHtmlId & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');"" onmouseout=""lmUnHover(event,'" & hoverItemClass & "');"" onclick=""return false;"" href=""#""" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                        Else
-'                            aTag = "<a title=""" & Caption & """" & classAttr & " onmouseover=""lmListItemHover(event,'" & ChildPanelUniqueName & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');"" onclick=""return false;"" href=""#""" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
+'                            aTag = "<a title=""" & Caption & """" & classAttr & " onmouseover=""lmListItemHover(event,'" & childPanelHtmlId & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');"" onclick=""return false;"" href=""#""" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                        End If
 '                    End If
                     ' onmouseover="lmListHover(event,'ccFlyout')
@@ -742,28 +746,28 @@ If PanelButtonCnt > 0 Then
                     '
                     ' ----- Child Panel and a link
                     '
-                    aTag = "<a title=""" & Caption & """" & classAttr & " href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
+                    aTag = "<a title=""" & Caption & """" & classAttr & " href=""" & kmaEncodeHTML(Link) & """" & target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                    If FlyoutHover Then
 '                        aTag = "<a title=""" & Caption & """" & classAttr & " href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                    Else
 '                        aTag = "<a title=""" & Caption & """" & classAttr & " href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
-'                        'ATag = "<a title=""" & Caption & """" & classAttr & "  onmouseover=""lmListItemHover(event,'" & ChildPanelUniqueName & "','" & StyleSheetPrefix & "');"" href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
+'                        'ATag = "<a title=""" & Caption & """" & classAttr & "  onmouseover=""lmListItemHover(event,'" & childPanelHtmlId & "','" & StyleSheetPrefix & "');"" href=""" & kmaEncodeHTML(Link) & """" & Target & ">" & HotSpotHTML & ClickIndicator & "</a>"
 '                    End If
                 End If
                 If Not useJsFlyoutCode Then
                     GetPanel = GetPanel _
-                        & vbCrLf & vbTab & "<li" & idAttr & classAttr & ">" & aTag _
+                        & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & ">" & aTag _
                         & kmaIndent(PanelChildren) _
                         & vbCrLf & vbTab & "</li>"
                 Else
                     If FlyoutHover Then
                         GetPanel = GetPanel _
-                            & vbCrLf & vbTab & "<li" & idAttr & classAttr & " onmouseover=""lmHover(event,'" & hoverItemClass & "'); lmListItemHover(event,'" & ChildPanelUniqueName & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');""  onmouseout=""lmUnHover(event,'" & hoverItemClass & "');"" >" & aTag _
+                            & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & " onmouseover=""lmHover(event,'" & hoverItemClass & "'); lmListItemHover(event,'" & childPanelHtmlId & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');""  onmouseout=""lmUnHover(event,'" & hoverItemClass & "');"" >" & aTag _
                             & kmaIndent(PanelChildren) _
                             & vbCrLf & vbTab & "</li>"
                     Else
                         GetPanel = GetPanel _
-                            & vbCrLf & vbTab & "<li" & idAttr & classAttr & " onmouseover=""lmHover(event,'" & hoverItemClass & "'); lmListItemHover(event,'" & ChildPanelUniqueName & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');"" >" & aTag _
+                            & vbCrLf & vbTab & "<li" & itemHtmlIdAttr & classAttr & " onmouseover=""lmHover(event,'" & hoverItemClass & "'); lmListItemHover(event,'" & childPanelHtmlId & "','" & StyleSheetPrefix & "','" & hoverItemClass & "','" & tierItemClass & "','" & tierListClass & "');"" >" & aTag _
                             & kmaIndent(PanelChildren) _
                             & vbCrLf & vbTab & "</li>"
                     End If
@@ -796,7 +800,7 @@ If PanelButtonCnt > 0 Then
             mouseOverAttr = " onmouseover=""lmListHover(event,'" & StyleSheetPrefix & "','" & hoverItemClass & "');"""
         End If
         GetPanel = "" _
-            & vbCrLf & vbTab & vbTab & "<ul id=""" & PanelUniqueName & """" & classAttr & mouseOverAttr & ">" _
+            & vbCrLf & vbTab & vbTab & "<ul id=""" & panelHtmlId & """" & classAttr & mouseOverAttr & ">" _
             & kmaIndent(GetPanel) _
             & vbCrLf & vbTab & vbTab & "</ul>" _
             & ""
@@ -812,7 +816,7 @@ If PanelButtonCnt > 0 Then
 '            mouseOverAttr = " onmouseover=""lmListHover(event,'" & StyleSheetPrefix & "');"""
 '        End If
 '        GetPanel = "" _
-'            & vbCrLf & vbTab & "<div" & classAttr & " id=""" & PanelUniqueName & """" & mouseOverAttr & ">" _
+'            & vbCrLf & vbTab & "<div" & classAttr & " id=""" & panelHtmlId & """" & mouseOverAttr & ">" _
 '            & kmaIndent(GetPanel) _
 '            & vbCrLf & vbTab & "</div>" _
 '            & ""
