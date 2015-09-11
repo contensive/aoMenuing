@@ -64,8 +64,8 @@ Private NodeStrucUsedNameList As String
 'Private iMenuCloseString As String  ' String returned for closing menus
 '
 'Private NodeStrucUsedNameList As String       ' String of EntryNames that have been used (for unique test)
-Private EntryIndexName As FastIndexClass
-Private EntryIndexID As FastIndexClass
+'Private EntryIndexName As FastIndexClass
+'Private EntryIndexID As FastIndexClass
 '
 ' ----- RollOverFlyout storage
 '
@@ -177,7 +177,7 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
     '
     ' disable cache because
     '
-    'Execute = Main.ReadBake(cacheName)
+    Execute = Main.ReadBake(cacheName)
     If Execute = "" Then
         '
         Call Main.GetPCCPtr(0, False, False)
@@ -482,19 +482,19 @@ Friend Function getSectionMenu(DepthLimit As Long, MenuStyle As Long, StyleSheet
             End If
             MenuImage = Csv.GetCSText(CSSections, "MenuImageFilename")
             If MenuImage <> "" Then
-                MenuImage = Main.ServerFilePath & MenuImage
+                MenuImage = Main.serverFilePath & MenuImage
             End If
             MenuImageOver = Csv.GetCSText(CSSections, "MenuImageOverFilename")
             If MenuImageOver <> "" Then
-                MenuImageOver = Main.ServerFilePath & MenuImageOver
+                MenuImageOver = Main.serverFilePath & MenuImageOver
             End If
             MenuImageDown = Csv.GetCSText(CSSections, "MenuImageDownFilename")
             If MenuImageDown <> "" Then
-                MenuImageDown = Main.ServerFilePath & MenuImageDown
+                MenuImageDown = Main.serverFilePath & MenuImageDown
             End If
             MenuImageDownOver = Csv.GetCSText(CSSections, "MenuImageDownOverFilename")
             If MenuImageDownOver <> "" Then
-                MenuImageDownOver = Main.ServerFilePath & MenuImageDownOver
+                MenuImageDownOver = Main.serverFilePath & MenuImageDownOver
             End If
             '
             ' Get Root Page for templateID
@@ -837,13 +837,13 @@ If True Then
                                     ' ChildPagesFound flag is true, but no pages were found - clear flag
                                     '
                                     Call Csv.ExecuteSQL("default", "update ccpagecontent set ChildPagesFound=0 where id=" & WorkingPageID)
-                                    Call Main.UpdatePCCRow(WorkingPageID, Main.IsWorkflowRendering, IsQuickEditing)
+                                    'Call Main.UpdatePCCRow(WorkingPageID, Main.IsWorkflowRendering, IsQuickEditing)
                                 ElseIf (ChildPageCount <> 0) And (Not ChildPagesFound) Then
                                     '
                                     ' ChildPagesFlag is cleared, but pages were found -- set the flag
                                     '
                                     Call Csv.ExecuteSQL("default", "update ccpagecontent set ChildPagesFound=1 where id=" & WorkingPageID)
-                                    Call Main.UpdatePCCRow(WorkingPageID, Main.IsWorkflowRendering, IsQuickEditing)
+                                    'Call Main.UpdatePCCRow(WorkingPageID, Main.IsWorkflowRendering, IsQuickEditing)
                                 End If
                             End If
                         End If
@@ -918,7 +918,7 @@ Private Function GetSiteTree_PageSubMenu_AddNodesReturnCnt(ParentMenuID As Long,
     Dim PtrCnt As Long
     Dim SortSplit() As String
     Dim SortSplitCnt As Long
-    Dim Index As FastIndexClass
+    'Dim Index As FastIndexClass
     Dim PCCColPtr As Long
     Dim PCCPtrsSorted As Variant
     Dim AllowInMenus As Boolean
@@ -1309,7 +1309,7 @@ Private Sub AddNodeToStruc(sectionId As Long, PageID As Long, EntryName As Strin
             .NewWindow = KmaEncodeMissingBoolean(NewWindow, False)
             .Overview = KmaEncodeMissingText(Overview, "")
         End With
-        Call EntryIndexName.SetPointer(UcaseNodeStrucName, NodeStrucCount)
+        'Call EntryIndexName.SetPointer(UcaseNodeStrucName, NodeStrucCount)
         NodeStrucCount = NodeStrucCount + 1
     End If
     '
@@ -1372,7 +1372,7 @@ End Function
 '
 Private Sub Class_Initialize()
     ' iDQMCount = 0
-    Set EntryIndexName = New FastIndexClass
+    'Set EntryIndexName = New FastIndexClass
     Randomize
     'MenuFlyoutNamePrefix = "id" & CStr(Int(9999 * Rnd()))
     'MenuFlyoutIcon_Local = "&nbsp;&#187;"
@@ -1401,7 +1401,7 @@ Private Function GetNodeChildrenFromStruc(PanelName As String, NodeStrucUsedName
     Dim EntryPointer As Long
     Dim SubMenuName As String
     Dim SubMenuCount As Long
-    Dim Target As String
+    Dim target As String
     Dim SubMenus As String
     Dim PanelChildren As String
     Dim PanelButtons As String
