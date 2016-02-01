@@ -130,6 +130,8 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
     '
     ' For Page Addons, return the result
     '
+    cacheName = cacheNamebase
+    '
     menuName = Main.GetAddonOption("create new menu", OptionString)
     If menuName = "" Then
         menuName = Main.GetAddonOption("menunew", OptionString)
@@ -151,7 +153,12 @@ Public Function Execute(CsvObject As Object, MainObject As Object, OptionString 
     End If
     If menuName <> "" Then
         sqlCriteria = "(name=" & Main.EncodeSQLText(menuName) & ")"
-        cacheName = cacheNamebase & "-name:" & menuName
+        cacheName = cacheName & ",name:" & menuName
+    End If
+    If Main.IsAuthenticated Then
+        cacheName = cacheName & ",user:" & Main.memberID
+    Else
+        cacheName = cacheName & ",user:anonymous"
     End If
 '    menuId = Main.EncodeInteger(Main.GetAddonOption("use existing menu", OptionString))
 '    If menuId <> 0 Then
