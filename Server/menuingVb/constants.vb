@@ -1,0 +1,3 @@
+﻿Module constants
+
+End Module
