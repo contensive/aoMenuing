@@ -160,5 +160,35 @@ namespace Menuing.Models
         {
             return baseModel.getRecordId<pageContentModel>(cp, ccGuid);
         }
+        //
+        //====================================================================================================
+        // -- a list of sections you have access to
+        // -- all sections without blocking, plus section-groups that you are in the group
+        public static List<int> getAllowedPageIdList(CPBaseClass cp)
+        {
+            List<int> result = new List<int>();
+            try
+            {
+                string sql = "select pr.recordId as id"
+                    + " from ccPageContentBlockRules pr"
+                    + " left join ccMemberRules mr on mr.groupId=pr.groupid"
+                    + " where mr.memberId=" + cp.User.Id.ToString();
+                CPCSBaseClass cs = cp.CSNew();
+                if (cs.OpenSQL(sql))
+                {
+                    do
+                    {
+                        result.Add(cs.GetInteger("id"));
+                        cs.GoNext();
+                    } while (cs.OK());
+                }
+                cs.Close();
+            }
+            catch (Exception ex)
+            {
+                cp.Site.ErrorReport(ex);
+            }
+            return result;
+        }
     }
 }
