@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>menuing</RootNamespace>
-    <AssemblyName>AddonCollectionCs</AssemblyName>
+    <AssemblyName>menuing3</AssemblyName>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -61,7 +61,7 @@
   <ItemGroup>
     <Reference Include="CPBase, Version=4.1.2.0, Culture=neutral, PublicKeyToken=10b3c53389b845fb, processorArchitecture=MSIL">
       <HintPath>..\packages\contensive.clib.4.1.2\lib\net35\CPBase.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -72,7 +72,7 @@
     <Compile Include="constants.cs" />
     <Compile Include="Controllers\genericController.cs" />
     <Compile Include="Models\baseModel.cs" />
-    <Compile Include="Models\dynamicMenuModel.cs" />
+    <Compile Include="Models\menuModel.cs" />
     <Compile Include="Models\siteSectionsModel.cs" />
     <Compile Include="Models\pageContentModel.cs" />
     <Compile Include="Models\linkAliasModel.cs" />
@@ -82,7 +82,8 @@
     <Compile Include="Models\PageContentBlockRuleModel.cs" />
     <Compile Include="Models\SectionBlockRuleModel.cs" />
     <Compile Include="Models\_blankModel.cs" />
-    <Compile Include="Views\addonClass.cs" />
+    <Compile Include="Views\pageMenuClass.cs" />
+    <Compile Include="Views\sectionMenuClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +109,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="aoMenuing">
+      <Guid>{79EA222A-3B99-4135-8FCC-0904944AF2F5}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

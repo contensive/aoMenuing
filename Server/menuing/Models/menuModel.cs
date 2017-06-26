@@ -10,13 +10,13 @@ using Contensive.BaseClasses;
 
 namespace Menuing.Models
 {
-    public class dynamicMenuModel : baseModel
+    public class menuModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "dynamic menus";
-        public const string contentTableName = "ccdynamicmenus";
+        public const string contentName = "menus";
+        public const string contentTableName = "ccMenus";
         //
         //====================================================================================================
         // -- instance properties
@@ -30,44 +30,31 @@ namespace Menuing.Models
         public string classTopItem { get; set; }
         public string classTopList { get; set; }
         public string classTopWrapper { get; set; }
-        public int ContentCategoryID { get; set; }
-        public string Delimiter { get; set; }
         public int Depth { get; set; }
-        public bool EditArchive { get; set; }
-        public bool EditBlank { get; set; }
-        public int EditSourceID { get; set; }
-        public int FlyoutDirection { get; set; }
-        public bool FlyoutOnHover { get; set; }
-        public string JavaScriptOnLoad { get; set; }
-        public string JSFilename { get; set; }
-        public int Layout { get; set; }
-        public string listStylesFilename { get; set; }
-        public string StylePrefix { get; set; }
-        public string StylesFilename { get; set; }
-        public bool useJsFlyoutCode { get; set; }
+        public bool addRootToTier { get; set; }
         //
         //====================================================================================================
-        public static dynamicMenuModel @add(CPBaseClass cp)
+        public static menuModel @add(CPBaseClass cp)
         {
-            return @add<dynamicMenuModel>(cp);
+            return @add<menuModel>(cp);
         }
         //
         //====================================================================================================
-        public static dynamicMenuModel create(CPBaseClass cp, int recordId)
+        public static menuModel create(CPBaseClass cp, int recordId)
         {
-            return create<dynamicMenuModel>(cp, recordId);
+            return create<menuModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static dynamicMenuModel create(CPBaseClass cp, string recordGuid)
+        public static menuModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<dynamicMenuModel>(cp, recordGuid);
+            return create<menuModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static dynamicMenuModel createByName(CPBaseClass cp, string recordName)
+        public static menuModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<dynamicMenuModel>(cp, recordName);
+            return createByName<menuModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -79,37 +66,37 @@ namespace Menuing.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<dynamicMenuModel>(cp, recordId);
+            delete<menuModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<dynamicMenuModel>(cp, ccGuid);
+            delete<menuModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<dynamicMenuModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<menuModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<dynamicMenuModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<menuModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<dynamicMenuModel>(cp, recordId);
+            return baseModel.getRecordName<menuModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<dynamicMenuModel>(cp, ccGuid);
+            return baseModel.getRecordName<menuModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<dynamicMenuModel>(cp, ccGuid);
+            return baseModel.getRecordId<menuModel>(cp, ccGuid);
         }
     }
 }
