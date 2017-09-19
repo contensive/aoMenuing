@@ -98,6 +98,7 @@
 	<CDef Name="Page Content" guid="{02203F58-0921-4F75-A089-0EAD6E8FEB4F}" >
 		<Field Name="addToMenu" active="True" AdminOnly="False" Authorable="True" Caption="AddToMenu" DeveloperOnly="False" EditSortPriority="1000" FieldType="ManyToMany" HTMLContent="False" IndexColumn="" IndexSortDirection="" IndexSortOrder="" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="" RSSTitle="False" RSSDescription="False" MemberSelectGroupID="" EditTab="Add To Menu" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="pageId" ManyToManyRuleSecondaryField="menuId" IsModified="True" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="Menus" ManyToManyRuleContent="Menu Page Rules" ></Field>
 	</CDef>
+	<ImportCollection name="Bootstrap">{2d3f9a21-9602-4549-b5df-5e09a9dae57e}</ImportCollection>
 	<Resource name="arrow.gif" type="www" path="aomenuing" />
 	<Resource name="aomenuing5.dll" type="executable" path="" />
 </Collection>

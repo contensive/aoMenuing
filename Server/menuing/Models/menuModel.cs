@@ -19,18 +19,18 @@ namespace Menuing.Models
         public const string contentTableName = "ccMenus";
         //
         //====================================================================================================
-        // -- instance properties
-        public string classFlyoutParent { get; set; }
-        public string classItemActive { get; set; }
+        //// -- instance properties
+        //public string classFlyoutParent { get; set; }
+        //public string classItemActive { get; set; }
         public string classItemFirst { get; set; }
-        public string classItemHover { get; set; }
+        //public string classItemHover { get; set; }
         public string classItemLast { get; set; }
         public string classTierItem { get; set; }
         public string classTierList { get; set; }
         public string classTopItem { get; set; }
         public string classTopList { get; set; }
         public string classTopWrapper { get; set; }
-        public int Depth { get; set; }
+        //public int Depth { get; set; }
         public bool addRootToTier { get; set; }
         //
         //====================================================================================================

@@ -20,11 +20,6 @@ namespace Menuing.Models
         //
         //====================================================================================================
         // -- instance properties
-        public int ContentCategoryID { get; set; }
-        public bool EditArchive { get; set; }
-        public bool EditBlank { get; set; }
-        public int EditSourceID { get; set; }
-        public string Link { get; set; }
         public int PageID { get; set; }
         public string QueryStringSuffix { get; set; }
         //

@@ -22,11 +22,7 @@ namespace Menuing.Models
         // -- instance properties
         public bool AllowBulkEmail { get; set; }
         public string Caption { get; set; }
-        public int ContentCategoryID { get; set; }
         public string CopyFilename { get; set; }
-        public bool EditArchive { get; set; }
-        public bool EditBlank { get; set; }
-        public int EditSourceID { get; set; }
         public bool PublicJoin { get; set; }
         //
         //====================================================================================================
