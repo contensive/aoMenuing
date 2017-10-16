@@ -83,7 +83,7 @@
     <Compile Include="Models\SectionBlockRuleModel.cs" />
     <Compile Include="Models\_blankModel.cs" />
     <Compile Include="Views\pageMenuClass.cs" />
-    <Compile Include="Views\sectionMenuClass.cs" />
+    <Compile Include="legacy\sectionMenuClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

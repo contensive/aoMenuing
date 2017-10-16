@@ -50,7 +50,7 @@ namespace Menuing.Models
         }
         //
         //====================================================================================================
-        public void save(CPBaseClass cp)
+        public new void save(CPBaseClass cp)
         {
             base.save(cp);
         }

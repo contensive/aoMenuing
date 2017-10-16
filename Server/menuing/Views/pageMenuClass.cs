@@ -16,7 +16,8 @@ namespace Menuing.Views
         // -- instance properties
         CPBaseClass cp;
         //
-        // -- Contensive calls the execute method of your addon class
+        // ====================================================================================================
+        //
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp)
         {
             this.cp = cp;
@@ -158,7 +159,9 @@ namespace Menuing.Views
             {
                 string topItemCaption = page.MenuHeadline;
                 if (string.IsNullOrEmpty(topItemCaption)) topItemCaption = page.name;
-                return string.Format("<a title=\"{1}\" href=\"{0}\">{1}</a>", cp.Content.GetLinkAliasByPageID(page.id, "", ""), topItemCaption);
+                string pageLink = cp.Content.GetPageLink(page.id);
+                //string pageList = cp.Content.GetLinkAliasByPageID(page.id, "", "");
+                return string.Format("<a title=\"{1}\" href=\"{0}\">{1}</a>", pageLink, topItemCaption);
             }
             catch (Exception ex)
             {

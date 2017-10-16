@@ -6,7 +6,6 @@ Imports System
 Imports System.Collections.Generic
 Imports System.Text
 Imports Contensive.BaseClasses
-Imports Newtonsoft.Json
 
 Namespace Menuing.Models
     Public Class dynamicMenuModel
