@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Collection name="Menuing5" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
+	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
+	<Help></Help>
+	<Addon name="Menu" guid="{9A433022-9E81-4498-892C-606B1C3F7C5C}" type="Add-on">
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass><![CDATA[Menuing.Views.pageMenuClass]]></DotNetClass>
+		<ArgumentList><![CDATA[Menu=[listid(Menus)]]]></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>No</BlockEditTools>
+		<FormXML></FormXML>
+		<IncludeAddon name="Bootstrap 3.3.7 CSS" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
+		<IsInline>No</IsInline>
+		<JavascriptOnLoad></JavascriptOnLoad>
+		<JavascriptInHead></JavascriptInHead>
+		<JavascriptBodyEnd></JavascriptBodyEnd>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<Content>Yes</Content>
+		<Template>Yes</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles></Styles>
+		<Scripting Language="" EntryPoint="" Timeout="5000"/>
+	</Addon>
+	<ImportCollection name="Bootstrap">{2d3f9a21-9602-4549-b5df-5e09a9dae57e}</ImportCollection>
+	<Resource name="arrow.gif" type="www" path="aomenuing" />
+	<Resource name="aomenuing5.dll" type="executable" path="" />
+</Collection>
