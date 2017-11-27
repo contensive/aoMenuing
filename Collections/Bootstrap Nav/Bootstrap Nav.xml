@@ -2,11 +2,11 @@
 <Collection name="Bootstrap Nav" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
-	<Addon name="Navbar Basic" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+	<Addon name="Bootstrap Navbar Basic" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.MenuPages.Views.NavbarBasicDropdownClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.BootstrapNav.NavbarBasicDropdownClass]]></DotNetClass>
 		<ArgumentList><![CDATA[Menu=[listid(Menus)]]]></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
@@ -16,7 +16,8 @@
 		<InIframe>No</InIframe>
 		<BlockEditTools>No</BlockEditTools>
 		<FormXML></FormXML>
-		<IncludeAddon name="Bootstrap 3.3.7 CSS" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
+		<IncludeAddon name="Bootstrap Styles" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
+		<IncludeAddon name="Bootstrap Javascript" guid="{0D898BA4-E5FC-474A-82A3-E52DEFC307E5}"/>
 		<IsInline>No</IsInline>
 		<JavascriptOnLoad></JavascriptOnLoad>
 		<JavascriptInHead></JavascriptInHead>

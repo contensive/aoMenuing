@@ -59,10 +59,10 @@ namespace Contensive.Addons.BootstrapNav
                             menu.ccguid = instanceId;
                             menu.name = "Bootstrap Nav Basic " + string.Format("Menu {0}", menu.id);
                             menu.Active = true;
-                            menu.classItemActive = "";
+                            menu.classItemActive = "active";
                             menu.classItemFirst = "first";
                             menu.classItemLast = "last";
-                            menu.classItemHover = "";
+                            menu.classItemHover = "hover";
                             menu.classTierAnchor = "dropdown-item";
                             menu.classTierItem = "";
                             menu.classTierList = "dropdown-menu";
