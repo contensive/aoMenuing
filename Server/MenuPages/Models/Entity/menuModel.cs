@@ -8,45 +8,60 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class _blankModel : baseModel
+    public class menuModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        //------ set content name
-        public const string contentName = "tables";
-        //------ set to tablename for the primary content (used for cache names)
-        public const string contentTableName = "ccTables";
+        public const string contentName = "menus";
+        public const string contentTableName = "ccMenus";
         //
         //====================================================================================================
-        // -- instance properties
-        public int DataSourceID { get; set; }
-        //<------ replace this with a list all model fields not part of the base model
+        //// -- instance properties
+        //public string classFlyoutParent { get; set; }
+        //public string classItemActive { get; set; }
+        public string classItemFirst { get; set; }
+        //public string classItemHover { get; set; }
+        public string classItemLast { get; set; }
+        public string classTierItem { get; set; }
+        public string classTierAnchor { get; set; }
+        public string classTierList { get; set; }
+        public string classTopItem { get; set; }
+        public string classTopParentItem { get; set; }
+        public string classTopAnchor { get; set; }
+        public string classTopParentAnchor { get; set; }
+        public string dataToggleTopParentAnchor { get; set; }
+        public string classTopList { get; set; }
+        public string classTopWrapper { get; set; }
+        public string classItemActive { get; set; }
+        public string classItemHover { get; set; }
+        //public int Depth { get; set; }
+        //public bool addRootToTier { get; set; }
         //
         //====================================================================================================
-        public static _blankModel @add(CPBaseClass cp)
+        public static menuModel @add(CPBaseClass cp)
         {
-            return @add<_blankModel>(cp);
+            return @add<menuModel>(cp);
         }
         //
         //====================================================================================================
-        public static _blankModel create(CPBaseClass cp, int recordId)
+        public static menuModel create(CPBaseClass cp, int recordId)
         {
-            return create<_blankModel>(cp, recordId);
+            return create<menuModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static _blankModel create(CPBaseClass cp, string recordGuid)
+        public static menuModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<_blankModel>(cp, recordGuid);
+            return create<menuModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static _blankModel createByName(CPBaseClass cp, string recordName)
+        public static menuModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<_blankModel>(cp, recordName);
+            return createByName<menuModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -58,37 +73,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<_blankModel>(cp, recordId);
+            delete<menuModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<_blankModel>(cp, ccGuid);
+            delete<menuModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<_blankModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<menuModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<_blankModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<menuModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<_blankModel>(cp, recordId);
+            return baseModel.getRecordName<menuModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<_blankModel>(cp, ccGuid);
+            return baseModel.getRecordName<menuModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<_blankModel>(cp, ccGuid);
+            return baseModel.getRecordId<menuModel>(cp, ccGuid);
         }
     }
 }

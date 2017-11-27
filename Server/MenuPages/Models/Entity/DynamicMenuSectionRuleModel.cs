@@ -8,44 +8,45 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class MemberRuleModel : baseModel
+    public class DynamicMenuSectionRuleModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "member rules";
-        public const string contentTableName = "ccmemberrules";
+        //------ set content name
+        public const string contentName = "DynamicMenu Section Rules";
+        //------ set to tablename for the primary content (used for cache names)
+        public const string contentTableName = "ccDynamicMenuSectionRules";
         //
         //====================================================================================================
         // -- instance properties
-        public DateTime DateExpires { get; set; }
-        public int GroupID { get; set; }
-        public int MemberID { get; set; }
+        public int DynamicMenuID { get; set; }
+        public int SectionID { get; set; }
         //
         //====================================================================================================
-        public static MemberRuleModel @add(CPBaseClass cp)
+        public static DynamicMenuSectionRuleModel @add(CPBaseClass cp)
         {
-            return @add<MemberRuleModel>(cp);
+            return @add<DynamicMenuSectionRuleModel>(cp);
         }
         //
         //====================================================================================================
-        public static MemberRuleModel create(CPBaseClass cp, int recordId)
+        public static DynamicMenuSectionRuleModel create(CPBaseClass cp, int recordId)
         {
-            return create<MemberRuleModel>(cp, recordId);
+            return create<DynamicMenuSectionRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static MemberRuleModel create(CPBaseClass cp, string recordGuid)
+        public static DynamicMenuSectionRuleModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<MemberRuleModel>(cp, recordGuid);
+            return create<DynamicMenuSectionRuleModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static MemberRuleModel createByName(CPBaseClass cp, string recordName)
+        public static DynamicMenuSectionRuleModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<MemberRuleModel>(cp, recordName);
+            return createByName<DynamicMenuSectionRuleModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -57,37 +58,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<MemberRuleModel>(cp, recordId);
+            delete<DynamicMenuSectionRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<MemberRuleModel>(cp, ccGuid);
+            delete<DynamicMenuSectionRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<MemberRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<DynamicMenuSectionRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<MemberRuleModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<DynamicMenuSectionRuleModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<MemberRuleModel>(cp, recordId);
+            return baseModel.getRecordName<DynamicMenuSectionRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<MemberRuleModel>(cp, ccGuid);
+            return baseModel.getRecordName<DynamicMenuSectionRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<MemberRuleModel>(cp, ccGuid);
+            return baseModel.getRecordId<DynamicMenuSectionRuleModel>(cp, ccGuid);
         }
     }
 }

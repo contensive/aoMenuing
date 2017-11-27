@@ -10,7 +10,7 @@ using System.Text;
 using System.Reflection;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
     public abstract class baseModel
     {

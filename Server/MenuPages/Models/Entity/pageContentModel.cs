@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
     public class pageContentModel : baseModel
     {

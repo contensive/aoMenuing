@@ -8,43 +8,45 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class PageContentBlockRuleModel : baseModel
+    public class _blankModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "Page Content Block Rules";
-        public const string contentTableName = "ccPageContentBlockRules";
+        //------ set content name
+        public const string contentName = "tables";
+        //------ set to tablename for the primary content (used for cache names)
+        public const string contentTableName = "ccTables";
         //
         //====================================================================================================
         // -- instance properties
-        public int GroupID { get; set; }
-        public int RecordID { get; set; }
+        public int DataSourceID { get; set; }
+        //<------ replace this with a list all model fields not part of the base model
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel @add(CPBaseClass cp)
+        public static _blankModel @add(CPBaseClass cp)
         {
-            return @add<PageContentBlockRuleModel>(cp);
+            return @add<_blankModel>(cp);
         }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel create(CPBaseClass cp, int recordId)
+        public static _blankModel create(CPBaseClass cp, int recordId)
         {
-            return create<PageContentBlockRuleModel>(cp, recordId);
+            return create<_blankModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel create(CPBaseClass cp, string recordGuid)
+        public static _blankModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<PageContentBlockRuleModel>(cp, recordGuid);
+            return create<_blankModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel createByName(CPBaseClass cp, string recordName)
+        public static _blankModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<PageContentBlockRuleModel>(cp, recordName);
+            return createByName<_blankModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -56,37 +58,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<PageContentBlockRuleModel>(cp, recordId);
+            delete<_blankModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<PageContentBlockRuleModel>(cp, ccGuid);
+            delete<_blankModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<PageContentBlockRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<_blankModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<PageContentBlockRuleModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<_blankModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<PageContentBlockRuleModel>(cp, recordId);
+            return baseModel.getRecordName<_blankModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<PageContentBlockRuleModel>(cp, ccGuid);
+            return baseModel.getRecordName<_blankModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<PageContentBlockRuleModel>(cp, ccGuid);
+            return baseModel.getRecordId<_blankModel>(cp, ccGuid);
         }
     }
 }

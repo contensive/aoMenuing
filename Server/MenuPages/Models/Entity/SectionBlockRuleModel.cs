@@ -8,43 +8,43 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class linkAliasModel : baseModel
+    public class SectionBlockRuleModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "Link Aliases";
-        public const string contentTableName = "ccLinkAliases";
+        public const string contentName = "Section Block Rules";
+        public const string contentTableName = "ccSectionBlockRules";
         //
         //====================================================================================================
         // -- instance properties
-        public int PageID { get; set; }
-        public string QueryStringSuffix { get; set; }
+        public int GroupID { get; set; }
+        public int SectionID { get; set; }
         //
         //====================================================================================================
-        public static linkAliasModel @add(CPBaseClass cp)
+        public static SectionBlockRuleModel @add(CPBaseClass cp)
         {
-            return @add<linkAliasModel>(cp);
+            return @add<SectionBlockRuleModel>(cp);
         }
         //
         //====================================================================================================
-        public static linkAliasModel create(CPBaseClass cp, int recordId)
+        public static SectionBlockRuleModel create(CPBaseClass cp, int recordId)
         {
-            return create<linkAliasModel>(cp, recordId);
+            return create<SectionBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static linkAliasModel create(CPBaseClass cp, string recordGuid)
+        public static SectionBlockRuleModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<linkAliasModel>(cp, recordGuid);
+            return create<SectionBlockRuleModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static linkAliasModel createByName(CPBaseClass cp, string recordName)
+        public static SectionBlockRuleModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<linkAliasModel>(cp, recordName);
+            return createByName<SectionBlockRuleModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -56,37 +56,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<linkAliasModel>(cp, recordId);
+            delete<SectionBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<linkAliasModel>(cp, ccGuid);
+            delete<SectionBlockRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<linkAliasModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<SectionBlockRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<linkAliasModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<SectionBlockRuleModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<linkAliasModel>(cp, recordId);
+            return baseModel.getRecordName<SectionBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<linkAliasModel>(cp, ccGuid);
+            return baseModel.getRecordName<SectionBlockRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<linkAliasModel>(cp, ccGuid);
+            return baseModel.getRecordId<SectionBlockRuleModel>(cp, ccGuid);
         }
     }
 }

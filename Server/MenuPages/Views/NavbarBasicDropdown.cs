@@ -5,12 +5,12 @@ using System.Text;
 using System.Linq;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Views
+namespace Contensive.Addons.BootstrapNav
 {
     /// <summary>
     /// menuing based on pages directly attached to the menu (menuPageRules)
     /// </summary>
-    public class MenuPagesClass : Contensive.BaseClasses.AddonBaseClass
+    public class NavbarBasicDropdownClass : Contensive.BaseClasses.AddonBaseClass
     {
         //
         // -- instance properties
@@ -57,8 +57,22 @@ namespace Contensive.Addons.BootstrapNav.Views
                             // -- no Default Menu, create it
                             menu = Models.Entity.menuModel.add(cp);
                             menu.ccguid = instanceId;
-                            menu.save(cp);
-                            menu.name = string.Format("Menu {0}", menu.id);
+                            menu.name = "Bootstrap Nav Basic " + string.Format("Menu {0}", menu.id);
+                            menu.Active = true;
+                            menu.classItemActive = "";
+                            menu.classItemFirst = "first";
+                            menu.classItemLast = "last";
+                            menu.classItemHover = "";
+                            menu.classTierAnchor = "dropdown-item";
+                            menu.classTierItem = "";
+                            menu.classTierList = "dropdown-menu";
+                            menu.classTopAnchor = "nav-link";
+                            menu.classTopItem = "nav-item";
+                            menu.classTopList = "navbar-nav mr-auto";
+                            menu.classTopParentAnchor = "dropdown-toggle";
+                            menu.classTopParentItem = "dropdown";
+                            menu.classTopWrapper = "";
+                            menu.dataToggleTopParentAnchor = "dropdown";
                             menu.save(cp);
                         }
                     }
@@ -89,43 +103,51 @@ namespace Contensive.Addons.BootstrapNav.Views
                             if (rootPage == rootPageList.Last()) { classTopItem += " " + menu.classItemLast; }
                             //
                             // -- build child page list (tier list)
-                            string itemHtmlId;
+                            //string itemHtmlId;
                             string tierList;
+                            string classTopAnchor = menu.classTopAnchor;
+                            string classTopParentAnchor = "";
                             StringBuilder tierItemList = new StringBuilder();
                             sql = "(ParentID=" + rootPage.id + ")";
                             List<Models.Entity.pageContentModel> childPageList = Models.Entity.pageContentModel.createList(cp, sql);
-                            //
-                            // -- add the root page to the tier flyout as needed
-                            string classTierItem = menu.classTierItem;
-                            classTierItem += " " + menu.classItemFirst;
-                            if (childPageList.Count == 0) { classTierItem += " " + menu.classItemLast; }
-                            itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());
-                            tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTierAnchor), "", classTopItem, itemHtmlId));
-                            foreach (Models.Entity.pageContentModel childPage in childPageList)
+                            if (childPageList.Count == 0)
                             {
-                                bool blockPage = childPage.BlockContent;
-                                if (blockPage & cp.User.IsAuthenticated)
+                                //
+                                // -- no dropdown
+                            }
+                            else
+                            {
+                                //
+                                // -- dropdown nav
+                                classTopItem += " " + menu.classTopParentItem;
+                                classTopAnchor += " " + menu.classTopParentAnchor;
+                                classTopParentAnchor += " " + menu.classTopParentAnchor;
+                                //
+                                // -- add the root page to the tier flyout as needed
+                                string classTierItem = menu.classTierItem;
+                                string classTierAnchor = menu.classTierAnchor;
+                                classTierItem += " " + menu.classItemFirst;
+                                tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, classTierAnchor, ""), "", classTopItem));
+                                foreach (Models.Entity.pageContentModel childPage in childPageList)
                                 {
-                                    blockPage = !allowedPageIdList.Contains(childPage.id);
-                                }
-                                if (!blockPage)
-                                {
-                                    //if (!menu.addRootToTier)
-                                    //{
-                                    //    if (childPage == childPageList.First()) { classTierItem += " " + menu.classItemFirst; }
-                                    //}
-                                    if (childPage == childPageList.Last()) { classTierItem += " " + menu.classItemLast; }
-                                    if (!string.IsNullOrEmpty(childPage.menuClass)) { classTierItem += " " + childPage.menuClass; }
-                                    itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), childPage.id.ToString());
-                                    tierItemList.Append(cp.Html.li(getAnchor(cp, childPage, menu.classTierAnchor), "", classTierItem, itemHtmlId));
+                                    bool blockPage = childPage.BlockContent;
+                                    if (blockPage & cp.User.IsAuthenticated)
+                                    {
+                                        blockPage = !allowedPageIdList.Contains(childPage.id);
+                                    }
+                                    if (!blockPage)
+                                    {
+                                        if (childPage == childPageList.Last()) { classTierItem += " " + menu.classItemLast; }
+                                        if (!string.IsNullOrEmpty(childPage.menuClass)) { classTierItem += " " + childPage.menuClass; }
+                                        tierItemList.Append(cp.Html.li(getAnchor(cp, childPage, menu.classTierAnchor, ""), "", classTierItem));
+                                    }
                                 }
                             }
-                            itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());
-                            tierList = cp.Html.ul(tierItemList.ToString(), "", menu.classTierList, itemHtmlId + "List");
-                            topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTopAnchor) + tierList, "", classTopItem, itemHtmlId));
+                            tierList = cp.Html.ul(tierItemList.ToString(), "", menu.classTierList);
+                            topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, classTopAnchor, menu.dataToggleTopParentAnchor) + tierList, "", classTopItem));
                         }
                     }
-                    result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
+                    result = cp.Html.ul(topItemList.ToString(),"", menu.classTopList);
                     if (!string.IsNullOrEmpty(menu.classTopWrapper) )
                     {
                         result = cp.Html.div(result, "", menu.classTopWrapper);
@@ -142,15 +164,17 @@ namespace Contensive.Addons.BootstrapNav.Views
         }
         //
         // -- create a listItem from a page
-        private string getAnchor(CPBaseClass cp, Models.Entity.pageContentModel page, string htmlClass)
+        private string getAnchor(CPBaseClass cp, Models.Entity.pageContentModel page, string htmlClass, string dataToggleValue)
         {
             try
             {
                 string topItemCaption = page.MenuHeadline;
                 if (string.IsNullOrEmpty(topItemCaption)) topItemCaption = page.name;
                 string pageLink = cp.Content.GetPageLink(page.id);
+                string dataToggleAttr;
+                if (string.IsNullOrEmpty(dataToggleValue)) { dataToggleAttr = string.Empty; } else { dataToggleAttr = " data-toggle=\"" + dataToggleValue + "\""; }
                 //string pageList = cp.Content.GetLinkAliasByPageID(page.id, "", "");
-                return string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", pageLink, topItemCaption, htmlClass);
+                return string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\"{3}>{1}</a>", pageLink, topItemCaption, htmlClass, dataToggleAttr);
             }
             catch (Exception ex)
             {

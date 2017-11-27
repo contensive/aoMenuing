@@ -8,45 +8,43 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class DynamicMenuSectionRuleModel : baseModel
+    public class PageContentBlockRuleModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        //------ set content name
-        public const string contentName = "DynamicMenu Section Rules";
-        //------ set to tablename for the primary content (used for cache names)
-        public const string contentTableName = "ccDynamicMenuSectionRules";
+        public const string contentName = "Page Content Block Rules";
+        public const string contentTableName = "ccPageContentBlockRules";
         //
         //====================================================================================================
         // -- instance properties
-        public int DynamicMenuID { get; set; }
-        public int SectionID { get; set; }
+        public int GroupID { get; set; }
+        public int RecordID { get; set; }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel @add(CPBaseClass cp)
+        public static PageContentBlockRuleModel @add(CPBaseClass cp)
         {
-            return @add<DynamicMenuSectionRuleModel>(cp);
+            return @add<PageContentBlockRuleModel>(cp);
         }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel create(CPBaseClass cp, int recordId)
+        public static PageContentBlockRuleModel create(CPBaseClass cp, int recordId)
         {
-            return create<DynamicMenuSectionRuleModel>(cp, recordId);
+            return create<PageContentBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel create(CPBaseClass cp, string recordGuid)
+        public static PageContentBlockRuleModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<DynamicMenuSectionRuleModel>(cp, recordGuid);
+            return create<PageContentBlockRuleModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel createByName(CPBaseClass cp, string recordName)
+        public static PageContentBlockRuleModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<DynamicMenuSectionRuleModel>(cp, recordName);
+            return createByName<PageContentBlockRuleModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -58,37 +56,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<DynamicMenuSectionRuleModel>(cp, recordId);
+            delete<PageContentBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<DynamicMenuSectionRuleModel>(cp, ccGuid);
+            delete<PageContentBlockRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<DynamicMenuSectionRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<PageContentBlockRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<DynamicMenuSectionRuleModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<PageContentBlockRuleModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<DynamicMenuSectionRuleModel>(cp, recordId);
+            return baseModel.getRecordName<PageContentBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<DynamicMenuSectionRuleModel>(cp, ccGuid);
+            return baseModel.getRecordName<PageContentBlockRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<DynamicMenuSectionRuleModel>(cp, ccGuid);
+            return baseModel.getRecordId<PageContentBlockRuleModel>(cp, ccGuid);
         }
     }
 }

@@ -8,43 +8,45 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class SectionBlockRuleModel : baseModel
+    public class groupModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "Section Block Rules";
-        public const string contentTableName = "ccSectionBlockRules";
+        public const string contentName = "groups";
+        public const string contentTableName = "ccgroups";
         //
         //====================================================================================================
         // -- instance properties
-        public int GroupID { get; set; }
-        public int SectionID { get; set; }
+        public bool AllowBulkEmail { get; set; }
+        public string Caption { get; set; }
+        public string CopyFilename { get; set; }
+        public bool PublicJoin { get; set; }
         //
         //====================================================================================================
-        public static SectionBlockRuleModel @add(CPBaseClass cp)
+        public static groupModel @add(CPBaseClass cp)
         {
-            return @add<SectionBlockRuleModel>(cp);
+            return @add<groupModel>(cp);
         }
         //
         //====================================================================================================
-        public static SectionBlockRuleModel create(CPBaseClass cp, int recordId)
+        public static groupModel create(CPBaseClass cp, int recordId)
         {
-            return create<SectionBlockRuleModel>(cp, recordId);
+            return create<groupModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static SectionBlockRuleModel create(CPBaseClass cp, string recordGuid)
+        public static groupModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<SectionBlockRuleModel>(cp, recordGuid);
+            return create<groupModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static SectionBlockRuleModel createByName(CPBaseClass cp, string recordName)
+        public static groupModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<SectionBlockRuleModel>(cp, recordName);
+            return createByName<groupModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -56,37 +58,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<SectionBlockRuleModel>(cp, recordId);
+            delete<groupModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<SectionBlockRuleModel>(cp, ccGuid);
+            delete<groupModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<SectionBlockRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<groupModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<SectionBlockRuleModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<groupModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<SectionBlockRuleModel>(cp, recordId);
+            return baseModel.getRecordName<groupModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<SectionBlockRuleModel>(cp, ccGuid);
+            return baseModel.getRecordName<groupModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<SectionBlockRuleModel>(cp, ccGuid);
+            return baseModel.getRecordId<groupModel>(cp, ccGuid);
         }
     }
 }

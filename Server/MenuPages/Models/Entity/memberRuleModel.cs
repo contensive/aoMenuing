@@ -8,45 +8,44 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class groupModel : baseModel
+    public class MemberRuleModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "groups";
-        public const string contentTableName = "ccgroups";
+        public const string contentName = "member rules";
+        public const string contentTableName = "ccmemberrules";
         //
         //====================================================================================================
         // -- instance properties
-        public bool AllowBulkEmail { get; set; }
-        public string Caption { get; set; }
-        public string CopyFilename { get; set; }
-        public bool PublicJoin { get; set; }
+        public DateTime DateExpires { get; set; }
+        public int GroupID { get; set; }
+        public int MemberID { get; set; }
         //
         //====================================================================================================
-        public static groupModel @add(CPBaseClass cp)
+        public static MemberRuleModel @add(CPBaseClass cp)
         {
-            return @add<groupModel>(cp);
+            return @add<MemberRuleModel>(cp);
         }
         //
         //====================================================================================================
-        public static groupModel create(CPBaseClass cp, int recordId)
+        public static MemberRuleModel create(CPBaseClass cp, int recordId)
         {
-            return create<groupModel>(cp, recordId);
+            return create<MemberRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static groupModel create(CPBaseClass cp, string recordGuid)
+        public static MemberRuleModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<groupModel>(cp, recordGuid);
+            return create<MemberRuleModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static groupModel createByName(CPBaseClass cp, string recordName)
+        public static MemberRuleModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<groupModel>(cp, recordName);
+            return createByName<MemberRuleModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -58,37 +57,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<groupModel>(cp, recordId);
+            delete<MemberRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<groupModel>(cp, ccGuid);
+            delete<MemberRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<groupModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<MemberRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<groupModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<MemberRuleModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<groupModel>(cp, recordId);
+            return baseModel.getRecordName<MemberRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<groupModel>(cp, ccGuid);
+            return baseModel.getRecordName<MemberRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<groupModel>(cp, ccGuid);
+            return baseModel.getRecordId<MemberRuleModel>(cp, ccGuid);
         }
     }
 }

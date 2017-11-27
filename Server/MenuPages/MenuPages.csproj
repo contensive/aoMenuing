@@ -74,17 +74,19 @@
   <ItemGroup>
     <Compile Include="constants.cs" />
     <Compile Include="Controllers\genericController.cs" />
-    <Compile Include="Models\baseModel.cs" />
-    <Compile Include="Models\menuModel.cs" />
-    <Compile Include="Models\siteSectionsModel.cs" />
-    <Compile Include="Models\pageContentModel.cs" />
-    <Compile Include="Models\linkAliasModel.cs" />
-    <Compile Include="Models\groupModel.cs" />
-    <Compile Include="Models\memberRuleModel.cs" />
-    <Compile Include="Models\DynamicMenuSectionRuleModel.cs" />
-    <Compile Include="Models\PageContentBlockRuleModel.cs" />
-    <Compile Include="Models\SectionBlockRuleModel.cs" />
-    <Compile Include="Models\_blankModel.cs" />
+    <Compile Include="Models\Entity\baseModel.cs" />
+    <Compile Include="Models\Entity\menuModel.cs" />
+    <Compile Include="Models\Entity\siteSectionsModel.cs" />
+    <Compile Include="Models\Entity\pageContentModel.cs" />
+    <Compile Include="Models\Entity\linkAliasModel.cs" />
+    <Compile Include="Models\Entity\groupModel.cs" />
+    <Compile Include="Models\Entity\memberRuleModel.cs" />
+    <Compile Include="Models\Entity\DynamicMenuSectionRuleModel.cs" />
+    <Compile Include="Models\Entity\PageContentBlockRuleModel.cs" />
+    <Compile Include="Models\Entity\SectionBlockRuleModel.cs" />
+    <Compile Include="Models\Entity\_blankModel.cs" />
+    <Compile Include="Models\ViewModels\NavbarBasicDropdownViewModel.cs" />
+    <Compile Include="Views\NavbarBasicDropdown.cs" />
     <Compile Include="Views\MenuPagesClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -106,12 +108,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\modelData.txt" />
+    <Content Include="Models\Entity\modelData.txt" />
     <Content Include="sampleMenu.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

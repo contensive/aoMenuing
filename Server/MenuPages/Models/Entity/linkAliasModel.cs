@@ -8,53 +8,43 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models
+namespace Contensive.Addons.BootstrapNav.Models.Entity
 {
-    public class menuModel : baseModel
+    public class linkAliasModel : baseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "menus";
-        public const string contentTableName = "ccMenus";
+        public const string contentName = "Link Aliases";
+        public const string contentTableName = "ccLinkAliases";
         //
         //====================================================================================================
-        //// -- instance properties
-        //public string classFlyoutParent { get; set; }
-        //public string classItemActive { get; set; }
-        public string classItemFirst { get; set; }
-        //public string classItemHover { get; set; }
-        public string classItemLast { get; set; }
-        public string classTierItem { get; set; }
-        public string classTierList { get; set; }
-        public string classTopItem { get; set; }
-        public string classTopList { get; set; }
-        public string classTopWrapper { get; set; }
-        //public int Depth { get; set; }
-        public bool addRootToTier { get; set; }
+        // -- instance properties
+        public int PageID { get; set; }
+        public string QueryStringSuffix { get; set; }
         //
         //====================================================================================================
-        public static menuModel @add(CPBaseClass cp)
+        public static linkAliasModel @add(CPBaseClass cp)
         {
-            return @add<menuModel>(cp);
+            return @add<linkAliasModel>(cp);
         }
         //
         //====================================================================================================
-        public static menuModel create(CPBaseClass cp, int recordId)
+        public static linkAliasModel create(CPBaseClass cp, int recordId)
         {
-            return create<menuModel>(cp, recordId);
+            return create<linkAliasModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static menuModel create(CPBaseClass cp, string recordGuid)
+        public static linkAliasModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<menuModel>(cp, recordGuid);
+            return create<linkAliasModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static menuModel createByName(CPBaseClass cp, string recordName)
+        public static linkAliasModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<menuModel>(cp, recordName);
+            return createByName<linkAliasModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -66,37 +56,37 @@ namespace Contensive.Addons.MenuPages.Models
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<menuModel>(cp, recordId);
+            delete<linkAliasModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<menuModel>(cp, ccGuid);
+            delete<linkAliasModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<menuModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<linkAliasModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<menuModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<linkAliasModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<menuModel>(cp, recordId);
+            return baseModel.getRecordName<linkAliasModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<menuModel>(cp, ccGuid);
+            return baseModel.getRecordName<linkAliasModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<menuModel>(cp, ccGuid);
+            return baseModel.getRecordId<linkAliasModel>(cp, ccGuid);
         }
     }
 }
