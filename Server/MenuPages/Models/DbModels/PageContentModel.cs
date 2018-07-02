@@ -8,9 +8,9 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.Entity
+namespace Contensive.Addons.MenuPages.Models.DbModels
 {
-    public class pageContentModel : baseModel
+    public class PageContentModel : BaseModel
     {
         //
         //====================================================================================================
@@ -95,27 +95,27 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         public string menuClass { get; set; }
         //
         //====================================================================================================
-        public static pageContentModel @add(CPBaseClass cp)
+        public static PageContentModel @add(CPBaseClass cp)
         {
-            return @add<pageContentModel>(cp);
+            return @add<PageContentModel>(cp);
         }
         //
         //====================================================================================================
-        public static pageContentModel create(CPBaseClass cp, int recordId)
+        public static PageContentModel create(CPBaseClass cp, int recordId)
         {
-            return create<pageContentModel>(cp, recordId);
+            return create<PageContentModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static pageContentModel create(CPBaseClass cp, string recordGuid)
+        public static PageContentModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<pageContentModel>(cp, recordGuid);
+            return create<PageContentModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static pageContentModel createByName(CPBaseClass cp, string recordName)
+        public static PageContentModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<pageContentModel>(cp, recordName);
+            return createByName<PageContentModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -127,37 +127,37 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<pageContentModel>(cp, recordId);
+            delete<PageContentModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<pageContentModel>(cp, ccGuid);
+            delete<PageContentModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<pageContentModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<PageContentModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<pageContentModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<PageContentModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<pageContentModel>(cp, recordId);
+            return BaseModel.getRecordName<PageContentModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<pageContentModel>(cp, ccGuid);
+            return BaseModel.getRecordName<PageContentModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<pageContentModel>(cp, ccGuid);
+            return BaseModel.getRecordId<PageContentModel>(cp, ccGuid);
         }
         //
         //====================================================================================================

@@ -10,7 +10,7 @@ using System.Text;
 using System.Reflection;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.ViewModels
+namespace Contensive.Addons.MenuPages.Models.ViewModels
 {
     public class NavbarBasicDropdownViewModel
     {
@@ -30,7 +30,7 @@ namespace Contensive.Addons.BootstrapNav.Models.ViewModels
         //public int Depth { get; set; }
         //
         //====================================================================================================
-        public static NavbarBasicDropdownViewModel create(CPBaseClass cp, Models.Entity.menuModel menu) 
+        public static NavbarBasicDropdownViewModel create(CPBaseClass cp, Models.DbModels.MenuModel menu) 
         {
             NavbarBasicDropdownViewModel result = null;
             try

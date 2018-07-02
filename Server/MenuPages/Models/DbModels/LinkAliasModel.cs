@@ -8,45 +8,43 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.Entity
+namespace Contensive.Addons.MenuPages.Models.DbModels
 {
-    public class groupModel : baseModel
+    public class LinkAliasModel : BaseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "groups";
-        public const string contentTableName = "ccgroups";
+        public const string contentName = "Link Aliases";
+        public const string contentTableName = "ccLinkAliases";
         //
         //====================================================================================================
         // -- instance properties
-        public bool AllowBulkEmail { get; set; }
-        public string Caption { get; set; }
-        public string CopyFilename { get; set; }
-        public bool PublicJoin { get; set; }
+        public int PageID { get; set; }
+        public string QueryStringSuffix { get; set; }
         //
         //====================================================================================================
-        public static groupModel @add(CPBaseClass cp)
+        public static LinkAliasModel @add(CPBaseClass cp)
         {
-            return @add<groupModel>(cp);
+            return @add<LinkAliasModel>(cp);
         }
         //
         //====================================================================================================
-        public static groupModel create(CPBaseClass cp, int recordId)
+        public static LinkAliasModel create(CPBaseClass cp, int recordId)
         {
-            return create<groupModel>(cp, recordId);
+            return create<LinkAliasModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static groupModel create(CPBaseClass cp, string recordGuid)
+        public static LinkAliasModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<groupModel>(cp, recordGuid);
+            return create<LinkAliasModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static groupModel createByName(CPBaseClass cp, string recordName)
+        public static LinkAliasModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<groupModel>(cp, recordName);
+            return createByName<LinkAliasModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -58,37 +56,37 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<groupModel>(cp, recordId);
+            delete<LinkAliasModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<groupModel>(cp, ccGuid);
+            delete<LinkAliasModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<groupModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<LinkAliasModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<groupModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<LinkAliasModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<groupModel>(cp, recordId);
+            return BaseModel.getRecordName<LinkAliasModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<groupModel>(cp, ccGuid);
+            return BaseModel.getRecordName<LinkAliasModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<groupModel>(cp, ccGuid);
+            return BaseModel.getRecordId<LinkAliasModel>(cp, ccGuid);
         }
     }
 }

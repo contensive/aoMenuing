@@ -8,43 +8,60 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.Entity
+namespace Contensive.Addons.MenuPages.Models.DbModels
 {
-    public class PageContentBlockRuleModel : baseModel
+    public class MenuModel : BaseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "Page Content Block Rules";
-        public const string contentTableName = "ccPageContentBlockRules";
+        public const string contentName = "menus";
+        public const string contentTableName = "ccMenus";
         //
         //====================================================================================================
-        // -- instance properties
-        public int GroupID { get; set; }
-        public int RecordID { get; set; }
+        //// -- instance properties
+        //public string classFlyoutParent { get; set; }
+        //public string classItemActive { get; set; }
+        public string classItemFirst { get; set; }
+        //public string classItemHover { get; set; }
+        public string classItemLast { get; set; }
+        public string classTierItem { get; set; }
+        public string classTierAnchor { get; set; }
+        public string classTierList { get; set; }
+        public string classTopItem { get; set; }
+        public string classTopParentItem { get; set; }
+        public string classTopAnchor { get; set; }
+        public string classTopParentAnchor { get; set; }
+        public string dataToggleTopParentAnchor { get; set; }
+        public string classTopList { get; set; }
+        public string classTopWrapper { get; set; }
+        public string classItemActive { get; set; }
+        public string classItemHover { get; set; }
+        //public int Depth { get; set; }
+        //public bool addRootToTier { get; set; }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel @add(CPBaseClass cp)
+        public static MenuModel @add(CPBaseClass cp)
         {
-            return @add<PageContentBlockRuleModel>(cp);
+            return @add<MenuModel>(cp);
         }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel create(CPBaseClass cp, int recordId)
+        public static MenuModel create(CPBaseClass cp, int recordId)
         {
-            return create<PageContentBlockRuleModel>(cp, recordId);
+            return create<MenuModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel create(CPBaseClass cp, string recordGuid)
+        public static MenuModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<PageContentBlockRuleModel>(cp, recordGuid);
+            return create<MenuModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static PageContentBlockRuleModel createByName(CPBaseClass cp, string recordName)
+        public static MenuModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<PageContentBlockRuleModel>(cp, recordName);
+            return createByName<MenuModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -56,37 +73,37 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<PageContentBlockRuleModel>(cp, recordId);
+            delete<MenuModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<PageContentBlockRuleModel>(cp, ccGuid);
+            delete<MenuModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<PageContentBlockRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<MenuModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<PageContentBlockRuleModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<MenuModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<PageContentBlockRuleModel>(cp, recordId);
+            return BaseModel.getRecordName<MenuModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<PageContentBlockRuleModel>(cp, ccGuid);
+            return BaseModel.getRecordName<MenuModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<PageContentBlockRuleModel>(cp, ccGuid);
+            return BaseModel.getRecordId<MenuModel>(cp, ccGuid);
         }
     }
 }

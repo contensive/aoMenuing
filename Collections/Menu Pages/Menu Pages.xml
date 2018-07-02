@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="windows-1252"?>
-<Collection name="Bootstrap Nav" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
+<Collection name="Menu Pages" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
-	<Addon name="Bootstrap Navbar Basic" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+	<Addon name="Menu Pages" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.BootstrapNav.NavbarBasicDropdownClass]]></DotNetClass>
-		<ArgumentList><![CDATA[Menu=[listid(Menus)]]]></ArgumentList>
+		<DotNetClass><![CDATA[Contensive.Addons.MenuPages.Views.MenuPagesClass]]></DotNetClass>
+		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
 		<Help></Help>

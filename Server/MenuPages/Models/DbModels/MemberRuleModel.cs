@@ -8,45 +8,44 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.Entity
+namespace Contensive.Addons.MenuPages.Models.DbModels
 {
-    public class _blankModel : baseModel
+    public class MemberRuleModel : BaseModel
     {
         //
         //====================================================================================================
         //-- const
-        //------ set content name
-        public const string contentName = "tables";
-        //------ set to tablename for the primary content (used for cache names)
-        public const string contentTableName = "ccTables";
+        public const string contentName = "member rules";
+        public const string contentTableName = "ccmemberrules";
         //
         //====================================================================================================
         // -- instance properties
-        public int DataSourceID { get; set; }
-        //<------ replace this with a list all model fields not part of the base model
+        public DateTime DateExpires { get; set; }
+        public int GroupID { get; set; }
+        public int MemberID { get; set; }
         //
         //====================================================================================================
-        public static _blankModel @add(CPBaseClass cp)
+        public static MemberRuleModel @add(CPBaseClass cp)
         {
-            return @add<_blankModel>(cp);
+            return @add<MemberRuleModel>(cp);
         }
         //
         //====================================================================================================
-        public static _blankModel create(CPBaseClass cp, int recordId)
+        public static MemberRuleModel create(CPBaseClass cp, int recordId)
         {
-            return create<_blankModel>(cp, recordId);
+            return create<MemberRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static _blankModel create(CPBaseClass cp, string recordGuid)
+        public static MemberRuleModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<_blankModel>(cp, recordGuid);
+            return create<MemberRuleModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static _blankModel createByName(CPBaseClass cp, string recordName)
+        public static MemberRuleModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<_blankModel>(cp, recordName);
+            return createByName<MemberRuleModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -58,37 +57,37 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<_blankModel>(cp, recordId);
+            delete<MemberRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<_blankModel>(cp, ccGuid);
+            delete<MemberRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<_blankModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<MemberRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<_blankModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<MemberRuleModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<_blankModel>(cp, recordId);
+            return BaseModel.getRecordName<MemberRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<_blankModel>(cp, ccGuid);
+            return BaseModel.getRecordName<MemberRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<_blankModel>(cp, ccGuid);
+            return BaseModel.getRecordId<MemberRuleModel>(cp, ccGuid);
         }
     }
 }

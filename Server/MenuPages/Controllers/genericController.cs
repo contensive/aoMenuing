@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Contensive.BaseClasses;
-using Contensive.Addons.BootstrapNav.Models;
-using Contensive.Addons.BootstrapNav.Views;
+using Contensive.Addons.MenuPages.Models;
+using Contensive.Addons.MenuPages.Views;
 
-namespace Contensive.Addons.BootstrapNav.Controllers
+namespace Contensive.Addons.MenuPages.Controllers
 {
     public static class genericController
     {

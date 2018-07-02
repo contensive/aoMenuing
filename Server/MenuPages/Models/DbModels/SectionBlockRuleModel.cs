@@ -8,45 +8,43 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.Entity
+namespace Contensive.Addons.MenuPages.Models.DbModels
 {
-    public class DynamicMenuSectionRuleModel : baseModel
+    public class SectionBlockRuleModel : BaseModel
     {
         //
         //====================================================================================================
         //-- const
-        //------ set content name
-        public const string contentName = "DynamicMenu Section Rules";
-        //------ set to tablename for the primary content (used for cache names)
-        public const string contentTableName = "ccDynamicMenuSectionRules";
+        public const string contentName = "Section Block Rules";
+        public const string contentTableName = "ccSectionBlockRules";
         //
         //====================================================================================================
         // -- instance properties
-        public int DynamicMenuID { get; set; }
+        public int GroupID { get; set; }
         public int SectionID { get; set; }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel @add(CPBaseClass cp)
+        public static SectionBlockRuleModel @add(CPBaseClass cp)
         {
-            return @add<DynamicMenuSectionRuleModel>(cp);
+            return @add<SectionBlockRuleModel>(cp);
         }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel create(CPBaseClass cp, int recordId)
+        public static SectionBlockRuleModel create(CPBaseClass cp, int recordId)
         {
-            return create<DynamicMenuSectionRuleModel>(cp, recordId);
+            return create<SectionBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel create(CPBaseClass cp, string recordGuid)
+        public static SectionBlockRuleModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<DynamicMenuSectionRuleModel>(cp, recordGuid);
+            return create<SectionBlockRuleModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static DynamicMenuSectionRuleModel createByName(CPBaseClass cp, string recordName)
+        public static SectionBlockRuleModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<DynamicMenuSectionRuleModel>(cp, recordName);
+            return createByName<SectionBlockRuleModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -58,37 +56,37 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<DynamicMenuSectionRuleModel>(cp, recordId);
+            delete<SectionBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<DynamicMenuSectionRuleModel>(cp, ccGuid);
+            delete<SectionBlockRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<DynamicMenuSectionRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<SectionBlockRuleModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<DynamicMenuSectionRuleModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<SectionBlockRuleModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<DynamicMenuSectionRuleModel>(cp, recordId);
+            return BaseModel.getRecordName<SectionBlockRuleModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<DynamicMenuSectionRuleModel>(cp, ccGuid);
+            return BaseModel.getRecordName<SectionBlockRuleModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<DynamicMenuSectionRuleModel>(cp, ccGuid);
+            return BaseModel.getRecordId<SectionBlockRuleModel>(cp, ccGuid);
         }
     }
 }

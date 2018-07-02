@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Contensive.Addons.BootstrapNav
+namespace Contensive.Addons.MenuPages
 {
     static class constants
     {

@@ -8,43 +8,45 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav.Models.Entity
+namespace Contensive.Addons.MenuPages.Models.DbModels
 {
-    public class linkAliasModel : baseModel
+    public class _blankModel : BaseModel
     {
         //
         //====================================================================================================
         //-- const
-        public const string contentName = "Link Aliases";
-        public const string contentTableName = "ccLinkAliases";
+        //------ set content name
+        public const string contentName = "tables";
+        //------ set to tablename for the primary content (used for cache names)
+        public const string contentTableName = "ccTables";
         //
         //====================================================================================================
         // -- instance properties
-        public int PageID { get; set; }
-        public string QueryStringSuffix { get; set; }
+        public int DataSourceID { get; set; }
+        //<------ replace this with a list all model fields not part of the base model
         //
         //====================================================================================================
-        public static linkAliasModel @add(CPBaseClass cp)
+        public static _blankModel @add(CPBaseClass cp)
         {
-            return @add<linkAliasModel>(cp);
+            return @add<_blankModel>(cp);
         }
         //
         //====================================================================================================
-        public static linkAliasModel create(CPBaseClass cp, int recordId)
+        public static _blankModel create(CPBaseClass cp, int recordId)
         {
-            return create<linkAliasModel>(cp, recordId);
+            return create<_blankModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static linkAliasModel create(CPBaseClass cp, string recordGuid)
+        public static _blankModel create(CPBaseClass cp, string recordGuid)
         {
-            return create<linkAliasModel>(cp, recordGuid);
+            return create<_blankModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static linkAliasModel createByName(CPBaseClass cp, string recordName)
+        public static _blankModel createByName(CPBaseClass cp, string recordName)
         {
-            return createByName<linkAliasModel>(cp, recordName);
+            return createByName<_blankModel>(cp, recordName);
         }
         //
         //====================================================================================================
@@ -56,37 +58,37 @@ namespace Contensive.Addons.BootstrapNav.Models.Entity
         //====================================================================================================
         public static void delete(CPBaseClass cp, int recordId)
         {
-            delete<linkAliasModel>(cp, recordId);
+            delete<_blankModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static void delete(CPBaseClass cp, string ccGuid)
         {
-            delete<linkAliasModel>(cp, ccGuid);
+            delete<_blankModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<linkAliasModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
+        public static List<_blankModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
         {
-            return createList<linkAliasModel>(cp, sqlCriteria, sqlOrderBy);
+            return createList<_blankModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, int recordId)
         {
-            return baseModel.getRecordName<linkAliasModel>(cp, recordId);
+            return BaseModel.getRecordName<_blankModel>(cp, recordId);
         }
         //
         //====================================================================================================
         public static string getRecordName(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordName<linkAliasModel>(cp, ccGuid);
+            return BaseModel.getRecordName<_blankModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         public static int getRecordId(CPBaseClass cp, string ccGuid)
         {
-            return baseModel.getRecordId<linkAliasModel>(cp, ccGuid);
+            return BaseModel.getRecordId<_blankModel>(cp, ccGuid);
         }
     }
 }

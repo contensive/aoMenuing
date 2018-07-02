@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.BootstrapNav {
+namespace Contensive.Addons.MenuPages.Views {
     /// <summary>
     /// menuing based on pages directly attached to the menu (menuPageRules)
     /// </summary>
@@ -23,28 +23,28 @@ namespace Contensive.Addons.BootstrapNav {
                 //
                 // -- get Menu
                 int menuId = cp.Doc.GetInteger(constants.rnSelectMenuId);
-                Models.Entity.menuModel menu = null;
+                Models.DbModels.MenuModel menu = null;
                 if (menuId != 0) {
-                    menu = Models.Entity.menuModel.create(cp, menuId);
+                    menu = Models.DbModels.MenuModel.create(cp, menuId);
                 }
                 if (menu == null) {
                     // -- No menu selected, try instance menu
                     string instanceId = cp.Doc.GetText("instanceId");
                     if (string.IsNullOrEmpty(instanceId)) {
                         // -- no instanceId, find or create default menu
-                        menu = Models.Entity.menuModel.createByName(cp, "Default");
+                        menu = Models.DbModels.MenuModel.createByName(cp, "Default");
                         if (menu == null) {
                             // -- no Default Menu, create it
-                            menu = Models.Entity.menuModel.add(cp);
+                            menu = Models.DbModels.MenuModel.add(cp);
                             menu.name = "Default";
                             menu.save(cp);
                         }
                     } else {
                         // -- find or create instance menu
-                        menu = Models.Entity.menuModel.create(cp, instanceId);
+                        menu = Models.DbModels.MenuModel.create(cp, instanceId);
                         if (menu == null) {
                             // -- no Default Menu, create it
-                            menu = Models.Entity.menuModel.add(cp);
+                            menu = Models.DbModels.MenuModel.add(cp);
                             menu.ccguid = instanceId;
                             menu.name = "Bootstrap Nav Basic " + string.Format("Menu {0}", menu.id);
                             menu.Active = true;
@@ -73,8 +73,8 @@ namespace Contensive.Addons.BootstrapNav {
                     // -- create toplists
                     StringBuilder topItemList = new StringBuilder();
                     string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
-                    List<Models.Entity.pageContentModel> rootPageList = Models.Entity.pageContentModel.createList(cp, sql);
-                    foreach (Models.Entity.pageContentModel rootPage in rootPageList) {
+                    List<Models.DbModels.PageContentModel> rootPageList = Models.DbModels.PageContentModel.createList(cp, sql);
+                    foreach (Models.DbModels.PageContentModel rootPage in rootPageList) {
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
                         if (blockRootPage & cp.User.IsAuthenticated) {
                             blockRootPage = !allowedPageIdList.Contains(rootPage.id);
@@ -92,7 +92,7 @@ namespace Contensive.Addons.BootstrapNav {
                             string classTopParentAnchor = "";
                             StringBuilder tierItemList = new StringBuilder();
                             sql = "(ParentID=" + rootPage.id + ")";
-                            List<Models.Entity.pageContentModel> childPageList = Models.Entity.pageContentModel.createList(cp, sql);
+                            List<Models.DbModels.PageContentModel> childPageList = Models.DbModels.PageContentModel.createList(cp, sql);
                             if (childPageList.Count == 0) {
                                 //
                                 // -- no dropdown
@@ -109,7 +109,7 @@ namespace Contensive.Addons.BootstrapNav {
                                 string classTierAnchor = menu.classTierAnchor;
                                 classTierItem += " " + menu.classItemFirst;
                                 tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, classTierAnchor, ""), "", classTopItem));
-                                foreach (Models.Entity.pageContentModel childPage in childPageList) {
+                                foreach (Models.DbModels.PageContentModel childPage in childPageList) {
                                     bool blockPage = childPage.BlockContent;
                                     if (blockPage & cp.User.IsAuthenticated) {
                                         blockPage = !allowedPageIdList.Contains(childPage.id);
@@ -139,7 +139,7 @@ namespace Contensive.Addons.BootstrapNav {
         }
         //
         // -- create a listItem from a page
-        private string getAnchor(CPBaseClass cp, Models.Entity.pageContentModel page, string htmlClass, string dataToggleValue) {
+        private string getAnchor(CPBaseClass cp, Models.DbModels.PageContentModel page, string htmlClass, string dataToggleValue) {
             try {
                 string topItemCaption = page.MenuHeadline;
                 if (string.IsNullOrEmpty(topItemCaption)) topItemCaption = page.name;
@@ -158,7 +158,7 @@ namespace Contensive.Addons.BootstrapNav {
         private List<int> allowedPageIdList {
             get {
                 if (_allowedPageIdList == null) {
-                    _allowedPageIdList = Models.Entity.pageContentModel.getAllowedPageIdList(cp);
+                    _allowedPageIdList = Models.DbModels.PageContentModel.getAllowedPageIdList(cp);
                 }
                 return _allowedPageIdList;
             }
@@ -169,7 +169,7 @@ namespace Contensive.Addons.BootstrapNav {
         private List<int> allowedSectionIdList {
             get {
                 if (_allowedSectionIdList == null) {
-                    _allowedSectionIdList = Models.Entity.siteSectionsModel.getAllowedSectionIdList(cp);
+                    _allowedSectionIdList = Models.DbModels.SiteSectionsModel.getAllowedSectionIdList(cp);
                 }
                 return _allowedSectionIdList;
             }
