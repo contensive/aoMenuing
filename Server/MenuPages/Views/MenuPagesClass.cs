@@ -50,9 +50,10 @@ namespace Contensive.Addons.MenuPages.Views {
                 } else {
                     //
                     // -- create toplists
+                    int activePageId = cp.Doc.PageId;
                     StringBuilder topItemList = new StringBuilder();
                     string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
-                    List<Models.DbModels.PageContentModel> rootPageList = Models.DbModels.PageContentModel.createList(cp, sql);
+                    List<Models.DbModels.PageContentModel> rootPageList = Models.DbModels.PageContentModel.createList(cp, sql,"sortOrder,id");
                     foreach (Models.DbModels.PageContentModel rootPage in rootPageList) {
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
                         if (blockRootPage & cp.User.IsAuthenticated) {
@@ -63,13 +64,14 @@ namespace Contensive.Addons.MenuPages.Views {
                             if (!string.IsNullOrEmpty(rootPage.menuClass)) { classTopItem += " " + rootPage.menuClass; }
                             if (rootPage == rootPageList.First()) { classTopItem += " " + menu.classItemFirst; }
                             if (rootPage == rootPageList.Last()) { classTopItem += " " + menu.classItemLast; }
+                            if (rootPage.id == activePageId ) { classTopItem += " " + menu.classItemActive; }
                             //
                             // -- build child page list (tier list)
                             string itemHtmlId;
                             string tierList;
                             StringBuilder tierItemList = new StringBuilder();
                             sql = "(ParentID=" + rootPage.id + ")";
-                            List<Models.DbModels.PageContentModel> childPageList = Models.DbModels.PageContentModel.createList(cp, sql);
+                            List<Models.DbModels.PageContentModel> childPageList = Models.DbModels.PageContentModel.createList(cp, sql, "sortOrder,id");
                             //
                             // -- add the root page to the tier flyout as needed
                             string classTierItem = menu.classTierItem;
@@ -89,6 +91,7 @@ namespace Contensive.Addons.MenuPages.Views {
                                     //}
                                     if (childPage == childPageList.Last()) { classTierItem += " " + menu.classItemLast; }
                                     if (!string.IsNullOrEmpty(childPage.menuClass)) { classTierItem += " " + childPage.menuClass; }
+                                    if (childPage.id == activePageId) { classTierItem += " " + menu.classItemActive; }
                                     itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), childPage.id.ToString());
                                     tierItemList.Append(cp.Html.li(getAnchor(cp, childPage, menu.classTierAnchor), "", classTierItem, itemHtmlId));
                                 }
