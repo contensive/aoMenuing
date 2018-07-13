@@ -120,7 +120,7 @@ namespace Contensive.Addons.MenuPages.Views {
                 string topItemCaption = page.MenuHeadline;
                 if (string.IsNullOrEmpty(topItemCaption)) topItemCaption = page.name;
                 if (string.IsNullOrEmpty(topItemCaption)) topItemCaption = "UnnamedPage" + page.id;
-                string pageLink = cp.Content.GetPageLink(page.id);
+                string pageLink = (string.IsNullOrWhiteSpace(page.Link)) ? cp.Content.GetPageLink(page.id) : page.Link;
                 //string pageList = cp.Content.GetLinkAliasByPageID(page.id, "", "");
                 return string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", pageLink, topItemCaption, htmlClass);
             } catch (Exception ex) {

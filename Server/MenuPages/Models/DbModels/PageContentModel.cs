@@ -64,7 +64,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         //public string JSFilename { get; set; }
         //public string JSHead { get; set; }
         //public string JSOnLoad { get; set; }
-        //public string Link { get; set; }
+        public string Link { get; set; }
         //public string LinkAlias { get; set; }
         //public string LinkLabel { get; set; }
         //public string Marquee { get; set; }
