@@ -77,8 +77,12 @@ namespace Contensive.Addons.MenuPages.Views {
                             string classTierItem = menu.classTierItem;
                             classTierItem += " " + menu.classItemFirst;
                             if (childPageList.Count == 0) { classTierItem += " " + menu.classItemLast; }
-                            itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());
-                            tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTierAnchor), "", classTopItem, itemHtmlId));
+                            if (menu.addRootToTier) {
+                                cp.Utils.AppendLog("menuAddRootToTier1" + menu.addRootToTier.ToString());
+                                itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());
+                                tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTierAnchor), "", classTopItem, itemHtmlId));
+                            }
+                            cp.Utils.AppendLog("menuAddRootToTier2" + menu.addRootToTier.ToString());
                             foreach (Models.DbModels.PageContentModel childPage in childPageList) {
                                 bool blockPage = childPage.BlockContent;
                                 if (blockPage & cp.User.IsAuthenticated) {

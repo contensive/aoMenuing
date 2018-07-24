@@ -38,7 +38,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         public string classItemActive { get; set; }
         public string classItemHover { get; set; }
         //public int Depth { get; set; }
-        //public bool addRootToTier { get; set; }
+        public bool addRootToTier { get; set; }
         //
         //====================================================================================================
         public static MenuModel @add(CPBaseClass cp)
