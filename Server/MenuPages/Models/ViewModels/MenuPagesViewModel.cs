@@ -10,10 +10,8 @@ using System.Text;
 using System.Reflection;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models.ViewModels
-{
-    public class NavbarBasicDropdownViewModel
-    {
+namespace Contensive.Addons.MenuPages.Models.ViewModels {
+    public class MenuPagesViewModel {
         public string classItemFirst { get; set; }
         //public string classItemHover { get; set; }
         public string classItemLast { get; set; }
@@ -30,15 +28,11 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels
         //public int Depth { get; set; }
         //
         //====================================================================================================
-        public static NavbarBasicDropdownViewModel create(CPBaseClass cp, Models.DbModels.MenuModel menu) 
-        {
-            NavbarBasicDropdownViewModel result = null;
-            try
-            {
+        public static MenuPagesViewModel create(CPBaseClass cp, Models.DbModels.MenuModel menu) {
+            MenuPagesViewModel result = null;
+            try {
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }

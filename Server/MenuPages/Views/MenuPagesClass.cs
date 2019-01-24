@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Contensive.BaseClasses;
+using Contensive.Addons.MenuPages.Models;
+using Contensive.Addons.MenuPages.Models.DbModels;
 
 namespace Contensive.Addons.MenuPages.Views {
     /// <summary>
@@ -22,25 +24,24 @@ namespace Contensive.Addons.MenuPages.Views {
             try {
                 //
                 // -- determine controlling record in MenuModel
-                Models.DbModels.MenuModel menu = null;
+                MenuModel menu = null;
                 string instanceId = cp.Doc.GetText("instanceId");
                 if (string.IsNullOrEmpty(instanceId)) {
                     // -- no instanceId, find or create default menu
-                    menu = Models.DbModels.MenuModel.createByName(cp, "Default");
+                    menu = BaseModel.createByName<MenuModel>(cp, "Default");
                     if (menu == null) {
                         // -- no Default Menu, create it
-                        menu = Models.DbModels.MenuModel.add(cp);
+                        menu = BaseModel.add<MenuModel>(cp);
                         menu.name = "Default";
                         menu.save(cp);
                     }
                 } else {
                     // -- find or create instance menu
-                    menu = Models.DbModels.MenuModel.create(cp, instanceId);
+                    menu = BaseModel.create<MenuModel>(cp, instanceId);
                     if (menu == null) {
                         // -- no Default Menu, create it
-                        menu = Models.DbModels.MenuModel.add(cp);
+                        menu = BaseModel.add<MenuModel>(cp);
                         menu.ccguid = instanceId;
-                        menu.save(cp);
                         menu.name = string.Format("Menu {0}", menu.id);
                         menu.save(cp);
                     }
@@ -53,8 +54,8 @@ namespace Contensive.Addons.MenuPages.Views {
                     int activePageId = cp.Doc.PageId;
                     StringBuilder topItemList = new StringBuilder();
                     string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
-                    List<Models.DbModels.PageContentModel> rootPageList = Models.DbModels.PageContentModel.createList(cp, sql,"sortOrder,id");
-                    foreach (Models.DbModels.PageContentModel rootPage in rootPageList) {
+                    List<PageContentModel> rootPageList = PageContentModel.createList(cp, sql,"sortOrder,id");
+                    foreach (PageContentModel rootPage in rootPageList) {
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
                         if (blockRootPage & cp.User.IsAuthenticated) {
                             blockRootPage = !allowedPageIdList.Contains(rootPage.id);
@@ -71,7 +72,12 @@ namespace Contensive.Addons.MenuPages.Views {
                             string tierList;
                             StringBuilder tierItemList = new StringBuilder();
                             sql = "(ParentID=" + rootPage.id + ")";
-                            List<Models.DbModels.PageContentModel> childPageList = Models.DbModels.PageContentModel.createList(cp, sql, "sortOrder,id");
+                            List<PageContentModel> childPageList = null;
+                            if (menu.depth > 0) {
+                                childPageList = PageContentModel.createList(cp, sql, "sortOrder,id");
+                            } else {
+                                childPageList = new List<PageContentModel>();
+                            }
                             //
                             // -- add the root page to the tier flyout as needed
                             string classTierItem = menu.classTierItem;
@@ -83,7 +89,7 @@ namespace Contensive.Addons.MenuPages.Views {
                                 tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTierAnchor), "", classTopItem, itemHtmlId));
                             }
                             cp.Utils.AppendLog("menuAddRootToTier2" + menu.addRootToTier.ToString());
-                            foreach (Models.DbModels.PageContentModel childPage in childPageList) {
+                            foreach (PageContentModel childPage in childPageList) {
                                 bool blockPage = childPage.BlockContent;
                                 if (blockPage & cp.User.IsAuthenticated) {
                                     blockPage = !allowedPageIdList.Contains(childPage.id);
@@ -119,7 +125,7 @@ namespace Contensive.Addons.MenuPages.Views {
         }
         //
         // -- create a listItem from a page
-        private string getAnchor(CPBaseClass cp, Models.DbModels.PageContentModel page, string htmlClass) {
+        private string getAnchor(CPBaseClass cp, PageContentModel page, string htmlClass) {
             try {
                 string topItemCaption = page.MenuHeadline;
                 if (string.IsNullOrEmpty(topItemCaption)) topItemCaption = page.name;
@@ -137,7 +143,7 @@ namespace Contensive.Addons.MenuPages.Views {
         private List<int> allowedPageIdList {
             get {
                 if (_allowedPageIdList == null) {
-                    _allowedPageIdList = Models.DbModels.PageContentModel.getAllowedPageIdList(cp);
+                    _allowedPageIdList = PageContentModel.getAllowedPageIdList(cp);
                 }
                 return _allowedPageIdList;
             }
@@ -148,7 +154,7 @@ namespace Contensive.Addons.MenuPages.Views {
         private List<int> allowedSectionIdList {
             get {
                 if (_allowedSectionIdList == null) {
-                    _allowedSectionIdList = Models.DbModels.SiteSectionsModel.getAllowedSectionIdList(cp);
+                    _allowedSectionIdList = SiteSectionsModel.getAllowedSectionIdList(cp);
                 }
                 return _allowedSectionIdList;
             }

@@ -94,7 +94,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <returns></returns>
-        protected static T @add<T>(CPBaseClass cp) where T : BaseModel
+        public static T @add<T>(CPBaseClass cp) where T : BaseModel
         {
             T result = null;
             try
@@ -117,7 +117,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordId">The id of the record to be read into the new object</param>
-        protected static T create<T>(CPBaseClass cp, int recordId) where T : BaseModel
+        public static T create<T>(CPBaseClass cp, int recordId) where T : BaseModel
         {
             T result = null;
             try
@@ -148,7 +148,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordGuid"></param>
-        protected static T create<T>(CPBaseClass cp, string recordGuid) where T : BaseModel
+        public static T create<T>(CPBaseClass cp, string recordGuid) where T : BaseModel
         {
             T result = null;
             try
@@ -176,7 +176,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordName"></param>
-        protected static T createByName<T>(CPBaseClass cp, string recordName) where T : BaseModel
+        public static T createByName<T>(CPBaseClass cp, string recordName) where T : BaseModel
         {
             T result = null;
             try
@@ -270,7 +270,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <returns></returns>
-        protected int save(CPBaseClass cp)
+        public int save(CPBaseClass cp)
         {
             try
             {
@@ -360,7 +360,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordId"></param>
-        protected static void delete<T>(CPBaseClass cp, int recordId) where T : BaseModel
+        public static void delete<T>(CPBaseClass cp, int recordId) where T : BaseModel
         {
             try
             {
@@ -385,7 +385,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="ccguid"></param>
-        protected static void delete<T>(CPBaseClass cp, string ccguid) where T : BaseModel
+        public static void delete<T>(CPBaseClass cp, string ccguid) where T : BaseModel
         {
             try
             {
@@ -414,7 +414,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="sqlCriteria"></param>
         /// <returns></returns>
-        protected static List<T> createList<T>(CPBaseClass cp, string sqlCriteria, string sqlOrderBy) where T : BaseModel
+        public static List<T> createList<T>(CPBaseClass cp, string sqlCriteria, string sqlOrderBy) where T : BaseModel
         {
             List<T> result = new List<T>();
             try
@@ -452,7 +452,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="recordId"></param>record
         /// <returns></returns>
-        protected static string getRecordName<T>(CPBaseClass cp, int recordId) where T : BaseModel
+        public static string getRecordName<T>(CPBaseClass cp, int recordId) where T : BaseModel
         {
             try
             {
@@ -482,7 +482,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="ccGuid"></param>record
         /// <returns></returns>
-        protected static string getRecordName<T>(CPBaseClass cp, string ccGuid) where T : BaseModel
+        public static string getRecordName<T>(CPBaseClass cp, string ccGuid) where T : BaseModel
         {
             try
             {
@@ -512,7 +512,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="ccGuid"></param>record
         /// <returns></returns>
-        protected static int getRecordId<T>(CPBaseClass cp, string ccGuid) where T : BaseModel
+        public static int getRecordId<T>(CPBaseClass cp, string ccGuid) where T : BaseModel
         {
             try
             {

@@ -66,6 +66,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Nustache.Core, Version=1.16.0.8, Culture=neutral, PublicKeyToken=efd6f3d8f76ecd9f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nustache.1.16.0.8\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web.Extensions" />
@@ -85,8 +88,13 @@
     <Compile Include="Models\DbModels\PageContentBlockRuleModel.cs" />
     <Compile Include="Models\DbModels\SectionBlockRuleModel.cs" />
     <Compile Include="Models\DbModels\_blankModel.cs" />
-    <Compile Include="Models\ViewModels\NavbarBasicDropdownViewModel.cs" />
-    <Compile Include="Views\NavbarBasicDropdown.cs" />
+    <Compile Include="Models\ViewModels\BootstrapNav40ViewModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BootstrapNav40.cs" />
     <Compile Include="Views\MenuPagesClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,10 +117,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\DbModels\modelData.txt" />
+    <Content Include="Resources\BootstrapNav40Layout.txt" />
     <Content Include="sampleMenu.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
