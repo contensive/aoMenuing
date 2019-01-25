@@ -10,6 +10,7 @@ using System.Text;
 using System.Reflection;
 using Contensive.BaseClasses;
 using System.Linq;
+using Contensive.Addons.MenuPages.Models.DbModels;
 
 namespace Contensive.Addons.MenuPages.Models.ViewModels {
     public class BootstrapNav40ViewModel {
@@ -103,8 +104,9 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                     result.topList = new List<BootstrapNav40ViewModel.TopListItemModel>();
                     //
                     // -- create toplists
-                    string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
-                    var rootPageList = Models.DbModels.PageContentModel.createList(cp, sql);
+                    var rootPageList = PageContentModel.getMenuRootList(cp, menu.id);
+                    //string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
+                    //var rootPageList = Models.DbModels.PageContentModel.createList(cp, sql);
                     foreach (var rootPage in rootPageList) {
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
                         if (blockRootPage & cp.User.IsAuthenticated) {
@@ -118,12 +120,8 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                             topListItem.topItemHref = cp.Content.GetPageLink(rootPage.id);
                             topListItem.topItemName = (!string.IsNullOrWhiteSpace(rootPage.MenuHeadline)) ? rootPage.MenuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
                             if (string.IsNullOrEmpty(topListItem.topItemName)) topListItem.topItemName = rootPage.name;
-
-
                             topListItem.childList = new List<ChildListItemModel>();
-                            //
-                            sql = "(ParentID=" + rootPage.id + ")";
-                            List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, sql);
+                            List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")");
                             if (pageChildList.Count > 0) {
                                 //
                                 // -- add root page as a child page

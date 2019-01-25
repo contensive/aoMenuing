@@ -122,8 +122,16 @@ namespace Contensive.Addons.MenuPages.Controllers {
         /// <returns></returns>
         public static string addEditWrapper(CPBaseClass cp, string innerHtml, int instanceId, string instanceName, string contentName, string designBlockCaption) {
             if ((!cp.User.IsEditingAnything)) { return innerHtml; }
-            string editHeader = cp.Html.div(cp.Content.GetEditLink(contentName, instanceId.ToString(), false, instanceName, true) + "&nbsp;" + designBlockCaption, "", "dbEditHeader");
+            string editLink = getEditLink( cp, contentName, instanceId ) ;
+            //string editLink = cp.Content.GetEditLink(contentName, instanceId.ToString(), false, instanceName, true);
+            string editHeader = cp.Html.div(editLink + "&nbsp;" + designBlockCaption, "", "dbEditHeader");
             return cp.Html.div(editHeader + innerHtml, "", "ccEditWrapper");
+        }
+        //
+        public static string getEditLink( CPBaseClass cp, string contentName, int recordId) {
+            int contentId = cp.Content.GetID(contentName);
+            if ( contentId==0 ) { return string.Empty;  }
+            return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span></a>";
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Contensive.Addons.MenuPages.Views {
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             this.cp = cp;
             string result = "";
+            string hint = "enter";
             try {
                 //
                 // -- determine controlling record in MenuModel
@@ -46,6 +47,7 @@ namespace Contensive.Addons.MenuPages.Views {
                         menu.save(cp);
                     }
                 }
+                hint = "20";
                 if (menu == null) {
                     result = "<!-- Instance Menu not found -->";
                 } else {
@@ -53,14 +55,20 @@ namespace Contensive.Addons.MenuPages.Views {
                     // -- create toplists
                     int activePageId = cp.Doc.PageId;
                     StringBuilder topItemList = new StringBuilder();
-                    string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
-                    List<PageContentModel> rootPageList = PageContentModel.createList(cp, sql,"sortOrder,id");
+                    //string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
+                    //List<PageContentModel> rootPageList = PageContentModel.createList(cp, sql,"sortOrder,id");
+                    var rootPageList = PageContentModel.getMenuRootList(cp, menu.id);
                     foreach (PageContentModel rootPage in rootPageList) {
+                        hint = "30";
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
+                        hint = "31";
                         if (blockRootPage & cp.User.IsAuthenticated) {
+                            hint = "32";
                             blockRootPage = !allowedPageIdList.Contains(rootPage.id);
                         }
+                        hint = "33";
                         if (!blockRootPage) {
+                            hint = "40";
                             string classTopItem = menu.classTopItem;
                             if (!string.IsNullOrEmpty(rootPage.menuClass)) { classTopItem += " " + rootPage.menuClass; }
                             if (rootPage == rootPageList.First()) { classTopItem += " " + menu.classItemFirst; }
@@ -71,7 +79,7 @@ namespace Contensive.Addons.MenuPages.Views {
                             string itemHtmlId;
                             string tierList;
                             StringBuilder tierItemList = new StringBuilder();
-                            sql = "(ParentID=" + rootPage.id + ")";
+                            string sql = "(ParentID=" + rootPage.id + ")";
                             List<PageContentModel> childPageList = null;
                             if (menu.depth > 0) {
                                 childPageList = PageContentModel.createList(cp, sql, "sortOrder,id");
@@ -90,11 +98,13 @@ namespace Contensive.Addons.MenuPages.Views {
                             }
                             cp.Utils.AppendLog("menuAddRootToTier2" + menu.addRootToTier.ToString());
                             foreach (PageContentModel childPage in childPageList) {
+                                hint = "50";
                                 bool blockPage = childPage.BlockContent;
                                 if (blockPage & cp.User.IsAuthenticated) {
                                     blockPage = !allowedPageIdList.Contains(childPage.id);
                                 }
                                 if (!blockPage) {
+                                    hint = "55";
                                     //if (!menu.addRootToTier)
                                     //{
                                     //    if (childPage == childPageList.First()) { classTierItem += " " + menu.classItemFirst; }
@@ -106,19 +116,22 @@ namespace Contensive.Addons.MenuPages.Views {
                                     tierItemList.Append(cp.Html.li(getAnchor(cp, childPage, menu.classTierAnchor), "", classTierItem, itemHtmlId));
                                 }
                             }
+                            hint = "60";
                             itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());
                             tierList = cp.Html.ul(tierItemList.ToString(), "", menu.classTierList, itemHtmlId + "List");
                             topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTopAnchor) + tierList, "", classTopItem, itemHtmlId));
                         }
                     }
+                    hint = "70";
                     result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
                     if (!string.IsNullOrEmpty(menu.classTopWrapper)) {
                         result = cp.Html.div(result, "", menu.classTopWrapper);
                     }
 
                 }
+                hint = "exit";
             } catch (Exception ex) {
-                cp.Site.ErrorReport(ex);
+                cp.Site.ErrorReport(ex, "hint [" + hint + "]");
                 result = "error response";
             }
             return result;

@@ -8,10 +8,8 @@ using System.Diagnostics;
 using System.Text;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models.DbModels
-{
-    public class PageContentModel : BaseModel
-    {
+namespace Contensive.Addons.MenuPages.Models.DbModels {
+    public class PageContentModel : BaseModel {
         //
         //====================================================================================================
         //-- const
@@ -52,7 +50,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         //public DateTime DateArchive { get; set; }
         //public DateTime DateExpires { get; set; }
         //public DateTime DateReviewed { get; set; }
-       
+
         //public string DocLabel { get; set; }
         //public bool EditArchive { get; set; }
         //public bool EditBlank { get; set; }
@@ -95,97 +93,101 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
         public string menuClass { get; set; }
         //
         //====================================================================================================
-        public static PageContentModel @add(CPBaseClass cp)
-        {
+        public static PageContentModel @add(CPBaseClass cp) {
             return @add<PageContentModel>(cp);
         }
         //
         //====================================================================================================
-        public static PageContentModel create(CPBaseClass cp, int recordId)
-        {
+        public static PageContentModel create(CPBaseClass cp, int recordId) {
             return create<PageContentModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static PageContentModel create(CPBaseClass cp, string recordGuid)
-        {
+        public static PageContentModel create(CPBaseClass cp, string recordGuid) {
             return create<PageContentModel>(cp, recordGuid);
         }
         //
         //====================================================================================================
-        public static PageContentModel createByName(CPBaseClass cp, string recordName)
-        {
+        public static PageContentModel createByName(CPBaseClass cp, string recordName) {
             return createByName<PageContentModel>(cp, recordName);
         }
         //
         //====================================================================================================
-        public new void save(CPBaseClass cp)
-        {
+        public new void save(CPBaseClass cp) {
             base.save(cp);
         }
         //
         //====================================================================================================
-        public static void delete(CPBaseClass cp, int recordId)
-        {
+        public static void delete(CPBaseClass cp, int recordId) {
             delete<PageContentModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static void delete(CPBaseClass cp, string ccGuid)
-        {
+        public static void delete(CPBaseClass cp, string ccGuid) {
             delete<PageContentModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static List<PageContentModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
-        {
+        public static List<PageContentModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id") {
             return createList<PageContentModel>(cp, sqlCriteria, sqlOrderBy);
         }
         //
         //====================================================================================================
-        public static string getRecordName(CPBaseClass cp, int recordId)
-        {
+        public static string getRecordName(CPBaseClass cp, int recordId) {
             return BaseModel.getRecordName<PageContentModel>(cp, recordId);
         }
         //
         //====================================================================================================
-        public static string getRecordName(CPBaseClass cp, string ccGuid)
-        {
+        public static string getRecordName(CPBaseClass cp, string ccGuid) {
             return BaseModel.getRecordName<PageContentModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
-        public static int getRecordId(CPBaseClass cp, string ccGuid)
-        {
+        public static int getRecordId(CPBaseClass cp, string ccGuid) {
             return BaseModel.getRecordId<PageContentModel>(cp, ccGuid);
         }
         //
         //====================================================================================================
         // -- a list of sections you have access to
         // -- all sections without blocking, plus section-groups that you are in the group
-        public static List<int> getAllowedPageIdList(CPBaseClass cp)
-        {
+        public static List<int> getAllowedPageIdList(CPBaseClass cp) {
             List<int> result = new List<int>();
-            try
-            {
+            try {
                 string sql = "select pr.recordId as id"
                     + " from ccPageContentBlockRules pr"
                     + " left join ccMemberRules mr on mr.groupId=pr.groupid"
                     + " where mr.memberId=" + cp.User.Id.ToString();
                 CPCSBaseClass cs = cp.CSNew();
-                if (cs.OpenSQL(sql))
-                {
-                    do
-                    {
+                if (cs.OpenSQL(sql)) {
+                    do {
                         result.Add(cs.GetInteger("id"));
                         cs.GoNext();
                     } while (cs.OK());
                 }
                 cs.Close();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
+            }
+            return result;
+        }
+        //
+        //====================================================================================================
+        /// <summary>
+        /// return a list of menu root pages sorted by the pagemenurule's ort order
+        /// </summary>
+        /// <param name="cp"></param>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        public static List<PageContentModel> getMenuRootList( CPBaseClass cp, int menuId ) {
+            var result = new List<PageContentModel>();
+            string sql = "select p.id from ccpagecontent p left join ccmenupagerules r on r.pageid=p.id where r.menuid=" + menuId + " order by r.sortorder";
+            CPCSBaseClass cs = cp.CSNew();
+            if (cs.OpenSQL(sql )) {
+                do {
+                    PageContentModel page = create(cp, cs.GetInteger("id"));
+                    if (page != null) { result.Add(page); }
+                    cs.GoNext();
+                } while (cs.OK());
             }
             return result;
         }

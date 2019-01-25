@@ -61,7 +61,7 @@
     background-color: #444;
     padding: 0 8px 0 4px;
     color: white;
-    z-index: 9999;
+    z-index: 1;
 	/* for header, comment these two. For banner uncomment */
     position: relative;
 }]]></Styles>
