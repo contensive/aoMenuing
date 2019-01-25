@@ -109,29 +109,36 @@ namespace Contensive.Addons.MenuPages.Controllers {
             }
             throw new ApplicationException("Design Block [" + designBlockName + "] called without instanceId must be on a page or the admin site.");
         }
-        //
-        //====================================================================================================
-        /// <summary>
-        /// create edit wrapper for instance
-        /// </summary>
-        /// <param name="cp"></param>
-        /// <param name="innerHtml"></param>
-        /// <param name="instance"></param>
-        /// <param name="contentName"></param>
-        /// <param name="designBlockCaption"></param>
-        /// <returns></returns>
+        ////
+        //public static string addEditWrapper(CPBaseClass cp, string innerHtml, int instanceId, string instanceName, string contentName, string designBlockCaption) {
+        //    if ((!cp.User.IsEditingAnything)) { return innerHtml; }
+        //    string editLink = getEditLink( cp, contentName, instanceId ) ;
+        //    //string editLink = cp.Content.GetEditLink(contentName, instanceId.ToString(), false, instanceName, true);
+        //    string editHeader = cp.Html.div(editLink + "&nbsp;" + designBlockCaption, "", "dbEditHeader");
+        //    return cp.Html.div(editHeader + innerHtml, "", "ccEditWrapper");
+        //}
+        ////
+        //public static string getEditLink( CPBaseClass cp, string contentName, int recordId) {
+        //    int contentId = cp.Content.GetID(contentName);
+        //    if ( contentId==0 ) { return string.Empty;  }
+        //    return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span></a>";
+        //}
+        // 
         public static string addEditWrapper(CPBaseClass cp, string innerHtml, int instanceId, string instanceName, string contentName, string designBlockCaption) {
             if ((!cp.User.IsEditingAnything)) { return innerHtml; }
-            string editLink = getEditLink( cp, contentName, instanceId ) ;
-            //string editLink = cp.Content.GetEditLink(contentName, instanceId.ToString(), false, instanceName, true);
-            string editHeader = cp.Html.div(editLink + "&nbsp;" + designBlockCaption, "", "dbEditHeader");
-            return cp.Html.div(editHeader + innerHtml, "", "ccEditWrapper");
+            string editLink = getEditLink(cp, contentName, instanceId, designBlockCaption);
+            string settingContent = cp.Html.div(innerHtml, "", "dbSettingWrapper");
+            string settingHeader = cp.Html.div(editLink, "", "dbSettingHeader");
+            return cp.Html.div(settingHeader + settingContent);
         }
-        //
-        public static string getEditLink( CPBaseClass cp, string contentName, int recordId) {
+        // 
+        // 
+        // 
+        public static string getEditLink(CPBaseClass cp, string contentName, int recordId, string Caption) {
             int contentId = cp.Content.GetID(contentName);
-            if ( contentId==0 ) { return string.Empty;  }
-            return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span></a>";
+            if (contentId == 0)
+                return string.Empty;
+            return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span>&nbsp;" + Caption + "</a>";
         }
     }
 }

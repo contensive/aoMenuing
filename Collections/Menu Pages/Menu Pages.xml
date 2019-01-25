@@ -39,6 +39,7 @@
 		<PageTitle></PageTitle>
 		<RemoteAssetLink></RemoteAssetLink>
 		<Styles><![CDATA[
+
 /*
 ************************************************
 * Design Block common features
@@ -56,15 +57,23 @@
 	height: 100%;
 	width: 100%;
 }
-.dbEditHeader {
-    border: 1px solid #000;
-    background-color: #444;
+.dbSettingWrapper{
+    border: 1px dashed #808080;
+	border-top: none;
+}
+.dbSettingHeader {
+    border: 1px solid #333;
+    background-color: #555;
     padding: 0 8px 0 4px;
     color: white;
     z-index: 1;
-	/* for header, comment these two. For banner uncomment */
-    position: relative;
-}]]></Styles>
+    text-shadow: 1px 1px 1px #000;
+}
+.dbSettingHeader a,.dbSettingHeader a:hover {
+    color: white;
+    text-decoration: none;
+}		
+		]]></Styles>
 		<styleslinkhref></styleslinkhref>
 		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
 	</Addon>
