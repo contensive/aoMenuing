@@ -79,7 +79,7 @@ namespace Contensive.Addons.MenuPages.Views {
                             string itemHtmlId;
                             string tierList;
                             StringBuilder tierItemList = new StringBuilder();
-                            string sql = "(ParentID=" + rootPage.id + ")";
+                            string sql = "(ParentID=" + rootPage.id + ") and (allowinmenus>0)";
                             List<PageContentModel> childPageList = null;
                             if (menu.depth > 0) {
                                 childPageList = PageContentModel.createList(cp, sql, "sortOrder,id");
