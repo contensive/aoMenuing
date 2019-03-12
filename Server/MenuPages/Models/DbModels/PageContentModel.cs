@@ -24,7 +24,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels {
         //public bool AllowFeedback { get; set; }
         //public bool AllowHitNotification { get; set; }
         //public bool AllowInChildLists { get; set; }
-        //public bool AllowInMenus { get; set; }
+        public bool AllowInMenus { get; set; }
         //public bool AllowLastModifiedFooter { get; set; }
         //public bool AllowMessageFooter { get; set; }
         //public bool AllowMetaContentNoFollow { get; set; }
