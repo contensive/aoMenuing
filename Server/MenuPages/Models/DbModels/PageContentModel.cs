@@ -180,7 +180,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels {
         /// <returns></returns>
         public static List<PageContentModel> getMenuRootList( CPBaseClass cp, int menuId ) {
             var result = new List<PageContentModel>();
-            string sql = "select p.id from ccpagecontent p left join ccmenupagerules r on r.pageid=p.id where r.menuid=" + menuId + " order by r.sortorder";
+            string sql = "select p.id from ccpagecontent p left join ccmenupagerules r on r.pageid=p.id where r.menuid=" + menuId + " order by r.sortorder,r.id";
             CPCSBaseClass cs = cp.CSNew();
             if (cs.OpenSQL(sql )) {
                 do {
