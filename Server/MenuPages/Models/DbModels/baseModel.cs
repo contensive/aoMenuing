@@ -423,7 +423,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
                 List<string> ignoreCacheNames = new List<string>();
                 Type instanceType = typeof(T);
                 string contentName = derivedContentName(instanceType);
-                if ((cs.Open(contentName, sqlCriteria, sqlOrderBy)))
+                if ((cs.Open(contentName, sqlCriteria, sqlOrderBy,true,"",9999,1)))
                 {
                     T instance = default(T);
                     do
