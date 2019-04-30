@@ -156,7 +156,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
                 Type instanceType = typeof(T);
                 string contentName = derivedContentName(instanceType);
                 CPCSBaseClass cs = cp.CSNew();
-                if (cs.Open(contentName, "(ccGuid=" + cp.Db.EncodeSQLText(recordGuid) + ")"))
+                if (cs.Open(contentName, "(ccGuid=" + cp.Db.EncodeSQLText(recordGuid) + ")", "sortorder,id"))
                 {
                     result = loadRecord<T>(cp, cs);
                 }
@@ -186,7 +186,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels
                     Type instanceType = typeof(T);
                     string contentName = derivedContentName(instanceType);
                     CPCSBaseClass cs = cp.CSNew();
-                    if (cs.Open(contentName, "(name=" + cp.Db.EncodeSQLText(recordName) + ")", "id"))
+                    if (cs.Open(contentName, "(name=" + cp.Db.EncodeSQLText(recordName) + ")", "sortorder,id"))
                     {
                         result = loadRecord<T>(cp, cs);
                     }
