@@ -87,6 +87,7 @@
     <Compile Include="Models\DbModels\DynamicMenuSectionRuleModel.cs" />
     <Compile Include="Models\DbModels\PageContentBlockRuleModel.cs" />
     <Compile Include="Models\DbModels\SectionBlockRuleModel.cs" />
+    <Compile Include="Models\DbModels\MenuPageRuleModel.cs" />
     <Compile Include="Models\DbModels\_blankModel.cs" />
     <Compile Include="Models\ViewModels\BootstrapNav40ViewModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -95,6 +96,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\BootstrapNav40.cs" />
+    <Compile Include="Views\AddMenuPageClass.cs" />
     <Compile Include="Views\MenuPagesClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

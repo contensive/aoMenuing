@@ -104,10 +104,7 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                     result.topList = new List<BootstrapNav40ViewModel.TopListItemModel>();
                     //
                     // -- create toplists
-                    var rootPageList = PageContentModel.getMenuRootList(cp, menu.id);
-                    //string sql = "(AllowInMenus=1)and(id in (select pageId from ccMenuPageRules where menuID=" + menu.id + "))";
-                    //var rootPageList = Models.DbModels.PageContentModel.createList(cp, sql);
-                    foreach (var rootPage in rootPageList) {
+                    foreach (var rootPage in PageContentModel.getMenuRootList(cp, menu.id)) {
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
                         if (blockRootPage & cp.User.IsAuthenticated) {
                             blockRootPage = !result.allowedPageIdList(cp).Contains(rootPage.id);
@@ -143,65 +140,21 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                                         });
                                     }
                                 }
-
-
                             }
                             if (!topListItem.childList.Count.Equals(0)) {
                                 topListItem.classTopItemDropdown = "dropdown";
                                 topListItem.hasChildItems = true;
-                                //topListItem.dropdownAttributes = (topListItem.hasChildItems) ? "data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"" : string.Empty;
                             }
                             result.topList.Add(topListItem);
-
-                            //string classTopItem = menu.classTopItem;
-                            //if (!string.IsNullOrEmpty(rootPage.menuClass)) { classTopItem += " " + rootPage.menuClass; }
-                            //if (rootPage == rootPageList.First()) { classTopItem += " " + menu.classItemFirst; }
-                            //if (rootPage == rootPageList.Last()) { classTopItem += " " + menu.classItemLast; }
-                            //
-                            // -- build child page list (tier list)
-                            //string itemHtmlId;
-                            //string tierList;
-                            //string classTopAnchor = menu.classTopAnchor;
-                            //string classTopParentAnchor = "";
-                            //StringBuilder tierItemList = new StringBuilder();
-                            //sql = "(ParentID=" + rootPage.id + ")";
-                            //List<Models.DbModels.PageContentModel> childPageList = Models.DbModels.PageContentModel.createList(cp, sql);
-                            //if (pageChildList.Count == 0) {
-                            //    //
-                            //    // -- no dropdown
-                            //    // -- topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, classTopAnchor, ""), "", classTopItem));
-                            //} else {
-                            //    //
-                            //    // -- dropdown nav
-                            //    classTopItem += " " + menu.classTopParentItem;
-                            //    classTopAnchor += " " + menu.classTopParentAnchor;
-                            //    classTopParentAnchor += " " + menu.classTopParentAnchor;
-                            //    //
-                            //    // -- add the root page to the tier flyout as needed
-                            //    string classTierItem = menu.classTierItem;
-                            //    string classTierAnchor = menu.classTierAnchor;
-                            //    classTierItem += " " + menu.classItemFirst;
-                            //    tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, classTierAnchor, ""), "", classTopItem));
-                            //    foreach (Models.DbModels.PageContentModel childPage in pageChildList) {
-                            //        bool blockPage = childPage.BlockContent;
-                            //        if (blockPage & cp.User.IsAuthenticated) {
-                            //            blockPage = !allowedPageIdList.Contains(childPage.id);
-                            //        }
-                            //        if (!blockPage) {
-                            //            if (childPage == pageChildList.Last()) { classTierItem += " " + menu.classItemLast; }
-                            //            if (!string.IsNullOrEmpty(childPage.menuClass)) { classTierItem += " " + childPage.menuClass; }
-                            //            tierItemList.Append(cp.Html.li(getAnchor(cp, childPage, menu.classTierAnchor, ""), "", classTierItem));
-                            //        }
-                            //    }
-                            //    tierList = cp.Html.ul(tierItemList.ToString(), "", menu.classTierList);
-                            //    topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, classTopAnchor, menu.dataToggleTopParentAnchor) + tierList, "", classTopItem));
-                            //}
                         }
                     }
-                    //result = cp.Html.ul(topItemList.ToString(), "", menu.classTopList);
-                    //if (!string.IsNullOrEmpty(menu.classTopWrapper)) {
-                    //    result = cp.Html.div(result, "", menu.classTopWrapper);
-                    //}
+                    if(cp.User.IsEditing("")) {
+                        var fakeItem = new TopListItemModel();
+                        fakeItem.topItemName = "Add-Page";
+                        fakeItem.topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString();
+                        fakeItem.classTopItemAnchor = menu.classTopAnchor;
+                        result.topList.Add(fakeItem);
+                    }
                 }
                 return result;
             } catch (Exception ex) {

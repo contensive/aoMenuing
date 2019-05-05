@@ -122,6 +122,9 @@ namespace Contensive.Addons.MenuPages.Views {
                             topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTopAnchor) + tierList, "", classTopItem, itemHtmlId));
                         }
                     }
+                    if (cp.User.IsEditing("")) {                        
+                        topItemList.Append(cp.Html.li( string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", "/AddMenuPage?menuId=" + menu.id, "Add-Page", menu.classTopAnchor), "", menu.classTopItem));
+                    }
                     hint = "70";
                     result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
                     result = cp.Html.div(result, "", "menuPagesCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper)));
