@@ -44,11 +44,11 @@
 ************************************************
 * Design Block common features
 */
-.designBlockContainer {
+.bootstrapNavCon .designBlockContainer {
 	position: relative;
 	background-size: cover;
 }
-.designBlockCover {
+.bootstrapNavCon .designBlockCover {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -57,11 +57,11 @@
 	height: 100%;
 	width: 100%;
 }
-.dbSettingWrapper{
+.bootstrapNavCon .dbSettingWrapper{
     border: 1px dashed #808080;
 	border-top: none;
 }
-.dbSettingHeader {
+.bootstrapNavCon .dbSettingHeader {
     border: 1px solid #333;
     background-color: #555;
     padding: 0 8px 0 4px;
@@ -69,7 +69,7 @@
     z-index: 1;
     text-shadow: 1px 1px 1px #000;
 }
-.dbSettingHeader a,.dbSettingHeader a:hover {
+.bootstrapNavCon .dbSettingHeader a,.bootstrapNavCon .dbSettingHeader a:hover {
     color: white;
     text-decoration: none;
 }		
@@ -115,7 +115,42 @@
 		<OtherHeadTags></OtherHeadTags>
 		<PageTitle></PageTitle>
 		<RemoteAssetLink></RemoteAssetLink>
-		<Styles></Styles>
+		<Styles><![CDATA[
+
+/*
+************************************************
+* Design Block common features
+*/
+.menuPagesCon .designBlockContainer {
+	position: relative;
+	background-size: cover;
+}
+.menuPagesCon .designBlockCover {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+}
+.menuPagesCon .dbSettingWrapper{
+    border: 1px dashed #808080;
+	border-top: none;
+}
+.menuPagesCon .dbSettingHeader {
+    border: 1px solid #333;
+    background-color: #555;
+    padding: 0 8px 0 4px;
+    color: white;
+    z-index: 1;
+    text-shadow: 1px 1px 1px #000;
+}
+.menuPagesCon .dbSettingHeader a,.menuPagesCon .dbSettingHeader a:hover {
+    color: white;
+    text-decoration: none;
+}		
+		]]></Styles>
 		<styleslinkhref></styleslinkhref>
 		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
 	</Addon>
@@ -167,7 +202,7 @@
       <HelpDefault><![CDATA[Choose no flyout for a simple list. Choose Tier Page Flyout for a menu that includes a flyout for tier pages.]]></HelpDefault>
     </Field>
     <Field Name="classTopWrapper" active="1" AdminOnly="0" Authorable="1" Caption="Top Wrapper Class" DeveloperOnly="False" EditSortPriority="2000" FieldType="Text" HTMLContent="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="aoMenuDefault " RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Styles" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="1" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
-      <HelpDefault><![CDATA[The class in the top level ul]]></HelpDefault>
+      <HelpDefault><![CDATA[The menuing html includes a div container at the top level. The div will have a class used for editing Don't reference this class as it may change. Add a class name here and it will be included in the top level div.]]></HelpDefault>
     </Field>
     <Field Name="classTopList" active="1" AdminOnly="0" Authorable="1" Caption="Top List Class" DeveloperOnly="False" EditSortPriority="2010" FieldType="Text" HTMLContent="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topList" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Styles" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
       <HelpDefault><![CDATA[The class in the top level ul]]></HelpDefault>

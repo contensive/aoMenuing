@@ -124,10 +124,7 @@ namespace Contensive.Addons.MenuPages.Views {
                     }
                     hint = "70";
                     result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
-                    if (!string.IsNullOrEmpty(menu.classTopWrapper)) {
-                        result = cp.Html.div(result, "", menu.classTopWrapper);
-                    }
-
+                    result = cp.Html.div(result, "", "menuPagesCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper)));
                 }
                 hint = "exit";
             } catch (Exception ex) {

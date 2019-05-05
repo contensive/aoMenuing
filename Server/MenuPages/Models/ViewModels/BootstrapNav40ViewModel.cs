@@ -99,7 +99,7 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                 if (menu == null) { return result; }
                 {
                     result.menuId = menu.id;
-                    result.classTopWrapper = menu.classTopWrapper;
+                    result.classTopWrapper = menu.classTopWrapper; // "bootstrapNavCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper));
                     result.classTopList = menu.classTopWrapper;
                     result.topList = new List<BootstrapNav40ViewModel.TopListItemModel>();
                     //

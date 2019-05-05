@@ -124,21 +124,27 @@ namespace Contensive.Addons.MenuPages.Controllers {
         //    return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span></a>";
         //}
         // 
-        public static string addEditWrapper(CPBaseClass cp, string innerHtml, int instanceId, string instanceName, string contentName, string designBlockCaption) {
+        public static string addEditWrapper(CPBaseClass cp, string innerHtml, int recordId, string contentName, string caption) {
             if ((!cp.User.IsEditingAnything)) { return innerHtml; }
-            string editLink = getEditLink(cp, contentName, instanceId, designBlockCaption);
-            string settingContent = cp.Html.div(innerHtml, "", "dbSettingWrapper");
-            string settingHeader = cp.Html.div(editLink, "", "dbSettingHeader");
-            return cp.Html.div(settingHeader + settingContent);
+            string header = cp.Content.GetEditLink(contentName, recordId.ToString(), false, caption, true);
+            string content = cp.Html.div(innerHtml, "", "dbSettingWrapper");
+            return cp.Html.div(header + content, "ccEditWrapper");
         }
-        // 
-        // 
-        // 
-        public static string getEditLink(CPBaseClass cp, string contentName, int recordId, string Caption) {
-            int contentId = cp.Content.GetID(contentName);
-            if (contentId == 0)
-                return string.Empty;
-            return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span>&nbsp;" + Caption + "</a>";
-        }
+        //// 
+        //// 
+        //// 
+        //public static string getEditLink(CPBaseClass cp, string contentName, int recordId, string Caption) {
+        //    int contentId = cp.Content.GetID(contentName);
+        //    if (contentId == 0)
+        //        return string.Empty;
+        //    return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span>&nbsp;" + Caption + "</a>";
+        //}
+
+        //Public Shared Function addEditWrapper(ByVal cp As CPBaseClass, ByVal innerHtml As String, ByVal recordId As Integer, ByVal instanceName As String, ByVal contentName As String, ByVal caption As String) As String
+        //    If(Not cp.User.IsEditingAnything) Then Return innerHtml
+        //   Dim header As String = cp.Content.GetEditLink(contentName, recordId.ToString(), False, caption, True)
+        //    Dim content As String = cp.Html.div(innerHtml, "", "")
+        //    Return cp.Html.div(header + content, "", "ccEditWrapper")
+        //End Function
     }
 }
