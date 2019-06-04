@@ -42,6 +42,7 @@ namespace Contensive.Addons.MenuPages.Views {
                 // -- if editing enabled, add the link and wrapperwrapper
                 result = genericController.addEditWrapper(cp, result, instance.id, MenuModel.contentName, instance.name);
                 //
+                // -- container
                 return cp.Html.div(result, "", "bootstrapNavCon");
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);

@@ -128,7 +128,7 @@ namespace Contensive.Addons.MenuPages.Controllers {
             if ((!cp.User.IsEditingAnything)) { return innerHtml; }
             string header = cp.Content.GetEditLink(contentName, recordId.ToString(), false, caption, true);
             string content = cp.Html.div(innerHtml, "", "dbSettingWrapper");
-            return cp.Html.div(header + content, "ccEditWrapper");
+            return cp.Html.div(header + content,"", "ccEditWrapper");
         }
         //// 
         //// 

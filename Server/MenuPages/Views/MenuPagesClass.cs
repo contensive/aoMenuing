@@ -6,6 +6,7 @@ using System.Linq;
 using Contensive.BaseClasses;
 using Contensive.Addons.MenuPages.Models;
 using Contensive.Addons.MenuPages.Models.DbModels;
+using Contensive.Addons.MenuPages.Controllers;
 
 namespace Contensive.Addons.MenuPages.Views {
     /// <summary>
@@ -127,6 +128,11 @@ namespace Contensive.Addons.MenuPages.Views {
                     }
                     hint = "70";
                     result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
+                    // 
+                    // -- if editing enabled, add the link and wrapperwrapper
+                    result = genericController.addEditWrapper(cp, result, menu.id, MenuModel.contentName, menu.name);
+                    //
+                    // -- container
                     result = cp.Html.div(result, "", "menuPagesCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper)));
                 }
                 hint = "exit";
