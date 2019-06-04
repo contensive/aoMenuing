@@ -96,7 +96,7 @@ namespace Contensive.Addons.MenuSections.Views
                                             string itemHtmlId;
                                             string tierList;
                                             sql = "(ParentID=" + section.RootPageID + ")";
-                                            List<Models.pageContentModel> childPageList = Models.pageContentModel.createList(cp, sql);
+                                            List<Models.pageContentModel> childPageList = Models.pageContentModel.createList(cp, sql, "sortorder");
                                             foreach (Models.pageContentModel childPage in childPageList)
                                             {
                                                 bool blockPage = childPage.BlockContent;

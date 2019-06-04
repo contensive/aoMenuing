@@ -118,7 +118,7 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                             topListItem.topItemName = (!string.IsNullOrWhiteSpace(rootPage.MenuHeadline)) ? rootPage.MenuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
                             if (string.IsNullOrEmpty(topListItem.topItemName)) topListItem.topItemName = rootPage.name;
                             topListItem.childList = new List<ChildListItemModel>();
-                            List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)");
+                            List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
                             if (pageChildList.Count > 0) {
                                 //
                                 // -- add root page as a child page
