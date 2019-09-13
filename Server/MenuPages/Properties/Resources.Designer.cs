@@ -62,14 +62,15 @@ namespace Contensive.Addons.MenuPages.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;!-- nav within navbar --&gt;
+        ///&lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNavDropdown{{menuId}}&quot; aria-controls=&quot;navbarNavDropdown{{menuId}}&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+        ///	&lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+        ///&lt;/button&gt;
         ///&lt;div class=&quot;collapse navbar-collapse {{classTopWrapper}}&quot; id=&quot;navbarNavDropdown{{menuId}}&quot;&gt;
-        ///	&lt;!-- responsive button --&gt;
-        ///	&lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNavDropdown{{menuId}}&quot; aria-controls=&quot;navbarNavDropdown{{menuId}}&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
-        ///		&lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
-        ///	&lt;/button&gt;
         ///	&lt;!-- nav menu pages --&gt;
         ///	&lt;ul class=&quot;navbar-nav {{classTopList}}&quot;&gt;
-        ///		&lt;li class=&quot;nav-item {{c [rest of string was truncated]&quot;;.
+        ///		{{#topList}}
+        ///		{{#hasChildItems}}
+        ///		&lt;li class=&quot;nav-it [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string BootstrapNav40Layout {
             get {
