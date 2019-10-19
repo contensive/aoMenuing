@@ -82,9 +82,16 @@ namespace Contensive.Addons.MenuPages.Views {
                             StringBuilder tierItemList = new StringBuilder();
                             string sql = "(ParentID=" + rootPage.id + ") and (allowinmenus>0)";
                             List<PageContentModel> childPageList = null;
-                            if (menu.depth > 0) {
+                            //
+                            // -- depth is a lookup list. Easier for user to understand, and later we can add high limits if required. For now, just 0 tiers,1 tier
+                            // -- depth field made visible c5.1.191010
+                            if (menu.depth >= 2) {
+                                //
+                                // -- child flyouts
                                 childPageList = PageContentModel.createList(cp, sql, "sortOrder,id");
                             } else {
+                                //
+                                // -- 0,1 = no flyout
                                 childPageList = new List<PageContentModel>();
                             }
                             //
