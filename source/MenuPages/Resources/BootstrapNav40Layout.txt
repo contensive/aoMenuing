@@ -2,9 +2,9 @@
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown{{menuId}}" aria-controls="navbarNavDropdown{{menuId}}" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse {{classTopWrapper}}" id="navbarNavDropdown{{menuId}}">
+<div class=" {{classTopWrapper}}" id="navbarNavDropdown{{menuId}}">
 	<!-- nav menu pages -->
-	<ul class="navbar-nav {{classTopList}}">
+	<ul class=" {{classTopList}}">
 		{{#topList}}
 		{{#hasChildItems}}
 		<li class="nav-item {{classTopItemDropdown}} {{classTopItemActive}}">

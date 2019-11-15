@@ -99,8 +99,30 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                 if (menu == null) { return result; }
                 {
                     result.menuId = menu.id;
-                    result.classTopWrapper = menu.classTopWrapper; // "bootstrapNavCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper));
-                    result.classTopList = menu.classTopWrapper;
+                   
+                    //checks if the top wrapper already contains the default bootstrap navbar-collapse collapse
+                    String appendedTopWrapper = "";
+                    String classTopWrapper = menu.classTopWrapper;
+                    String firstToCheck = "collapse navbar-collapse";
+                    String secondToCheck = "navbar-collapse collapse";
+                    if(!classTopWrapper.Contains(firstToCheck) && !classTopWrapper.Contains(secondToCheck))
+                    {
+                        appendedTopWrapper += "collapse navbar-collapse";
+                    }
+                    appendedTopWrapper += classTopWrapper;
+
+                    //checks if the top list contains the default bootstrap navbar-nav
+                    String appendedTopList = "";
+                    String defaultTopList = "navbar-nav";
+                    String classTopList = menu.classTopList;
+                    if(!classTopList.Contains(defaultTopList))
+                    {
+                        appendedTopList += "navbar-nav";
+                    }
+                    appendedTopList += classTopList;
+
+                    result.classTopWrapper = appendedTopWrapper; // "bootstrapNavCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper));
+                    result.classTopList = appendedTopList;
                     result.topList = new List<BootstrapNav40ViewModel.TopListItemModel>();
                     //
                     // -- create toplists
