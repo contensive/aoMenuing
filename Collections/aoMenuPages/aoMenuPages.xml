@@ -2,7 +2,7 @@
 <Collection name="Menu Pages" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
-	<Addon name="Bootstrap Nav 40" guid="{472f4a83-4c03-48c2-9852-b65e443c160c}" type="Add-on">
+	<Addon name="Bootstrap Nav Menu" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
@@ -39,42 +39,41 @@
 		<PageTitle></PageTitle>
 		<RemoteAssetLink></RemoteAssetLink>
 		<Styles><![CDATA[
-
-/*
-************************************************
-* Design Block common features
-*/
-.bootstrapNavCon .designBlockContainer {
-	position: relative;
-	background-size: cover;
-}
-.bootstrapNavCon .designBlockCover {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-}
-.bootstrapNavCon .dbSettingWrapper{
-	/*
-    border: 1px dashed #808080;
-	border-top: none;
-	*/
-}
-.bootstrapNavCon .dbSettingHeader {
-    border: 1px solid #333;
-    background-color: #555;
-    padding: 0 8px 0 4px;
-    color: white;
-    z-index: 1;
-    text-shadow: 1px 1px 1px #000;
-}
-.bootstrapNavCon .dbSettingHeader a,.bootstrapNavCon .dbSettingHeader a:hover {
-    color: white;
-    text-decoration: none;
-}		
+			/*
+			************************************************
+			* Design Block common features
+			*/
+			.bootstrapNavCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.bootstrapNavCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.bootstrapNavCon .dbSettingWrapper{
+				/*
+				border: 1px dashed #808080;
+				border-top: none;
+				*/
+			}
+			.bootstrapNavCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.bootstrapNavCon .dbSettingHeader a,.bootstrapNavCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}		
 		]]></Styles>
 		<styleslinkhref></styleslinkhref>
 		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
@@ -119,39 +118,39 @@
 		<RemoteAssetLink></RemoteAssetLink>
 		<Styles><![CDATA[
 
-/*
-************************************************
-* Design Block common features
-*/
-.menuPagesCon .designBlockContainer {
-	position: relative;
-	background-size: cover;
-}
-.menuPagesCon .designBlockCover {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-}
-.menuPagesCon .dbSettingWrapper{
-    border: 1px dashed #808080;
-	border-top: none;
-}
-.menuPagesCon .dbSettingHeader {
-    border: 1px solid #333;
-    background-color: #555;
-    padding: 0 8px 0 4px;
-    color: white;
-    z-index: 1;
-    text-shadow: 1px 1px 1px #000;
-}
-.menuPagesCon .dbSettingHeader a,.menuPagesCon .dbSettingHeader a:hover {
-    color: white;
-    text-decoration: none;
-}		
+			/*
+			************************************************
+			* Design Block common features
+			*/
+			.menuPagesCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.menuPagesCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.menuPagesCon .dbSettingWrapper{
+				border: 1px dashed #808080;
+				border-top: none;
+			}
+			.menuPagesCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.menuPagesCon .dbSettingHeader a,.menuPagesCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}		
 		]]></Styles>
 		<styleslinkhref></styleslinkhref>
 		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
@@ -159,6 +158,13 @@
 	<Addon name="AddMenuPage" guid="{6FD928F3-ABA5-4E4F-ACD2-BCD7661847DA}" type="Add-on">
 		<DotNetClass><![CDATA[Contensive.Addons.MenuPages.Views.AddMenuPageClass]]></DotNetClass>
 		<RemoteMethod>yes</RemoteMethod>
+	</Addon>
+	<!-- deprecated -->
+	<Addon name="Bootstrap Nav 40" guid="{472f4a83-4c03-48c2-9852-b65e443c160c}" type="Add-on">
+		<IncludeAddon name="Bootstrap Nav Menu" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}"/>
+		<DotNetClass><![CDATA[]]></DotNetClass>
+		<Content>No</Content>
+		<Template>No</Template>
 	</Addon>
 	<Resource name="arrow.gif" type="www" path="aomenuing" />
 </Collection>
