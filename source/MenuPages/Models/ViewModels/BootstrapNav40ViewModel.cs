@@ -144,10 +144,13 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                             if (pageChildList.Count > 0) {
                                 //
                                 // -- add root page as a child page
-                                topListItem.childList.Add(new ChildListItemModel {
-                                    childItemHref = topListItem.topItemHref,
-                                    childItemName = topListItem.topItemName
-                                });
+                                if (menu.addRootToTier){
+                                    topListItem.childList.Add(new ChildListItemModel
+                                    {
+                                        childItemHref = topListItem.topItemHref,
+                                        childItemName = topListItem.topItemName
+                                    });
+                                }
                                 //
                                 // -- add child pages 
                                 foreach (var childPage in pageChildList) {
