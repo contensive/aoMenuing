@@ -105,6 +105,7 @@
 		<Template>Yes</Template>
 		<Email>No</Email>
 		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
 		<OnPageEndEvent>No</OnPageEndEvent>
 		<OnPageStartEvent>No</OnPageStartEvent>
 		<OnBodyStart>No</OnBodyStart>
