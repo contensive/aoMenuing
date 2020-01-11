@@ -27,6 +27,7 @@
 		<Template>Yes</Template>
 		<Email>No</Email>
 		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
 		<OnPageEndEvent>No</OnPageEndEvent>
 		<OnPageStartEvent>No</OnPageStartEvent>
 		<OnBodyStart>No</OnBodyStart>
@@ -92,8 +93,7 @@
 		<InIframe>No</InIframe>
 		<BlockEditTools>No</BlockEditTools>
 		<FormXML></FormXML>
-		<IncludeAddon name="Bootstrap Styles" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
-		<IncludeAddon name="Bootstrap Javascript" guid="{0D898BA4-E5FC-474A-82A3-E52DEFC307E5}"/>
+		<IncludeAddon name="Bootstrap" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
 		<IsInline>No</IsInline>
 		<JavascriptInHead></JavascriptInHead>
 		<javascriptForceHead>No</javascriptForceHead>
@@ -166,6 +166,7 @@
 		<DotNetClass><![CDATA[]]></DotNetClass>
 		<Content>No</Content>
 		<Template>No</Template>
+		<Category></Category>
 	</Addon>
 	<Resource name="arrow.gif" type="www" path="aomenuing" />
 </Collection>
