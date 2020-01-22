@@ -94,59 +94,56 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
         //====================================================================================================
         public static BootstrapNav40ViewModel create(CPBaseClass cp, Models.DbModels.MenuModel menu) {
             try {
-                //var allowedPageIdList = new List<int>();
+                //
+                cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList enter");
+                //
                 var result = new BootstrapNav40ViewModel();
                 if (menu == null) { return result; }
                 {
                     result.menuId = menu.id;
-                   
-                    //checks if the top wrapper already contains the default bootstrap navbar-collapse collapse
-                    String appendedTopWrapper = "";
-                    String classTopWrapper = menu.classTopWrapper;
-                    String firstToCheck = "collapse navbar-collapse";
-                    String secondToCheck = "navbar-collapse collapse";
-                    if(!classTopWrapper.Contains(firstToCheck) && !classTopWrapper.Contains(secondToCheck))
-                    {
-                        appendedTopWrapper += "collapse navbar-collapse";
+                    result.classTopWrapper = menu.classTopWrapper;
+                    if (!result.classTopWrapper.Contains("collapse navbar-collapse") && !result.classTopWrapper.Contains("navbar-collapse collapse")) {
+                        //
+                        // -- add collapse if not already incluided
+                        result.classTopWrapper += " collapse navbar-collapse";
                     }
-                    appendedTopWrapper += classTopWrapper;
-
                     //checks if the top list contains the default bootstrap navbar-nav
-                    String appendedTopList = "";
-                    String defaultTopList = "navbar-nav";
-                    String classTopList = menu.classTopList;
-                    if(!classTopList.Contains(defaultTopList))
-                    {
-                        appendedTopList += "navbar-nav";
+                    result.classTopList = "";
+                    if (!menu.classTopList.Contains("navbar-nav")) {
+                        result.classTopList += " navbar-nav";
                     }
-                    appendedTopList += classTopList;
-
-                    result.classTopWrapper = appendedTopWrapper; // "bootstrapNavCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper));
-                    result.classTopList = appendedTopList;
+                    result.classTopList += " " + menu.classTopList;
                     result.topList = new List<BootstrapNav40ViewModel.TopListItemModel>();
                     //
+                    List<PageContentModel> MenuPageList = PageContentModel.getMenuRootList(cp, menu.id);
+                    //
+                    cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList.count [" + MenuPageList.Count + "]");
+                    //
                     // -- create toplists
-                    foreach (var rootPage in PageContentModel.getMenuRootList(cp, menu.id)) {
+                    foreach (PageContentModel rootPage in MenuPageList) {
                         bool blockRootPage = rootPage.BlockContent & !cp.User.IsAdmin;
                         if (blockRootPage & cp.User.IsAuthenticated) {
                             blockRootPage = !result.allowedPageIdList(cp).Contains(rootPage.id);
                         }
                         if (!blockRootPage) {
-                            var topListItem = new BootstrapNav40ViewModel.TopListItemModel();
-                            topListItem.classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty;
-                            topListItem.classTopItemAnchor = menu.classTopAnchor;
-                            topListItem.topItemPageId = rootPage.id;
-                            topListItem.topItemHref = cp.Content.GetPageLink(rootPage.id);
-                            topListItem.topItemName = (!string.IsNullOrWhiteSpace(rootPage.MenuHeadline)) ? rootPage.MenuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
-                            if (string.IsNullOrEmpty(topListItem.topItemName)) topListItem.topItemName = rootPage.name;
-                            topListItem.childList = new List<ChildListItemModel>();
+                            //
+                            cp.Utils.AppendLog("BootstrapNav40ViewModel, add rootPage to menu [" + rootPage.id + "]");
+                            //
+                            string topItemName = (!string.IsNullOrWhiteSpace(rootPage.MenuHeadline)) ? rootPage.MenuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
+                            var topListItem = new TopListItemModel {
+                                classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
+                                classTopItemAnchor = menu.classTopAnchor,
+                                topItemPageId = rootPage.id,
+                                topItemHref = cp.Content.GetPageLink(rootPage.id),
+                                topItemName = string.IsNullOrWhiteSpace(topItemName) ? rootPage.name : topItemName,
+                                childList = new List<ChildListItemModel>()
+                            };
                             List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
                             if (pageChildList.Count > 0) {
                                 //
                                 // -- add root page as a child page
-                                if (menu.addRootToTier){
-                                    topListItem.childList.Add(new ChildListItemModel
-                                    {
+                                if (menu.addRootToTier) {
+                                    topListItem.childList.Add(new ChildListItemModel {
                                         childItemHref = topListItem.topItemHref,
                                         childItemName = topListItem.topItemName
                                     });
@@ -173,14 +170,17 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                             result.topList.Add(topListItem);
                         }
                     }
-                    if(cp.User.IsEditing("")) {
-                        var fakeItem = new TopListItemModel();
-                        fakeItem.topItemName = "Add-Page";
-                        fakeItem.topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString();
-                        fakeItem.classTopItemAnchor = menu.classTopAnchor;
-                        result.topList.Add(fakeItem);
+                    if (cp.User.IsEditing("")) {
+                        result.topList.Add(new TopListItemModel {
+                            topItemName = "Add-Page",
+                            topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString(),
+                            classTopItemAnchor = menu.classTopAnchor
+                        });
                     }
                 }
+                //
+                cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");
+                //
                 return result;
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
@@ -206,11 +206,11 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
         }
         //
         // -- list of pages explicitly allowed by this users group membership
-        private List<int> allowedPageIdList( CPBaseClass cp ) {
-                if (_allowedPageIdList == null) {
-                    _allowedPageIdList = Models.DbModels.PageContentModel.getAllowedPageIdList(cp);
-                }
-                return _allowedPageIdList;
+        private List<int> allowedPageIdList(CPBaseClass cp) {
+            if (_allowedPageIdList == null) {
+                _allowedPageIdList = Models.DbModels.PageContentModel.getAllowedPageIdList(cp);
+            }
+            return _allowedPageIdList;
         }
         private List<int> _allowedPageIdList = null;
         //
