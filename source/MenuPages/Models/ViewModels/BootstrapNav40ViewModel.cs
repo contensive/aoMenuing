@@ -138,34 +138,36 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                                 topItemName = string.IsNullOrWhiteSpace(topItemName) ? rootPage.name : topItemName,
                                 childList = new List<ChildListItemModel>()
                             };
-                            List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
-                            if (pageChildList.Count > 0) {
-                                //
-                                // -- add root page as a child page
-                                if (menu.addRootToTier) {
-                                    topListItem.childList.Add(new ChildListItemModel {
-                                        childItemHref = topListItem.topItemHref,
-                                        childItemName = topListItem.topItemName
-                                    });
-                                }
-                                //
-                                // -- add child pages 
-                                foreach (var childPage in pageChildList) {
-                                    bool blockPage = childPage.BlockContent;
-                                    if (blockPage & cp.User.IsAuthenticated) {
-                                        blockPage = !result.allowedPageIdList(cp).Contains(childPage.id);
-                                    }
-                                    if (!blockPage) {
+                            if (menu.depth == 2) {
+                                List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
+                                if (pageChildList.Count > 0) {
+                                    //
+                                    // -- add root page as a child page
+                                    if (menu.addRootToTier) {
                                         topListItem.childList.Add(new ChildListItemModel {
-                                            childItemHref = cp.Content.GetPageLink(childPage.id),
-                                            childItemName = (!string.IsNullOrWhiteSpace(childPage.MenuHeadline)) ? childPage.MenuHeadline : (!string.IsNullOrWhiteSpace(childPage.name)) ? childPage.name : "Page" + childPage.id.ToString()
+                                            childItemHref = topListItem.topItemHref,
+                                            childItemName = topListItem.topItemName
                                         });
                                     }
+                                    //
+                                    // -- add child pages 
+                                    foreach (var childPage in pageChildList) {
+                                        bool blockPage = childPage.BlockContent;
+                                        if (blockPage & cp.User.IsAuthenticated) {
+                                            blockPage = !result.allowedPageIdList(cp).Contains(childPage.id);
+                                        }
+                                        if (!blockPage) {
+                                            topListItem.childList.Add(new ChildListItemModel {
+                                                childItemHref = cp.Content.GetPageLink(childPage.id),
+                                                childItemName = (!string.IsNullOrWhiteSpace(childPage.MenuHeadline)) ? childPage.MenuHeadline : (!string.IsNullOrWhiteSpace(childPage.name)) ? childPage.name : "Page" + childPage.id.ToString()
+                                            });
+                                        }
+                                    }
                                 }
-                            }
-                            if (!topListItem.childList.Count.Equals(0)) {
-                                topListItem.classTopItemDropdown = "dropdown";
-                                topListItem.hasChildItems = true;
+                                if (!topListItem.childList.Count.Equals(0)) {
+                                    topListItem.classTopItemDropdown = "dropdown";
+                                    topListItem.hasChildItems = true;
+                                }
                             }
                             result.topList.Add(topListItem);
                         }
