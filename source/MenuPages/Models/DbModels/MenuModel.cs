@@ -37,6 +37,7 @@ namespace Contensive.Addons.MenuPages.Models.DbModels {
         public string classItemHover { get; set; }
         public int depth { get; set; }
         public bool addRootToTier { get; set; }
+        public bool includeBlockedFlyoutPages { get; set; }
         ////
         ////====================================================================================================
         //public static MenuModel @add(CPBaseClass cp) {

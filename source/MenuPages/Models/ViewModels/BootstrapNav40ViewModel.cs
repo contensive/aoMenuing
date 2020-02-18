@@ -152,7 +152,7 @@ namespace Contensive.Addons.MenuPages.Models.ViewModels {
                                     //
                                     // -- add child pages 
                                     foreach (var childPage in pageChildList) {
-                                        bool blockPage = childPage.BlockContent;
+                                        bool blockPage = childPage.BlockContent && !menu.includeBlockedFlyoutPages;
                                         if (blockPage & cp.User.IsAuthenticated) {
                                             blockPage = !result.allowedPageIdList(cp).Contains(childPage.id);
                                         }
