@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="windows-1252"?>
-<Collection name="Menu Pages" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
+<Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
-	<Addon name="Bootstrap Nav Menu" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}" type="Add-on">
+	<Addon name="Navbar-Nav" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}" type="Add-on">
+    	<AliasList>Bootstrap Nav Menu,Navbar Nav,Bootstrap Nav 40</AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
@@ -79,7 +81,10 @@
 		<styleslinkhref></styleslinkhref>
 		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
 	</Addon>
-	<Addon name="Menu Pages" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+	<Addon name="Menu" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+    	<AliasList>Menu Pages</AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
+
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
@@ -159,14 +164,6 @@
 	<Addon name="AddMenuPage" guid="{6FD928F3-ABA5-4E4F-ACD2-BCD7661847DA}" type="Add-on">
 		<DotNetClass><![CDATA[Contensive.Addons.MenuPages.Views.AddMenuPageClass]]></DotNetClass>
 		<RemoteMethod>yes</RemoteMethod>
-	</Addon>
-	<!-- deprecated -->
-	<Addon name="Bootstrap Nav 40" guid="{472f4a83-4c03-48c2-9852-b65e443c160c}" type="Add-on">
-		<IncludeAddon name="Bootstrap Nav Menu" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}"/>
-		<DotNetClass><![CDATA[]]></DotNetClass>
-		<Content>No</Content>
-		<Template>No</Template>
-		<Category></Category>
 	</Addon>
 	<Resource name="arrow.gif" type="www" path="aomenuing" />
 </Collection>
