@@ -1,5 +1,5 @@
 
-@echo off
+rem @echo off
 
 rem 
 rem Must be run from the projects git\project\scripts folder - everything is relative
@@ -39,7 +39,7 @@ rem ==============================================================
 rem
 echo build 
 rem
-cd ..\source
+cd ..\server
 "%msbuildLocation%msbuild.exe" %solutionName%
 if errorlevel 1 (
    echo failure building

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
+	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
+	<Help></Help>
+	<Addon name="Navbar-Nav" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}" type="Add-on">
+    	<AliasList>Bootstrap Nav Menu,Navbar Nav,Bootstrap Nav 40</AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarNavClass]]></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>Yes</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptInHead><![CDATA[//
+			// -- child list methods
+			function saveNavbarNavSortable(listId) {
+				console.log("saveNavbarNavSortable");
+				const person = new Object();
+				var e, c, s;
+				s = listId;
+				e = document.getElementById(listId);
+				for (i = 0; i < e.childNodes.length; i++) {
+					c = e.childNodes[i];
+					if (c.id) { s += "," + c.id }
+				}
+				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
+			}
+			$(function () {
+				console.log("binding navbar-nav sortable");
+				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+					items: "li.ccEditWrapper",
+					stop: function (event, ui) {
+						saveNavbarNavSortable(jQuery(this).attr("id"));
+					}
+				});
+			})]]></JavascriptInHead>
+		<javascriptForceHead>No</javascriptForceHead>
+		<JSHeadScriptSrc></JSHeadScriptSrc>
+		<Content>No</Content>
+		<Template>Yes</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles><![CDATA[
+			/*
+			************************************************
+			* Design Block common features
+			*/
+			.bootstrapNavCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.bootstrapNavCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.bootstrapNavCon .dbSettingWrapper{
+				/*
+				border: 1px dashed #808080;
+				border-top: none;
+				*/
+			}
+			.bootstrapNavCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.bootstrapNavCon .dbSettingHeader a,.bootstrapNavCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}		
+		]]></Styles>
+		<styleslinkhref></styleslinkhref>
+		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
+	</Addon>
+	<Addon name="Menu" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+    	<AliasList>Menu Pages</AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
+
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.MenuPagesClass]]></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>No</BlockEditTools>
+		<FormXML></FormXML>
+		<IncludeAddon name="Bootstrap" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
+		<IsInline>No</IsInline>
+		<JavascriptInHead></JavascriptInHead>
+		<javascriptForceHead>No</javascriptForceHead>
+		<JSHeadScriptSrc></JSHeadScriptSrc>
+		<!-- deprecated --><JSBodyScriptSrc></JSBodyScriptSrc>
+		<!-- deprecated --><JavascriptBodyEnd></JavascriptBodyEnd>
+		<!-- deprecated --><JavascriptOnLoad></JavascriptOnLoad>
+		<Content>Yes</Content>
+		<Template>Yes</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles><![CDATA[
+
+			/*
+			************************************************
+			* Design Block common features
+			*/
+			.menuPagesCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.menuPagesCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.menuPagesCon .dbSettingWrapper{
+				border: 1px dashed #808080;
+				border-top: none;
+			}
+			.menuPagesCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.menuPagesCon .dbSettingHeader a,.menuPagesCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}		
+		]]></Styles>
+		<styleslinkhref></styleslinkhref>
+		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
+	</Addon>
+	<Addon name="AddMenuPage" guid="{6FD928F3-ABA5-4E4F-ACD2-BCD7661847DA}" type="Add-on">
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.AddMenuPageClass]]></DotNetClass>
+		<RemoteMethod>yes</RemoteMethod>
+	</Addon>
+	<Addon name="SaveNavbarNavSortable" guid="{FE57E908-893F-4F5C-B74D-AF50A75F2E6B}" type="Add-on">
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.SaveNavbarNavSortableClass]]></DotNetClass>
+		<RemoteMethod>yes</RemoteMethod>
+	</Addon>
+	<Resource name="arrow.gif" type="www" path="aomenuing" />
+</Collection>
