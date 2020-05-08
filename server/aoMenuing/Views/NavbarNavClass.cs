@@ -43,7 +43,8 @@ namespace Contensive.Addons.Menuing.Views {
                 result = genericController.addEditWrapper(cp, result, instance.id, MenuModel.contentName, instance.name);
                 //
                 // -- container
-                return cp.Html.div(result, "", "bootstrapNavCon");
+                return result;
+                //return cp.Html.div(result, "", "bootstrapNavCon");
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 return "<!-- " + designBlockName + ", Unexpected Exception -->";
