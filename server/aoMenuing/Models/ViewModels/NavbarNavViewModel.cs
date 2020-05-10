@@ -39,6 +39,10 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         //
         public class TopListItemModel {
             /// <summary>
+            /// The class in the top level LI
+            /// </summary>
+            public string classTopItem = "";
+            /// <summary>
             /// If this top list item is active (currently on this page), this is the word "active"
             /// </summary>
             public string classTopItemActive = "";
@@ -135,6 +139,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             //
                             string topItemName = (!string.IsNullOrWhiteSpace(rootPage.MenuHeadline)) ? rootPage.MenuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
                             var topListItem = new TopListItemModel {
+                                classTopItem = menu.classTopItem.Replace("nav-item", ""),
                                 classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                                 classTopItemAnchor = menu.classTopAnchor,
                                 topItemPageId = rootPage.id,

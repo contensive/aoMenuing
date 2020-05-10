@@ -7,7 +7,7 @@
 	<ul id="{{topListHtmlId}}" class=" {{classTopList}}">
 		{{#topList}}
 		{{#hasChildItems}}
-		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItemDropdown}} {{classTopItemActive}} {{classItemDraggable}}">
+		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}} {{classTopItemDropdown}}">
 			<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{topItemName}}</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
 				{{#childList}}
@@ -17,7 +17,7 @@
 		</li>
 		{{/hasChildItems}}
 		{{^hasChildItems}}
-		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItemActive}} {{classItemDraggable}}">
+		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
 			<a class="nav-link {{classTopItemAnchor}}" href="{{topItemHref}}">{{topItemName}}</a>
 		</li>
 		{{/hasChildItems}}

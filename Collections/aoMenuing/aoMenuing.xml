@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="windows-1252"?>
-<Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No">
+<Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No" onInstallAddonGuid="">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
 	<Addon name="Navbar-Nav" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}" type="Add-on">
