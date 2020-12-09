@@ -181,13 +181,14 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
         public static List<PageContentModel> getMenuRootList( CPBaseClass cp, int menuId ) {
             var result = new List<PageContentModel>();
             string sql = "select p.id from ccpagecontent p left join ccmenupagerules r on r.pageid=p.id where r.menuid=" + menuId + " order by r.sortorder,r.id";
-            CPCSBaseClass cs = cp.CSNew();
-            if (cs.OpenSQL(sql )) {
-                do {
-                    PageContentModel page = create(cp, cs.GetInteger("id"));
-                    if (page != null) { result.Add(page); }
-                    cs.GoNext();
-                } while (cs.OK());
+            using (CPCSBaseClass cs = cp.CSNew()) {
+                if (cs.OpenSQL(sql)) {
+                    do {
+                        PageContentModel page = create(cp, cs.GetInteger("id"));
+                        if (page != null) { result.Add(page); }
+                        cs.GoNext();
+                    } while (cs.OK());
+                }
             }
             return result;
         }

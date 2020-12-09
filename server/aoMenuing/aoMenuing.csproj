@@ -70,7 +70,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CPBase, Version=4.1.2.0, Culture=neutral, PublicKeyToken=10b3c53389b845fb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Contensive.CPBaseClass.5.2001.3.8\lib\net472\CPBase.dll</HintPath>
+      <HintPath>..\packages\Contensive.CPBaseClass.20.10.24.2\lib\net45\CPBase.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
@@ -88,6 +88,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addons\NavbarULClass.cs" />
+    <Compile Include="Addons\NavbarLiListClass.cs" />
     <Compile Include="constants.cs" />
     <Compile Include="Controllers\genericController.cs" />
     <Compile Include="Models\DbModels\BaseModel.cs" />
@@ -102,16 +104,18 @@
     <Compile Include="Models\DbModels\SectionBlockRuleModel.cs" />
     <Compile Include="Models\DbModels\MenuPageRuleModel.cs" />
     <Compile Include="Models\DbModels\_blankModel.cs" />
+    <Compile Include="Models\ViewModels\ChildListItemModel.cs" />
+    <Compile Include="Models\ViewModels\TopListItemModel.cs" />
     <Compile Include="Models\ViewModels\NavbarNavViewModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\SaveNavbarNavSortableClass.cs" />
-    <Compile Include="Views\NavbarNavClass.cs" />
-    <Compile Include="Views\AddMenuPageClass.cs" />
-    <Compile Include="Views\MenuPagesClass.cs" />
+    <Compile Include="Addons\SaveNavbarNavSortableClass.cs" />
+    <Compile Include="Addons\NavbarNavClass.cs" />
+    <Compile Include="Addons\AddMenuPageClass.cs" />
+    <Compile Include="Addons\MenuPagesClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\DbModels\modelData.txt" />
+    <Content Include="Resources\NavbarULLayout.txt" />
+    <Content Include="Resources\NavbarLiListLayout.txt" />
     <Content Include="Resources\NavbarNavLayout.txt" />
     <Content Include="sampleMenu.html" />
   </ItemGroup>
@@ -147,6 +153,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,18 @@
+﻿<!-- li list within navbar -->
+		{{#topList}}
+		{{#hasChildItems}}
+		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}} {{classTopItemDropdown}}">
+			<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{topItemName}}</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
+				{{#childList}}
+				<a class="dropdown-item" href="{{childItemHref}}">{{childItemName}}</a>
+				{{/childList}}
+			</div>
+		</li>
+		{{/hasChildItems}}
+		{{^hasChildItems}}
+		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
+			<a class="nav-link {{classTopItemAnchor}}" href="{{topItemHref}}">{{topItemName}}</a>
+		</li>
+		{{/hasChildItems}}
+		{{/topList}}

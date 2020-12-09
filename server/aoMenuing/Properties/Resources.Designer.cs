@@ -67,14 +67,43 @@ namespace Contensive.Addons.Menuing.Properties {
         ///&lt;/button&gt;
         ///&lt;div class=&quot;{{classTopWrapper}}&quot; id=&quot;navbarNavDropdown{{menuId}}&quot;&gt;
         ///	&lt;!-- nav menu pages --&gt;
-        ///	&lt;ul class=&quot; {{classTopList}}&quot;&gt;
+        ///	&lt;ul id=&quot;{{topListHtmlId}}&quot; class=&quot; {{classTopList}}&quot;&gt;
         ///		{{#topList}}
         ///		{{#hasChildItems}}
-        ///		&lt;li class=&quot;nav-item {{classTopItemDropdown}} {{class [rest of string was truncated]&quot;;.
+        ///		&lt;li id=&quot;{{topItemHtmlId}}&quot; cl [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string BootstrapNav40Layout {
             get {
                 return ResourceManager.GetString("BootstrapNav40Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!-- li list within navbar --&gt;
+        ///		{{#topList}}
+        ///		{{#hasChildItems}}
+        ///		&lt;li id=&quot;{{topItemHtmlId}}&quot; class=&quot;nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}} {{classTopItemDropdown}}&quot;&gt;
+        ///			&lt;a class=&quot;nav-link dropdown-toggle {{classTopItemAnchor}}&quot; href=&quot;{{topItemHref}}&quot; id=&quot;navbarDropdownMenuLink{{topItemPageId}}&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;{{topItemName}}&lt;/a&gt;
+        ///			&lt;div class=&quot;dropdown-menu&quot; aria-labelledby=&quot;navbarDropdownMenuLink{{topItemPageId}}&quot;&gt;        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string NavbarLiListLayout {
+            get {
+                return ResourceManager.GetString("NavbarLiListLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!-- li list within navbar --&gt;
+        ///	&lt;ul id=&quot;{{topListHtmlId}}&quot; class=&quot; {{classTopList}}&quot;&gt;
+        ///		{{#topList}}
+        ///		{{#hasChildItems}}
+        ///		&lt;li id=&quot;{{topItemHtmlId}}&quot; class=&quot;nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}} {{classTopItemDropdown}}&quot;&gt;
+        ///			&lt;a class=&quot;nav-link dropdown-toggle {{classTopItemAnchor}}&quot; href=&quot;{{topItemHref}}&quot; id=&quot;navbarDropdownMenuLink{{topItemPageId}}&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;{{topItemName}}&lt;/a&gt;
+        ///			&lt;div class=&quot;dropdown-menu&quot; ari [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string NavbarULLayout {
+            get {
+                return ResourceManager.GetString("NavbarULLayout", resourceCulture);
             }
         }
     }

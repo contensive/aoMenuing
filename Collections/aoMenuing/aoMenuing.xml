@@ -2,9 +2,207 @@
 <Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No" onInstallAddonGuid="">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
+
+
+	<Addon name="Navbar-UL" guid="{38586A18-E5F9-431B-BBFC-006883663D3C}" type="Add-on">
+    	<AliasList></AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarULClass]]></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>Yes</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptInHead><![CDATA[//
+			// -- child list methods
+			function saveNavbarNavSortable(listId) {
+				console.log("saveNavbarNavSortable");
+				const person = new Object();
+				var e, c, s;
+				s = listId;
+				e = document.getElementById(listId);
+				for (i = 0; i < e.childNodes.length; i++) {
+					c = e.childNodes[i];
+					if (c.id) { s += "," + c.id }
+				}
+				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
+			}
+			$(function () {
+				console.log("binding navbar-nav sortable");
+				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+					items: "li.ccEditWrapper",
+					stop: function (event, ui) {
+						saveNavbarNavSortable(jQuery(this).attr("id"));
+					}
+				});
+			})]]></JavascriptInHead>
+		<javascriptForceHead>No</javascriptForceHead>
+		<JSHeadScriptSrc></JSHeadScriptSrc>
+		<Content>No</Content>
+		<Template>Yes</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles><![CDATA[
+			/*
+			************************************************
+			* Design Block common features
+			*/
+			.bootstrapNavCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.bootstrapNavCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.bootstrapNavCon .dbSettingWrapper{
+				/*
+				border: 1px dashed #808080;
+				border-top: none;
+				*/
+			}
+			.bootstrapNavCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.bootstrapNavCon .dbSettingHeader a,.bootstrapNavCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}		
+		]]></Styles>
+		<styleslinkhref></styleslinkhref>
+		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
+	</Addon>
+	<Addon name="Navbar-Li-List" guid="{F56D2035-ECEB-4773-B4EF-8A0AB67E5AB0}" type="Add-on">
+    	<AliasList></AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarLiListClass]]></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>Yes</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptInHead><![CDATA[//
+			// -- child list methods
+			function saveNavbarNavSortable(listId) {
+				console.log("saveNavbarNavSortable");
+				const person = new Object();
+				var e, c, s;
+				s = listId;
+				e = document.getElementById(listId);
+				for (i = 0; i < e.childNodes.length; i++) {
+					c = e.childNodes[i];
+					if (c.id) { s += "," + c.id }
+				}
+				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
+			}
+			$(function () {
+				console.log("binding navbar-nav sortable");
+				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+					items: "li.ccEditWrapper",
+					stop: function (event, ui) {
+						saveNavbarNavSortable(jQuery(this).attr("id"));
+					}
+				});
+			})]]></JavascriptInHead>
+		<javascriptForceHead>No</javascriptForceHead>
+		<JSHeadScriptSrc></JSHeadScriptSrc>
+		<Content>No</Content>
+		<Template>Yes</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles><![CDATA[
+			/*
+			************************************************
+			* Design Block common features
+			*/
+			.bootstrapNavCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.bootstrapNavCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.bootstrapNavCon .dbSettingWrapper{
+				/*
+				border: 1px dashed #808080;
+				border-top: none;
+				*/
+			}
+			.bootstrapNavCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.bootstrapNavCon .dbSettingHeader a,.bootstrapNavCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}		
+		]]></Styles>
+		<styleslinkhref></styleslinkhref>
+		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
+	</Addon>
 	<Addon name="Navbar-Nav" guid="{5DF19C31-F1C4-46B3-8FFC-78F5DE67105F}" type="Add-on">
     	<AliasList>Bootstrap Nav Menu,Navbar Nav,Bootstrap Nav 40</AliasList>
-		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
+		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>

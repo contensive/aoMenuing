@@ -1,16 +1,8 @@
 ﻿
-
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Text;
-using System.Reflection;
-using Contensive.BaseClasses;
-using System.Linq;
 using Contensive.Addons.Menuing.Models.DbModels;
+using Contensive.BaseClasses;
+using System;
+using System.Collections.Generic;
 
 namespace Contensive.Addons.Menuing.Models.ViewModels {
     public class NavbarNavViewModel {
@@ -35,92 +27,36 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         /// </summary>
         public string topListHtmlId { get; set; }
         //
-        // ==========================================================================================
-        //
-        public class TopListItemModel {
-            /// <summary>
-            /// The class in the top level LI
-            /// </summary>
-            public string classTopItem = "";
-            /// <summary>
-            /// If this top list item is active (currently on this page), this is the word "active"
-            /// </summary>
-            public string classTopItemActive = "";
-            /// <summary>
-            /// if this top list item has a drop-down list, this is the word "dropdown"
-            /// </summary>
-            public string classTopItemDropdown = "";
-            /// <summary>
-            /// The class in the top list items anchor, if the item has a child list, "dropdown-toggle", else blank
-            /// </summary>
-            public string classTopItemAnchor = "";
-            /// <summary>
-            /// the id of the page record for this list item. Used for the html id between the link and the flyout
-            /// </summary>
-            public int topItemPageId = 0;
-            /// <summary>
-            /// a string of attributes to add to the item anchor if it has a child list -- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            /// </summary>
-            //public string dropdownAttributes = "";
-            /// <summary>
-            /// The name caption for this menu item
-            /// </summary>
-            public string topItemName = "";
-            /// <summary>
-            /// the link for this menu item
-            /// </summary>
-            public string topItemHref = "";
-            /// <summary>
-            /// if this item clicks to open a child list, populate this list
-            /// </summary>
-            public List<ChildListItemModel> childList = new List<ChildListItemModel>();
-            /// <summary>
-            /// true if childList.length>0
-            /// </summary>
-            public bool hasChildItems = false;
-            /// <summary>
-            /// Class added to items at all levels when edit is turned on to display draggable region
-            /// </summary>
-            public string classItemDraggable = "";
-            /// <summary>
-            /// the link for this menu item
-            /// </summary>
-            public string topItemHtmlId = "";
-        }
-        /// <summary>
-        /// An item in the child list
-        /// </summary>
-        public class ChildListItemModel {
-            public string childItemName;
-            public string childItemHref;
-        }
-
-        //public int Depth { get; set; }
-        //
         //====================================================================================================
-        public static NavbarNavViewModel create(CPBaseClass cp, Models.DbModels.MenuModel menu) {
+        public static NavbarNavViewModel create(CPBaseClass cp, MenuModel menu) {
             try {
                 //
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList enter");
                 //
-                var result = new NavbarNavViewModel();
-                if (menu == null) { return result; }
-                {
-                    result.menuId = menu.id;
-                    result.topListHtmlId = "navbarNav" + menu.id;
-                    result.classTopWrapper = menu.classTopWrapper;
+                if (menu == null) { return new NavbarNavViewModel(); }
+                //
+                // -- use cache
+                string cacheKey = cp.Cache.CreateKey("menu-" + menu.id + "-user=" + cp.User.Id.ToString());
+                NavbarNavViewModel result = cp.Cache.GetObject<NavbarNavViewModel>(cacheKey);
+                if (result == null) {
+                    result = new NavbarNavViewModel {
+                        menuId = menu.id,
+                        topListHtmlId = "navbarNav" + menu.id,
+                        classTopWrapper = menu.classTopWrapper,
+                        topList = new List<TopListItemModel>()
+                    };
                     if (!result.classTopWrapper.Contains("collapse navbar-collapse") && !result.classTopWrapper.Contains("navbar-collapse collapse")) {
                         //
                         // -- add collapse if not already incluided
                         result.classTopWrapper += " collapse navbar-collapse";
                     }
-                    //checks if the top list contains the default bootstrap navbar-nav
+                    //
+                    // -- checks if the top list contains the default bootstrap navbar-nav
                     result.classTopList = "";
                     if (!menu.classTopList.Contains("navbar-nav")) {
                         result.classTopList += " navbar-nav";
                     }
                     result.classTopList += " " + menu.classTopList;
-                    result.topList = new List<NavbarNavViewModel.TopListItemModel>();
                     bool editMode = cp.User.IsEditingAnything;
                     //
                     List<PageContentModel> MenuPageList = PageContentModel.getMenuRootList(cp, menu.id);
@@ -148,7 +84,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 classItemDraggable = (editMode ? "ccEditWrapper" : ""),
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
                                 childList = new List<ChildListItemModel>()
-                        };
+                            };
                             if (menu.depth == 2) {
                                 List<Models.DbModels.PageContentModel> pageChildList = Models.DbModels.PageContentModel.createList(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
                                 if (pageChildList.Count > 0) {
@@ -191,6 +127,10 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             classItemDraggable = ""
                         });
                     }
+                    //
+                    // -- build new cache
+                    var dependentKeyList = new List<string>() { "page content", "menus", "menu page rules" };
+                    cp.Cache.Store(cacheKey, result,DateTime.Now.AddHours(1),dependentKeyList);
                 }
                 //
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");

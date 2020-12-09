@@ -1,19 +1,11 @@
 ﻿
-
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Text;
-using System.Reflection;
 using Contensive.BaseClasses;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
-namespace Contensive.Addons.Menuing.Models.DbModels
-{
-    public abstract class BaseModel
-    {
+namespace Contensive.Addons.Menuing.Models.DbModels {
+    public abstract class BaseModel {
         //
         //====================================================================================================
         //-- const must be set in derived clases
@@ -37,43 +29,31 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         public string SortOrder { get; set; }
         //
         //====================================================================================================
-        private static string derivedContentName(Type derivedType)
-        {
+        private static string derivedContentName(Type derivedType) {
             FieldInfo fieldInfo = derivedType.GetField("contentName");
-            if ((fieldInfo == null))
-            {
+            if ((fieldInfo == null)) {
                 throw new ApplicationException("Class [" + derivedType.Name + "] must declare constant [contentName].");
-            }
-            else
-            {
+            } else {
                 return fieldInfo.GetRawConstantValue().ToString();
             }
         }
         //
         //====================================================================================================
-        private static string derivedContentTableName(Type derivedType)
-        {
+        private static string derivedContentTableName(Type derivedType) {
             FieldInfo fieldInfo = derivedType.GetField("contentTableName");
-            if ((fieldInfo == null))
-            {
+            if ((fieldInfo == null)) {
                 throw new ApplicationException("Class [" + derivedType.Name + "] must declare constant [contentTableName].");
-            }
-            else
-            {
+            } else {
                 return fieldInfo.GetRawConstantValue().ToString();
             }
         }
         //
         //====================================================================================================
-        private static string contentDataSource(Type derivedType)
-        {
+        private static string contentDataSource(Type derivedType) {
             FieldInfo fieldInfo = derivedType.GetField("contentTableName");
-            if ((fieldInfo == null))
-            {
+            if ((fieldInfo == null)) {
                 throw new ApplicationException("Class [" + derivedType.Name + "] must declare constant [contentTableName].");
-            }
-            else
-            {
+            } else {
                 return fieldInfo.GetRawConstantValue().ToString();
             }
         }
@@ -82,8 +62,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// <summary>
         /// Create an empty object. needed for deserialization
         /// </summary>
-        public BaseModel()
-        {
+        public BaseModel() {
             //
         }
         //
@@ -94,17 +73,13 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <returns></returns>
-        public static T @add<T>(CPBaseClass cp) where T : BaseModel
-        {
+        public static T @add<T>(CPBaseClass cp) where T : BaseModel {
             T result = null;
-            try
-            {
+            try {
                 Type instanceType = typeof(T);
                 string contentName = derivedContentName(instanceType);
                 result = create<T>(cp, cp.Content.AddRecord(contentName));
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -117,25 +92,19 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordId">The id of the record to be read into the new object</param>
-        public static T create<T>(CPBaseClass cp, int recordId) where T : BaseModel
-        {
+        public static T create<T>(CPBaseClass cp, int recordId) where T : BaseModel {
             T result = null;
-            try
-            {
-                if (recordId > 0)
-                {
+            try {
+                if (recordId > 0) {
                     Type instanceType = typeof(T);
                     string contentName = derivedContentName(instanceType);
-                    CPCSBaseClass cs = cp.CSNew();
-                    if (cs.Open(contentName, "(id=" + recordId.ToString() + ")"))
-                    {
-                        result = loadRecord<T>(cp, cs);
+                    using (CPCSBaseClass cs = cp.CSNew()) {
+                        if (cs.Open(contentName, "(id=" + recordId.ToString() + ")")) {
+                            result = loadRecord<T>(cp, cs);
+                        }
                     }
-                    cs.Close();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -148,22 +117,17 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordGuid"></param>
-        public static T create<T>(CPBaseClass cp, string recordGuid) where T : BaseModel
-        {
+        public static T create<T>(CPBaseClass cp, string recordGuid) where T : BaseModel {
             T result = null;
-            try
-            {
+            try {
                 Type instanceType = typeof(T);
                 string contentName = derivedContentName(instanceType);
-                CPCSBaseClass cs = cp.CSNew();
-                if (cs.Open(contentName, "(ccGuid=" + cp.Db.EncodeSQLText(recordGuid) + ")", "sortorder,id"))
-                {
-                    result = loadRecord<T>(cp, cs);
+                using (CPCSBaseClass cs = cp.CSNew()) {
+                    if (cs.Open(contentName, "(ccGuid=" + cp.Db.EncodeSQLText(recordGuid) + ")", "sortorder,id")) {
+                        result = loadRecord<T>(cp, cs);
+                    }
                 }
-                cs.Close();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -176,25 +140,19 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordName"></param>
-        public static T createByName<T>(CPBaseClass cp, string recordName) where T : BaseModel
-        {
+        public static T createByName<T>(CPBaseClass cp, string recordName) where T : BaseModel {
             T result = null;
-            try
-            {
-                if (!string.IsNullOrEmpty(recordName))
-                {
+            try {
+                if (!string.IsNullOrEmpty(recordName)) {
                     Type instanceType = typeof(T);
                     string contentName = derivedContentName(instanceType);
-                    CPCSBaseClass cs = cp.CSNew();
-                    if (cs.Open(contentName, "(name=" + cp.Db.EncodeSQLText(recordName) + ")", "sortorder,id"))
-                    {
-                        result = loadRecord<T>(cp, cs);
+                    using (CPCSBaseClass cs = cp.CSNew()) {
+                        if (cs.Open(contentName, "(name=" + cp.Db.EncodeSQLText(recordName) + ")", "sortorder,id")) {
+                            result = loadRecord<T>(cp, cs);
+                        }
                     }
-                    cs.Close();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
             }
             return result;
@@ -206,35 +164,28 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="cs"></param>
-        private static T loadRecord<T>(CPBaseClass cp, CPCSBaseClass cs) where T : BaseModel
-        {
+        private static T loadRecord<T>(CPBaseClass cp, CPCSBaseClass cs) where T : BaseModel {
             T instance = null;
-            try
-            {
-                if (cs.OK())
-                {
+            try {
+                if (cs.OK()) {
                     Type instanceType = typeof(T);
                     string tableName = derivedContentTableName(instanceType);
                     instance = (T)Activator.CreateInstance(instanceType);
-                    foreach (PropertyInfo resultProperty in instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
-                    {
-                        switch (resultProperty.Name.ToLower())
-                        {
+                    foreach (PropertyInfo resultProperty in instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)) {
+                        switch (resultProperty.Name.ToLower()) {
                             case "specialcasefield":
                                 break;
                             case "sortorder":
                                 //
                                 // -- customization for pc, could have been in default property, db default, etc.
                                 string sortOrder = cs.GetText(resultProperty.Name);
-                                if ((string.IsNullOrEmpty(sortOrder)))
-                                {
+                                if ((string.IsNullOrEmpty(sortOrder))) {
                                     sortOrder = "9999";
                                 }
                                 resultProperty.SetValue(instance, sortOrder, null);
                                 break;
                             default:
-                                switch (resultProperty.PropertyType.Name)
-                                {
+                                switch (resultProperty.PropertyType.Name) {
                                     case "Int32":
                                         resultProperty.SetValue(instance, cs.GetInteger(resultProperty.Name), null);
                                         break;
@@ -255,9 +206,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -270,84 +219,71 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <returns></returns>
-        public int save(CPBaseClass cp)
-        {
-            try
-            {
-                CPCSBaseClass cs = cp.CSNew();
-                Type instanceType = this.GetType();
-                string contentName = derivedContentName(instanceType);
-                string tableName = derivedContentTableName(instanceType);
-                if ((id > 0))
-                {
-                    if (!cs.Open(contentName, "id=" + id))
-                    {
-                        string message = "Unable to open record in content [" + contentName + "], with id [" + id + "]";
-                        cs.Close();
-                        id = 0;
-                        throw new ApplicationException(message);
+        public int save(CPBaseClass cp) {
+            try {
+                using (CPCSBaseClass cs = cp.CSNew()) {
+                    Type instanceType = this.GetType();
+                    string contentName = derivedContentName(instanceType);
+                    string tableName = derivedContentTableName(instanceType);
+                    if ((id > 0)) {
+                        if (!cs.Open(contentName, "id=" + id)) {
+                            string message = "Unable to open record in content [" + contentName + "], with id [" + id + "]";
+                            cs.Close();
+                            id = 0;
+                            throw new ApplicationException(message);
+                        }
+                    } else {
+                        if (!cs.Insert(contentName)) {
+                            cs.Close();
+                            id = 0;
+                            throw new ApplicationException("Unable to insert record in content [" + contentName + "]");
+                        }
+                    }
+                    foreach (PropertyInfo resultProperty in this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)) {
+                        switch (resultProperty.Name.ToLower()) {
+                            case "id":
+                                id = cs.GetInteger("id");
+                                break;
+                            case "ccguid":
+                                if ((string.IsNullOrEmpty(ccguid))) {
+                                    ccguid = "{" + Guid.NewGuid().ToString() + "}";
+                                }
+                                string value = null;
+                                value = resultProperty.GetValue(this, null).ToString();
+                                cs.SetField(resultProperty.Name, value);
+                                break;
+                            default:
+                                switch (resultProperty.PropertyType.Name) {
+                                    case "Int32":
+                                        int integerValue = 0;
+                                        int.TryParse(resultProperty.GetValue(this, null).ToString(), out integerValue);
+                                        cs.SetField(resultProperty.Name, integerValue.ToString());
+                                        break;
+                                    case "Boolean":
+                                        bool booleanValue = false;
+                                        bool.TryParse(resultProperty.GetValue(this, null).ToString(), out booleanValue);
+                                        cs.SetField(resultProperty.Name, booleanValue.ToString());
+                                        break;
+                                    case "DateTime":
+                                        System.DateTime dateValue = default(System.DateTime);
+                                        System.DateTime.TryParse(resultProperty.GetValue(this, null).ToString(), out dateValue);
+                                        cs.SetField(resultProperty.Name, dateValue.ToString());
+                                        break;
+                                    case "Double":
+                                        double doubleValue = 0;
+                                        double.TryParse(resultProperty.GetValue(this, null).ToString(), out doubleValue);
+                                        cs.SetField(resultProperty.Name, doubleValue.ToString());
+                                        break;
+                                    default:
+                                        string stringValue = resultProperty.GetValue(this, null).ToString();
+                                        cs.SetField(resultProperty.Name, stringValue);
+                                        break;
+                                }
+                                break;
+                        }
                     }
                 }
-                else
-                {
-                    if (!cs.Insert(contentName))
-                    {
-                        cs.Close();
-                        id = 0;
-                        throw new ApplicationException("Unable to insert record in content [" + contentName + "]");
-                    }
-                }
-                foreach (PropertyInfo resultProperty in this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
-                {
-                    switch (resultProperty.Name.ToLower())
-                    {
-                        case "id":
-                            id = cs.GetInteger("id");
-                            break;
-                        case "ccguid":
-                            if ((string.IsNullOrEmpty(ccguid)))
-                            {
-                                ccguid = "{" + Guid.NewGuid().ToString() + "}";
-                            }
-                            string value = null;
-                            value = resultProperty.GetValue(this, null).ToString();
-                            cs.SetField(resultProperty.Name, value);
-                            break;
-                        default:
-                            switch (resultProperty.PropertyType.Name)
-                            {
-                                case "Int32":
-                                    int integerValue = 0;
-                                    int.TryParse(resultProperty.GetValue(this, null).ToString(), out integerValue);
-                                    cs.SetField(resultProperty.Name, integerValue.ToString());
-                                    break;
-                                case "Boolean":
-                                    bool booleanValue = false;
-                                    bool.TryParse(resultProperty.GetValue(this, null).ToString(), out booleanValue);
-                                    cs.SetField(resultProperty.Name, booleanValue.ToString());
-                                    break;
-                                case "DateTime":
-                                    System.DateTime dateValue = default(System.DateTime);
-                                    System.DateTime.TryParse(resultProperty.GetValue(this, null).ToString(), out dateValue);
-                                    cs.SetField(resultProperty.Name, dateValue.ToString());
-                                    break;
-                                case "Double":
-                                    double doubleValue = 0;
-                                    double.TryParse(resultProperty.GetValue(this, null).ToString(), out doubleValue);
-                                    cs.SetField(resultProperty.Name, doubleValue.ToString());
-                                    break;
-                                default:
-                                    string stringValue = resultProperty.GetValue(this, null).ToString();
-                                    cs.SetField(resultProperty.Name, stringValue);
-                                    break;
-                            }
-                            break;
-                    }
-                }
-                cs.Close();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -360,20 +296,15 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="recordId"></param>
-        public static void delete<T>(CPBaseClass cp, int recordId) where T : BaseModel
-        {
-            try
-            {
-                if ((recordId > 0))
-                {
+        public static void delete<T>(CPBaseClass cp, int recordId) where T : BaseModel {
+            try {
+                if ((recordId > 0)) {
                     Type instanceType = typeof(T);
                     string contentName = derivedContentName(instanceType);
                     string tableName = derivedContentTableName(instanceType);
                     cp.Content.Delete(contentName, "id=" + recordId.ToString());
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -385,23 +316,17 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// </summary>
         /// <param name="cp"></param>
         /// <param name="ccguid"></param>
-        public static void delete<T>(CPBaseClass cp, string ccguid) where T : BaseModel
-        {
-            try
-            {
-                if ((!string.IsNullOrEmpty(ccguid)))
-                {
+        public static void delete<T>(CPBaseClass cp, string ccguid) where T : BaseModel {
+            try {
+                if ((!string.IsNullOrEmpty(ccguid))) {
                     Type instanceType = typeof(T);
                     string contentName = derivedContentName(instanceType);
                     BaseModel instance = create<BaseModel>(cp, ccguid);
-                    if ((instance != null))
-                    {
+                    if ((instance != null)) {
                         cp.Content.Delete(contentName, "(ccguid=" + cp.Db.EncodeSQLText(ccguid) + ")");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
@@ -414,35 +339,26 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="sqlCriteria"></param>
         /// <returns></returns>
-        public static List<T> createList<T>(CPBaseClass cp, string sqlCriteria, string sqlOrderBy) where T : BaseModel
-        {
-            List<T> result = new List<T>();
-            try
-            {
-                CPCSBaseClass cs = cp.CSNew();
-                List<string> ignoreCacheNames = new List<string>();
-                Type instanceType = typeof(T);
-                string contentName = derivedContentName(instanceType);
-                if ((cs.Open(contentName, sqlCriteria, sqlOrderBy,true,"",9999,1)))
-                {
-                    T instance = default(T);
-                    do
-                    {
-                        instance = loadRecord<T>(cp, cs);
-                        if ((instance != null))
-                        {
-                            result.Add(instance);
-                        }
-                        cs.GoNext();
-                    } while (cs.OK());
+        public static List<T> createList<T>(CPBaseClass cp, string sqlCriteria, string sqlOrderBy) where T : BaseModel {
+            try {
+                using (CPCSBaseClass cs = cp.CSNew()) {
+                    List<T> result = new List<T>();
+                    if (cs.Open(derivedContentName(typeof(T)), sqlCriteria, sqlOrderBy, true, "", 9999, 1)) {
+                        T instance = default(T);
+                        do {
+                            instance = loadRecord<T>(cp, cs);
+                            if ((instance != null)) {
+                                result.Add(instance);
+                            }
+                            cs.GoNext();
+                        } while (cs.OK());
+                    }
+                    return result;
                 }
-                cs.Close();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
+                throw;
             }
-            return result;
         }
         //
         //====================================================================================================
@@ -452,27 +368,19 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="recordId"></param>record
         /// <returns></returns>
-        public static string getRecordName<T>(CPBaseClass cp, int recordId) where T : BaseModel
-        {
-            try
-            {
-                if ((recordId > 0))
-                {
-                    Type instanceType = typeof(T);
-                    string tableName = derivedContentTableName(instanceType);
-                    CPCSBaseClass cs = cp.CSNew();
-                    if ((cs.OpenSQL("select name from " + tableName + " where id=" + recordId.ToString())))
-                    {
+        public static string getRecordName<T>(CPBaseClass cp, int recordId) where T : BaseModel {
+            try {
+                if (recordId <= 0) { return ""; }
+                using (CPCSBaseClass cs = cp.CSNew()) {
+                    if (cs.OpenSQL("select name from " + derivedContentTableName(typeof(T)) + " where id=" + recordId.ToString())) {
                         return cs.GetText("name");
                     }
-                    cs.Close();
+                    return "";
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
+                throw;
             }
-            return "";
         }
         //
         //====================================================================================================
@@ -482,27 +390,19 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="ccGuid"></param>record
         /// <returns></returns>
-        public static string getRecordName<T>(CPBaseClass cp, string ccGuid) where T : BaseModel
-        {
-            try
-            {
-                if ((!string.IsNullOrEmpty(ccGuid)))
-                {
-                    Type instanceType = typeof(T);
-                    string tableName = derivedContentTableName(instanceType);
-                    CPCSBaseClass cs = cp.CSNew();
-                    if ((cs.OpenSQL("select name from " + tableName + " where ccguid=" + cp.Db.EncodeSQLText(ccGuid))))
-                    {
+        public static string getRecordName<T>(CPBaseClass cp, string ccGuid) where T : BaseModel {
+            try {
+                if (string.IsNullOrEmpty(ccGuid)) { return ""; }
+                using (CPCSBaseClass cs = cp.CSNew()) {
+                    if (cs.OpenSQL("select name from " + derivedContentTableName(typeof(T)) + " where ccguid=" + cp.Db.EncodeSQLText(ccGuid))) {
                         return cs.GetText("name");
                     }
-                    cs.Close();
+                    return "";
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
+                throw;
             }
-            return "";
         }
         //
         //====================================================================================================
@@ -512,27 +412,19 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         /// <param name="cp"></param>
         /// <param name="ccGuid"></param>record
         /// <returns></returns>
-        public static int getRecordId<T>(CPBaseClass cp, string ccGuid) where T : BaseModel
-        {
-            try
-            {
-                if ((!string.IsNullOrEmpty(ccGuid)))
-                {
-                    Type instanceType = typeof(T);
-                    string tableName = derivedContentTableName(instanceType);
-                    CPCSBaseClass cs = cp.CSNew();
-                    if ((cs.OpenSQL("select id from " + tableName + " where ccguid=" + cp.Db.EncodeSQLText(ccGuid))))
-                    {
+        public static int getRecordId<T>(CPBaseClass cp, string ccGuid) where T : BaseModel {
+            try {
+                if (string.IsNullOrEmpty(ccGuid)) { return 0; }
+                using (CPCSBaseClass cs = cp.CSNew()) {
+                    if (cs.OpenSQL("select id from " + derivedContentTableName(typeof(T)) + " where ccguid=" + cp.Db.EncodeSQLText(ccGuid))) {
                         return cs.GetInteger("id");
                     }
-                    cs.Close();
+                    return 0;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
+                throw;
             }
-            return 0;
         }
     }
 }
