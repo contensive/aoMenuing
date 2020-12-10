@@ -11,7 +11,7 @@
 			<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{topItemName}}</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
 				{{#childList}}
-				<a class="dropdown-item" href="{{childItemHref}}">{{childItemName}}</a>
+				<a class="dropdown-item {{childItemClass}}" href="{{childItemHref}}">{{childItemName}}</a>
 				{{/childList}}
 			</div>
 		</li>

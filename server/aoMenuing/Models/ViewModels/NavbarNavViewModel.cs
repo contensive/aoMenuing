@@ -75,7 +75,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             //
                             string topItemName = (!string.IsNullOrWhiteSpace(rootPage.MenuHeadline)) ? rootPage.MenuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
                             var topListItem = new TopListItemModel {
-                                classTopItem = menu.classTopItem.Replace("nav-item", ""),
+                                classTopItem = menu.classTopItem.Replace("nav-item", "") + (string.IsNullOrEmpty(rootPage.menuClass) ? "" : " " + rootPage.menuClass),
                                 classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                                 classTopItemAnchor = menu.classTopAnchor,
                                 topItemPageId = rootPage.id,
@@ -93,7 +93,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                     if (menu.addRootToTier) {
                                         topListItem.childList.Add(new ChildListItemModel {
                                             childItemHref = topListItem.topItemHref,
-                                            childItemName = topListItem.topItemName
+                                            childItemName = topListItem.topItemName,
+                                            childItemClass = rootPage.menuClass
                                         });
                                     }
                                     //
@@ -106,7 +107,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                         if (!blockPage) {
                                             topListItem.childList.Add(new ChildListItemModel {
                                                 childItemHref = cp.Content.GetPageLink(childPage.id),
-                                                childItemName = (!string.IsNullOrWhiteSpace(childPage.MenuHeadline)) ? childPage.MenuHeadline : (!string.IsNullOrWhiteSpace(childPage.name)) ? childPage.name : "Page" + childPage.id.ToString()
+                                                childItemName = (!string.IsNullOrWhiteSpace(childPage.MenuHeadline)) ? childPage.MenuHeadline : (!string.IsNullOrWhiteSpace(childPage.name)) ? childPage.name : "Page" + childPage.id.ToString(),
+                                                childItemClass = childPage.menuClass
                                             });
                                         }
                                     }
