@@ -2,8 +2,47 @@
 <Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No" onInstallAddonGuid="">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
-
-
+	<Addon name="Menu Pages" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.MenuPagesClass]]></DotNetClass>
+		<IncludeAddon name="Bootstrap" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
+		<Content>Yes</Content>
+		<Template>Yes</Template>
+		<category><![CDATA[Extras.Navigation]]></category>
+		<Styles><![CDATA[/*
+			************************************************
+			* Design Block common features
+			*/
+			.menuPagesCon .designBlockContainer {
+				position: relative;
+				background-size: cover;
+			}
+			.menuPagesCon .designBlockCover {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+			}
+			.menuPagesCon .dbSettingWrapper{
+				border: 1px dashed #808080;
+				border-top: none;
+			}
+			.menuPagesCon .dbSettingHeader {
+				border: 1px solid #333;
+				background-color: #555;
+				padding: 0 8px 0 4px;
+				color: white;
+				z-index: 1;
+				text-shadow: 1px 1px 1px #000;
+			}
+			.menuPagesCon .dbSettingHeader a,.menuPagesCon .dbSettingHeader a:hover {
+				color: white;
+				text-decoration: none;
+			}]]></Styles>
+		<styleslinkhref></styleslinkhref>
+	</Addon>
 	<Addon name="Navbar-UL" guid="{38586A18-E5F9-431B-BBFC-006883663D3C}" type="Add-on">
     	<AliasList></AliasList>
 		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
