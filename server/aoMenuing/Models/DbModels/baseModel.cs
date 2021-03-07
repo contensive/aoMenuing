@@ -172,36 +172,21 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
                     string tableName = derivedContentTableName(instanceType);
                     instance = (T)Activator.CreateInstance(instanceType);
                     foreach (PropertyInfo resultProperty in instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)) {
-                        switch (resultProperty.Name.ToLower()) {
-                            case "specialcasefield":
+                        switch (resultProperty.PropertyType.Name) {
+                            case "Int32":
+                                resultProperty.SetValue(instance, cs.GetInteger(resultProperty.Name), null);
                                 break;
-                            case "sortorder":
-                                //
-                                // -- customization for pc, could have been in default property, db default, etc.
-                                string sortOrder = cs.GetText(resultProperty.Name);
-                                if ((string.IsNullOrEmpty(sortOrder))) {
-                                    sortOrder = "9999";
-                                }
-                                resultProperty.SetValue(instance, sortOrder, null);
+                            case "Boolean":
+                                resultProperty.SetValue(instance, cs.GetBoolean(resultProperty.Name), null);
+                                break;
+                            case "DateTime":
+                                resultProperty.SetValue(instance, cs.GetDate(resultProperty.Name), null);
+                                break;
+                            case "Double":
+                                resultProperty.SetValue(instance, cs.GetNumber(resultProperty.Name), null);
                                 break;
                             default:
-                                switch (resultProperty.PropertyType.Name) {
-                                    case "Int32":
-                                        resultProperty.SetValue(instance, cs.GetInteger(resultProperty.Name), null);
-                                        break;
-                                    case "Boolean":
-                                        resultProperty.SetValue(instance, cs.GetBoolean(resultProperty.Name), null);
-                                        break;
-                                    case "DateTime":
-                                        resultProperty.SetValue(instance, cs.GetDate(resultProperty.Name), null);
-                                        break;
-                                    case "Double":
-                                        resultProperty.SetValue(instance, cs.GetNumber(resultProperty.Name), null);
-                                        break;
-                                    default:
-                                        resultProperty.SetValue(instance, cs.GetText(resultProperty.Name), null);
-                                        break;
-                                }
+                                resultProperty.SetValue(instance, cs.GetText(resultProperty.Name), null);
                                 break;
                         }
                     }

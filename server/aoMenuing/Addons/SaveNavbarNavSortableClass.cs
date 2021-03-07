@@ -30,6 +30,9 @@ namespace Contensive.Addons.Menuing.Views {
                             }
                         }
                         cp.Db.ExecuteNonQuery("delete from ccmenupagerules where (sortorder=null)and(menuId=" + menuId + ")");
+                        //
+                        // -- clear cache
+                        cp.Cache.invalidateTableDependencyKey("ccMenuPageRules");
                     }
                 }
                 return string.Empty;

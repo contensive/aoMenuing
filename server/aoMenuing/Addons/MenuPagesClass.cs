@@ -74,7 +74,7 @@ namespace Contensive.Addons.Menuing.Views {
                             if (!string.IsNullOrEmpty(rootPage.menuClass)) { classTopItem += " " + rootPage.menuClass; }
                             if (rootPage == rootPageList.First()) { classTopItem += " " + menu.classItemFirst; }
                             if (rootPage == rootPageList.Last()) { classTopItem += " " + menu.classItemLast; }
-                            if (rootPage.id == activePageId ) { classTopItem += " " + menu.classItemActive; }
+                            if (rootPage.id == activePageId) { classTopItem += " " + menu.classItemActive; }
                             //
                             // -- build child page list (tier list)
                             string itemHtmlId;
@@ -130,8 +130,8 @@ namespace Contensive.Addons.Menuing.Views {
                             topItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTopAnchor) + tierList, "", classTopItem, itemHtmlId));
                         }
                     }
-                    if (cp.User.IsEditing("")) {                        
-                        topItemList.Append(cp.Html.li( string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", "/AddMenuPage?menuId=" + menu.id, "Add-Page", menu.classTopAnchor), "", menu.classTopItem));
+                    if (cp.User.IsEditing("")) {
+                        topItemList.Append(cp.Html.li(string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", "/AddMenuPage?menuId=" + menu.id, "Add-Page", menu.classTopAnchor), "", menu.classTopItem));
                     }
                     hint = "70";
                     result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
@@ -142,12 +142,11 @@ namespace Contensive.Addons.Menuing.Views {
                     // -- container
                     result = cp.Html.div(result, "", "menuPagesCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper)));
                 }
-                hint = "exit";
+                return result;
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex, "hint [" + hint + "]");
-                result = "error response";
+                throw;
             }
-            return result;
         }
         //
         // -- create a listItem from a page

@@ -30,14 +30,14 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         //====================================================================================================
         public static NavbarNavViewModel create(CPBaseClass cp, MenuModel menu) {
             try {
-                //
-                cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList enter");
-                //
                 if (menu == null) { return new NavbarNavViewModel(); }
                 //
                 // -- use cache
+                NavbarNavViewModel result = null;
                 string cacheKey = cp.Cache.CreateKey("menu-" + menu.id + "-user=" + cp.User.Id.ToString());
-                NavbarNavViewModel result = cp.Cache.GetObject<NavbarNavViewModel>(cacheKey);
+                if (!cp.User.IsEditingAnything) {
+                    result = cp.Cache.GetObject<NavbarNavViewModel>(cacheKey);
+                }
                 if (result == null) {
                     result = new NavbarNavViewModel {
                         menuId = menu.id,
@@ -131,8 +131,12 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                     }
                     //
                     // -- build new cache
-                    var dependentKeyList = new List<string>() { "page content", "menus", "menu page rules" };
-                    cp.Cache.Store(cacheKey, result,DateTime.Now.AddHours(1),dependentKeyList);
+                    if (!editMode) {
+                        //
+                        // -- if not editing, save cache
+                        var dependentKeyList = new List<string>() { "page content", "menus", "menu page rules" };
+                        cp.Cache.Store(cacheKey, result, DateTime.Now.AddHours(1), dependentKeyList);
+                    }
                 }
                 //
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");
