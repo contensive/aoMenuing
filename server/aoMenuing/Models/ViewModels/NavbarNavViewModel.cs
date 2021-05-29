@@ -79,7 +79,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                                 classTopItemAnchor = menu.classTopAnchor,
                                 topItemPageId = rootPage.id,
-                                topItemHref = cp.Content.GetPageLink(rootPage.id),
+                                topItemHref = !string.IsNullOrEmpty( rootPage.Link ) ? rootPage.Link : cp.Content.GetPageLink(rootPage.id),
                                 topItemName = string.IsNullOrWhiteSpace(topItemName) ? rootPage.name : topItemName,
                                 classItemDraggable = (editMode ? "ccEditWrapper" : ""),
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
@@ -106,8 +106,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                         }
                                         if (!blockPage) {
                                             topListItem.childList.Add(new ChildListItemModel {
-                                                childItemHref = cp.Content.GetPageLink(childPage.id),
-                                                childItemName = (!string.IsNullOrWhiteSpace(childPage.MenuHeadline)) ? childPage.MenuHeadline : (!string.IsNullOrWhiteSpace(childPage.name)) ? childPage.name : "Page" + childPage.id.ToString(),
+                                                childItemHref = !string.IsNullOrEmpty(childPage.Link) ? childPage.Link : cp.Content.GetPageLink(childPage.id),
+                                                childItemName = !string.IsNullOrWhiteSpace(childPage.MenuHeadline) ? childPage.MenuHeadline : !string.IsNullOrWhiteSpace(childPage.name) ? childPage.name : "Page" + childPage.id.ToString(),
                                                 childItemClass = childPage.menuClass
                                             });
                                         }

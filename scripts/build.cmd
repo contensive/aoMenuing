@@ -9,7 +9,7 @@ rem
 rem Setup deployment folder
 rem
 
-set appName=app200509
+set appName=app210521
 set majorVersion=5
 set minorVersion=1
 set collectionName=aoMenuing
