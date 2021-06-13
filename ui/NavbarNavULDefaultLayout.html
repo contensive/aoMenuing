@@ -1,0 +1,20 @@
+<!-- ul configured as content within bootstrap 4, navbar,navbar-collapse elsement  -->
+<ul class="navbar-nav mr-auto">
+	{{#topList}}
+	{{#hasChildItems}}
+	<li class="nav-item dropdown {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
+		<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{topItemName}}</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
+			{{#childList}}
+			<a class="dropdown-item" href="{{childItemHref}}">{{childItemName}}</a>
+			{{/childList}}
+		</div>
+	</li>
+	{{/hasChildItems}}
+	{{^hasChildItems}}
+	<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
+		<a class="nav-link {{classTopItemAnchor}}" href="{{topItemHref}}">{{topItemName}}</a>
+	</li>
+	{{/hasChildItems}}
+	{{/topList}}
+</ul>

@@ -5,7 +5,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
     //
     // ==========================================================================================
     //
-    public class TopListItemModel {
+    public class NavbarNavTopListItemModel {
         /// <summary>
         /// The class in the top level LI
         /// </summary>

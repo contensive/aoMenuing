@@ -1,16 +1,11 @@
 ﻿
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Text;
 using Contensive.BaseClasses;
+using Contensive.Models.Db;
+using System;
+using System.Collections.Generic;
 
-namespace Contensive.Addons.Menuing.Models.DbModels
-{
-    public class SiteSectionsModel : BaseModel
+namespace Contensive.Addons.Menuing.Models.DbModels {
+    public class SiteSectionsModel : DbBaseModel
     {
         //
         //====================================================================================================
@@ -18,88 +13,24 @@ namespace Contensive.Addons.Menuing.Models.DbModels
         public const string contentName = "site sections";
         public const string contentTableName = "ccsitesections";
         //
+        public static DbBaseTableMetadataModel tableMetadata { get; } = new DbBaseTableMetadataModel(contentName, contentTableName);
+        //
         //====================================================================================================
         // -- instance properties
-        public bool BlockSection { get; set; }
-        public string Caption { get; set; }
-        public int ContentID { get; set; }
-        public bool HideMenu { get; set; }
-        public string JSEndBody { get; set; }
-        public string JSFilename { get; set; }
-        public string JSHead { get; set; }
-        public string JSOnLoad { get; set; }
-        public string MenuImageDownFilename { get; set; }
+        public bool blockSection { get; set; }
+        public string caption { get; set; }
+        public int contentID { get; set; }
+        public bool hideMenu { get; set; }
+        public string jsEndBody { get; set; }
+        public string jsFilename { get; set; }
+        public string jsHead { get; set; }
+        public string jsOnLoad { get; set; }
+        public string menuImageDownFilename { get; set; }
         public string menuImageDownOverFilename { get; set; }
-        public string MenuImageFilename { get; set; }
-        public string MenuImageOverFilename { get; set; }
-        public int RootPageID { get; set; }
-        public int TemplateID { get; set; }
-        //
-        //====================================================================================================
-        public static SiteSectionsModel @add(CPBaseClass cp)
-        {
-            return @add<SiteSectionsModel>(cp);
-        }
-        //
-        //====================================================================================================
-        public static SiteSectionsModel create(CPBaseClass cp, int recordId)
-        {
-            return create<SiteSectionsModel>(cp, recordId);
-        }
-        //
-        //====================================================================================================
-        public static SiteSectionsModel create(CPBaseClass cp, string recordGuid)
-        {
-            return create<SiteSectionsModel>(cp, recordGuid);
-        }
-        //
-        //====================================================================================================
-        public static SiteSectionsModel createByName(CPBaseClass cp, string recordName)
-        {
-            return createByName<SiteSectionsModel>(cp, recordName);
-        }
-        //
-        //====================================================================================================
-        public new void save(CPBaseClass cp)
-        {
-            base.save(cp);
-        }
-        //
-        //====================================================================================================
-        public static void delete(CPBaseClass cp, int recordId)
-        {
-            delete<SiteSectionsModel>(cp, recordId);
-        }
-        //
-        //====================================================================================================
-        public static void delete(CPBaseClass cp, string ccGuid)
-        {
-            delete<SiteSectionsModel>(cp, ccGuid);
-        }
-        //
-        //====================================================================================================
-        public static List<SiteSectionsModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id")
-        {
-            return createList<SiteSectionsModel>(cp, sqlCriteria, sqlOrderBy);
-        }
-        //
-        //====================================================================================================
-        public static string getRecordName(CPBaseClass cp, int recordId)
-        {
-            return BaseModel.getRecordName<SiteSectionsModel>(cp, recordId);
-        }
-        //
-        //====================================================================================================
-        public static string getRecordName(CPBaseClass cp, string ccGuid)
-        {
-            return BaseModel.getRecordName<SiteSectionsModel>(cp, ccGuid);
-        }
-        //
-        //====================================================================================================
-        public static int getRecordId(CPBaseClass cp, string ccGuid)
-        {
-            return BaseModel.getRecordId<SiteSectionsModel>(cp, ccGuid);
-        }
+        public string menuImageFilename { get; set; }
+        public string menuImageOverFilename { get; set; }
+        public int rootPageID { get; set; }
+        public int templateID { get; set; }
         //
         //====================================================================================================
         // -- a list of sections you have access to
@@ -127,6 +58,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels
             catch (Exception ex)
             {
                 cp.Site.ErrorReport(ex);
+                throw;
             }
             return result;
         }

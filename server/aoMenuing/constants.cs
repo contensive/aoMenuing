@@ -1,12 +1,6 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Contensive.Addons.Menuing
-{
-    static class constants
+namespace Contensive.Addons.Menuing {
+    static class Constants
     {
         //
         // -- sample
@@ -14,6 +8,10 @@ namespace Contensive.Addons.Menuing
         //
         // -- sample
         public const string rnSelectMenuId = "Menu";
+        //
+        public const string guidNavbarNavULDefaultLayout = "{A6A1A466-D23D-448F-A583-851832EF9FBE}";
+        public const string nameNavbarNavULDefaultLayout = "Menuing Navbar-Nav-UL Default Layout";
+        public const string pathFilenameNavbarNavULDefaultLayout = "aomenuing\\NavbarNavULDefaultLayout.html";
     }
 }
 

@@ -9,7 +9,7 @@ rem
 rem Setup deployment folder
 rem
 
-set appName=app210521
+set appName=app210530
 set majorVersion=5
 set minorVersion=1
 set collectionName=aoMenuing
@@ -46,6 +46,13 @@ md "%deploymentFolderRoot%%deploymentNumber%"
 
 rem ==============================================================
 rem
+rem copy UI files
+rem
+
+copy ..\UI\NavbarNavULDefaultLayout.html ..\collections\aoMenuing
+
+rem ==============================================================
+rem
 echo build 
 rem
 cd ..\server
@@ -75,3 +82,11 @@ del "%collectionName%.zip" /Q
 xcopy "%collectionName%.zip" "%deploymentFolderRoot%%deploymentNumber%" /Y
 cd ..\..\scripts
 
+
+rem ==============================================================
+rem
+rem delete UI file copies
+rem
+
+del ..\collections\aoMenuing\NavbarNavULDefaultLayout.html
+del ..\collections\aoMenuing\*.dll

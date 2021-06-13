@@ -1,12 +1,80 @@
 <?xml version="1.0" encoding="windows-1252"?>
-<Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No" onInstallAddonGuid="">
+<Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No" onInstallAddonGuid="{77ABB6C0-D659-4F52-BEA5-4999551FFFEE}">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
+	<Addon name="Menuing Install" guid="{77ABB6C0-D659-4F52-BEA5-4999551FFFEE}" type="Add-on">
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.OnInstallClass]]></DotNetClass>
+	</Addon>
+
+	<Addon name="Navbar-Nav-UL" guid="{BA55D6D4-A0D5-4557-9B71-BF04EF0C8F6D}" type="Add-on">
+    	<AliasList></AliasList>
+		<instanceSettingPrimaryContentId><![CDATA[Menus]]></instanceSettingPrimaryContentId>
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarNavULClass]]></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>Yes</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptInHead><![CDATA[//
+			// -- child list methods
+			function saveNavbarNavSortable(listId) {
+				console.log("saveNavbarNavSortable");
+				const person = new Object();
+				var e, c, s;
+				s = listId;
+				e = document.getElementById(listId);
+				for (i = 0; i < e.childNodes.length; i++) {
+					c = e.childNodes[i];
+					if (c.id) { s += "," + c.id }
+				}
+				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
+			}
+			$(function () {
+				console.log("binding navbar-nav sortable");
+				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+					items: "li.ccEditWrapper",
+					stop: function (event, ui) {
+						saveNavbarNavSortable(jQuery(this).attr("id"));
+					}
+				});
+			})]]></JavascriptInHead>
+		<javascriptForceHead>No</javascriptForceHead>
+		<JSHeadScriptSrc></JSHeadScriptSrc>
+		<Content>No</Content>
+		<Template>no</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<Category>Extras.Navigation</Category>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles></Styles>
+		<styleslinkhref></styleslinkhref>
+		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
+	</Addon>
+
+
 	<Addon name="Menu Pages" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.MenuPagesClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyMenuPagesClass]]></DotNetClass>
 		<IncludeAddon name="Bootstrap" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
-		<Content>Yes</Content>
-		<Template>Yes</Template>
+		<Content>no</Content>
+		<Template>no</Template>
 		<category><![CDATA[Extras.Navigation]]></category>
 		<Styles><![CDATA[/*
 			************************************************
@@ -49,7 +117,7 @@
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarULClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyNavbarULClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
@@ -86,7 +154,7 @@
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
-		<Template>Yes</Template>
+		<Template>no</Template>
 		<Email>No</Email>
 		<Admin>No</Admin>
 		<Category>Extras.Navigation</Category>
@@ -147,7 +215,7 @@
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarLiListClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyNavbarLiListClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
@@ -184,7 +252,7 @@
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
-		<Template>Yes</Template>
+		<Template>no</Template>
 		<Email>No</Email>
 		<Admin>No</Admin>
 		<Category>Extras.Navigation</Category>
@@ -245,7 +313,7 @@
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarNavClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyNavbarNavClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
@@ -282,7 +350,7 @@
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
-		<Template>Yes</Template>
+		<Template>no</Template>
 		<Email>No</Email>
 		<Admin>No</Admin>
 		<Category>Extras.Navigation</Category>
@@ -340,11 +408,10 @@
 	<Addon name="Menu" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
     	<AliasList>Menu Pages</AliasList>
 		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
-
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.MenuPagesClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyMenuPagesClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
@@ -362,8 +429,8 @@
 		<!-- deprecated --><JSBodyScriptSrc></JSBodyScriptSrc>
 		<!-- deprecated --><JavascriptBodyEnd></JavascriptBodyEnd>
 		<!-- deprecated --><JavascriptOnLoad></JavascriptOnLoad>
-		<Content>Yes</Content>
-		<Template>Yes</Template>
+		<Content>no</Content>
+		<Template>no</Template>
 		<Email>No</Email>
 		<Admin>No</Admin>
 		<Category>Extras.Navigation</Category>
@@ -425,5 +492,91 @@
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.SaveNavbarNavSortableClass]]></DotNetClass>
 		<RemoteMethod>yes</RemoteMethod>
 	</Addon>
-	<Resource name="arrow.gif" type="www" path="aomenuing" />
+  <CDef Name="Menus"  guid="{10816167-03CB-40ED-BACC-98F8AAF4760D}" >
+		<!--
+			update core content to include addon features
+		-->
+		<Field Name="layoutId" active="True" AdminOnly="False" Authorable="True" Caption="Menu Layout" DeveloperOnly="False" EditSortPriority="1000" FieldType="Lookup" HTMLContent="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IsBaseField="False" LookupContent="Layouts" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The layout used for this menu. New menu entries start with a copy of the default Navbar-Nav-Ul layout. To make html and style changes to this menu, edit the layout. (Only Applies to Navbar-Nav-Ul addon.)]]></HelpDefault>
+		</Field>
+		<Field Name="Depth" active="1" AdminOnly="0" Authorable="1" Caption="Dropdown Depth" DeveloperOnly="0" EditSortPriority="1000" FieldType="Lookup" HTMLContent="0" IndexColumn="0" IndexSortDirection="0" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="2" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Dropdowns" Scramble="False" LookupList="No Dropdown,1 Tier" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Choose no flyout for a simple list. Choose Tier Page Flyout for a menu that includes a flyout for tier pages.]]></HelpDefault>
+		</Field>
+		<Field Name="addRootToTier" active="1" AdminOnly="0" Authorable="1" Caption="Add Root Page to Tier Dropdown" DeveloperOnly="0" EditSortPriority="1010" FieldType="Boolean" HTMLContent="0" IndexColumn="" IndexSortDirection="" IndexSortOrder="" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="0" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Dropdowns" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[For Tier Page Flyouts, when the flyout is activated by a click, check this box and the root page is added to the flyout menu]]></HelpDefault>
+		</Field>
+		<Field Name="includeBlockedFlyoutPages" active="1" AdminOnly="0" Authorable="1" Caption="Always include Blocked Pages in Tier Dropdown" DeveloperOnly="0" EditSortPriority="1020" FieldType="Boolean" HTMLContent="0" IndexColumn="" IndexSortDirection="" IndexSortOrder="" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="0" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Dropdowns" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[When a page is blocked, uses without access do not see the page in the flyout menu. Check this box and blocked pages will be included. When a user clicks on the page they will be blocked.]]></HelpDefault>
+		</Field>		
+		<Field Name="classtopparentitem" active="1" AdminOnly="0" Authorable="1" Caption="Top Parent Item Class" DeveloperOnly="0" EditSortPriority="2030" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topList" RSSTitle="False" RSSDescription="False" MemberSelectGroupID="0" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class added to the top level anchor tag when there is a dropdown.]]></HelpDefault>
+		</Field>
+		<Field Name="classtopanchor" active="1" AdminOnly="0" Authorable="1" Caption="Top Anchor Class" DeveloperOnly="0" EditSortPriority="2040" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topList" RSSTitle="False" RSSDescription="False" MemberSelectGroupID="0" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in the top level anchor tag.]]></HelpDefault>
+		</Field>
+		<Field Name="classtopparentanchor" active="1" AdminOnly="0" Authorable="1" Caption="Top Parent Anchor Class" DeveloperOnly="0" EditSortPriority="2050" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topList" RSSTitle="False" RSSDescription="False" MemberSelectGroupID="0" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+		<HelpDefault><![CDATA[The class added to the top level anchor tag when there is a dropdown.]]></HelpDefault>
+		</Field>
+		<Field Name="datatoggletopparentanchor" active="1" AdminOnly="0" Authorable="1" Caption="Top Parent Anchor data-toggle" DeveloperOnly="0" EditSortPriority="2060" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topList" RSSTitle="False" RSSDescription="False" MemberSelectGroupID="0" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The data-toogle added to the top level anchor tag when there is a dropdown.]]></HelpDefault>
+		</Field>
+		<Field Name="classtieranchor" active="1" AdminOnly="0" Authorable="1" Caption="Tier Anchor Class" DeveloperOnly="0" EditSortPriority="2130" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="tierItem" RSSTitle="False" RSSDescription="False" MemberSelectGroupID="0" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in each anchor element of a tier level ul]]></HelpDefault>
+		</Field>
+		<Field Name="classTopWrapper" active="1" AdminOnly="0" Authorable="1" Caption="Top Wrapper Class" DeveloperOnly="0" EditSortPriority="2000" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="aoMenuDefault " RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in the top level ul]]></HelpDefault>
+		</Field>
+		<Field Name="classTopList" active="1" AdminOnly="0" Authorable="1" Caption="Top List Class" DeveloperOnly="0" EditSortPriority="2010" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topList" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in the top level ul]]></HelpDefault>
+		</Field>
+		<Field Name="classTopItem" active="1" AdminOnly="0" Authorable="1" Caption="Top Item Class" DeveloperOnly="0" EditSortPriority="2020" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="topItem" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in each li element of the top level ul]]></HelpDefault>
+		</Field>
+		<Field Name="classItemActive" active="1" AdminOnly="0" Authorable="1" Caption="Active Item Class" DeveloperOnly="0" EditSortPriority="2200" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="activeItem" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class added to an item when it is the current page or section.]]></HelpDefault>
+		</Field>
+		<Field Name="classTierList" active="1" AdminOnly="0" Authorable="1" Caption="Tier List Class" DeveloperOnly="0" EditSortPriority="2110" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="tierList" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in each tier level ul]]></HelpDefault>
+		</Field>
+		<Field Name="classTierItem" active="1" AdminOnly="0" Authorable="1" Caption="Tier Item Class" DeveloperOnly="0" EditSortPriority="2120" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="tierItem" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class in each li element of a tier level ul]]></HelpDefault>
+		</Field>
+		<Field Name="classItemFirst" active="1" AdminOnly="0" Authorable="1" Caption="First Item Class" DeveloperOnly="0" EditSortPriority="2210" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="firstItem" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class added to the first li of all lists]]></HelpDefault>
+		</Field>
+		<Field Name="classItemLast" active="1" AdminOnly="0" Authorable="1" Caption="Last Item Class" DeveloperOnly="0" EditSortPriority="2220" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="lastItem" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[The class added to the last li of all lists]]></HelpDefault>
+		</Field>
+		<Field Name="classItemHover" active="1" AdminOnly="0" Authorable="1" Caption="Hover Item Class" DeveloperOnly="0" EditSortPriority="2230" FieldType="Text" HTMLContent="0" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" Required="False" TextBuffered="False" UniqueName="False" DefaultValue="hoverItem" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" EditTab="Legacy" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Added to an item when the mouse is hovering over it or any of its parent items.]]></HelpDefault>
+		</Field>
+		<!-- 
+			fields required for code library, but do not apply to navbar-nav-ul
+		-->
+		<Field Name="padtop" Caption="Top Padding" EditTab="Styles" FieldType="Boolean" Authorable="false" EditSortPriority="2000" DefaultValue="0" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Add space between the edge of the block and the content.]]></HelpDefault>
+		</Field>
+		<Field Name="padright" Caption="Right Padding" EditTab="Styles" FieldType="Boolean" Authorable="false" EditSortPriority="2010" DefaultValue="0" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Add space between the edge of the block and the content.]]></HelpDefault>
+		</Field>
+		<Field Name="padbottom" Caption="Bottom Padding" EditTab="Styles" FieldType="Boolean" Authorable="false" EditSortPriority="2020" DefaultValue="0" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Add space between the edge of the block and the content.]]></HelpDefault>
+		</Field>
+		<Field Name="padleft" Caption="Left Padding" EditTab="Styles" FieldType="Boolean" Authorable="false" EditSortPriority="2030" DefaultValue="0" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Add space between the edge of the block and the content.]]></HelpDefault>
+		</Field>
+		<Field Name="backgroundimagefilename" Caption="Background Image" EditTab="Styles" FieldType="File" Authorable="false" EditSortPriority="2040" DefaultValue="" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Add a background image to the design block. It will be reduced in size to cover the entire background.]]></HelpDefault>
+		</Field>
+		<Field Name="asfullbleed" Caption="Add Container Margin for Full Bleed template" EditTab="Styles" FieldType="Boolean" Authorable="false" EditSortPriority="2050" DefaultValue="0" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[When not checked, this design block should be used within a container. When checked, the block is expected to span the full width of the screen and may create its own container.]]></HelpDefault>
+		</Field>
+		<Field Name="styleheight" Caption="Height (with units)" EditTab="Styles" FieldType="Text" Authorable="false" EditSortPriority="3000" DefaultValue="" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Optional. Set a style height and the design block will be forced this this height. Include both the number and the units, like 500px or 20em.]]></HelpDefault>
+		</Field>
+		<Field Name="themestyleid" Caption="Block Wrapper Class" EditTab="Styles" FieldType="Lookup" Authorable="false" EditSortPriority="4020" DefaultValue="" active="True" AdminOnly="False" DeveloperOnly="False" HTMLContent="False" Required="False" TextBuffered="False" UniqueName="False" RSSTitle="False" RSSDescription="False" MemberSelectGroup="" Scramble="False" LookupList="" NotEditable="False" Password="False" ReadOnly="False" ManyToManyRulePrimaryField="" ManyToManyRuleSecondaryField="" IsModified="False" IndexColumn="0" IndexSortDirection="" IndexSortOrder="0" IndexWidth="0" RedirectID="" RedirectPath="" IsBaseField="False" LookupContent="Design Block Themes" RedirectContent="" ManyToManyContent="" ManyToManyRuleContent="" >
+			<HelpDefault><![CDATA[Optional. Select a css class selector to be added to the block's wrapper. Use this feature to customize the layout styles. To add a custom style, add the css class selector in the content 'Design Block Themes' and add the css code to the style sheet in the site's theme addon.]]></HelpDefault>
+		</Field>
+  </CDef>
+	<Resource name="NavbarNavULDefaultLayout.html" type="file" path="aomenuing" />
 </Collection>

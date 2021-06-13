@@ -1,11 +1,6 @@
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using Contensive.BaseClasses;
-using Contensive.Addons.Menuing.Models;
 using Contensive.Addons.Menuing.Models.DbModels;
+using System;
 
 namespace Contensive.Addons.Menuing.Views {
     /// <summary>
@@ -13,13 +8,13 @@ namespace Contensive.Addons.Menuing.Views {
     /// </summary>
     public class AddMenuPageClass : Contensive.BaseClasses.AddonBaseClass {
         //
-        string errMessage = "<div class=\"\"><h4>Page cannot be created</h4><p>There was a problem that prevented the new page from being created. Please use you back button to return to the previous page.</p></div>";
+        readonly string errMessage = "<div class=\"\"><h4>Page cannot be created</h4><p>There was a problem that prevented the new page from being created. Please use you back button to return to the previous page.</p></div>";
         //
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
                 if ( !cp.User.IsAdmin) { return errMessage;  }
-                var page = PageContentModel.add(cp);
-                var menuPageRule = MenuPageRuleModel.add(cp);
+                var page = Contensive.Models.Db.DbBaseModel.addDefault<PageContentModel>(cp);
+                var menuPageRule = Contensive.Models.Db.DbBaseModel.addDefault<MenuPageRuleModel>(cp);
                 menuPageRule.pageId = page.id;
                 menuPageRule.menuId = cp.Doc.GetInteger("menuId");
                 menuPageRule.save(cp);
@@ -31,7 +26,7 @@ namespace Contensive.Addons.Menuing.Views {
                 return string.Empty;
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
-                return errMessage;
+                throw;
             }
         }
     }

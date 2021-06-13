@@ -1,20 +1,18 @@
 ﻿
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Text;
 using Contensive.BaseClasses;
+using Contensive.Models.Db;
+using System;
+using System.Collections.Generic;
 
 namespace Contensive.Addons.Menuing.Models.DbModels {
-    public class PageContentModel : BaseModel {
+    public class PageContentModel : DbBaseModel {
         //
         //====================================================================================================
         //-- const
         public const string contentName = "page content";
         public const string contentTableName = "ccpagecontent";
+        //
+        public static DbBaseTableMetadataModel tableMetadata { get; } = new DbBaseTableMetadataModel(contentName, contentTableName);
         //
         //====================================================================================================
         // -- instance properties
@@ -24,7 +22,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
         //public bool AllowFeedback { get; set; }
         //public bool AllowHitNotification { get; set; }
         //public bool AllowInChildLists { get; set; }
-        public bool AllowInMenus { get; set; }
+        public bool allowInMenus { get; set; }
         //public bool AllowLastModifiedFooter { get; set; }
         //public bool AllowMessageFooter { get; set; }
         //public bool AllowMetaContentNoFollow { get; set; }
@@ -34,7 +32,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
         //public bool AllowReviewedFooter { get; set; }
         //public bool AllowSeeAlso { get; set; }
         //public int ArchiveParentID { get; set; }
-        public bool BlockContent { get; set; }
+        public bool blockContent { get; set; }
         //public bool BlockPage { get; set; }
         //public int BlockSourceID { get; set; }
         //public string BriefFilename { get; set; }
@@ -62,11 +60,11 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
         //public string JSFilename { get; set; }
         //public string JSHead { get; set; }
         //public string JSOnLoad { get; set; }
-        public string Link { get; set; }
+        public string link { get; set; }
         //public string LinkAlias { get; set; }
         //public string LinkLabel { get; set; }
         //public string Marquee { get; set; }
-        public string MenuHeadline { get; set; }
+        public string menuHeadline { get; set; }
         //public string MenuImageFileName { get; set; }
         //public int OrganizationID { get; set; }
         //public string PageLink { get; set; }
@@ -93,61 +91,6 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
         public string menuClass { get; set; }
         //
         //====================================================================================================
-        public static PageContentModel @add(CPBaseClass cp) {
-            return @add<PageContentModel>(cp);
-        }
-        //
-        //====================================================================================================
-        public static PageContentModel create(CPBaseClass cp, int recordId) {
-            return create<PageContentModel>(cp, recordId);
-        }
-        //
-        //====================================================================================================
-        public static PageContentModel create(CPBaseClass cp, string recordGuid) {
-            return create<PageContentModel>(cp, recordGuid);
-        }
-        //
-        //====================================================================================================
-        public static PageContentModel createByName(CPBaseClass cp, string recordName) {
-            return createByName<PageContentModel>(cp, recordName);
-        }
-        //
-        //====================================================================================================
-        public new void save(CPBaseClass cp) {
-            base.save(cp);
-        }
-        //
-        //====================================================================================================
-        public static void delete(CPBaseClass cp, int recordId) {
-            delete<PageContentModel>(cp, recordId);
-        }
-        //
-        //====================================================================================================
-        public static void delete(CPBaseClass cp, string ccGuid) {
-            delete<PageContentModel>(cp, ccGuid);
-        }
-        //
-        //====================================================================================================
-        public static List<PageContentModel> createList(CPBaseClass cp, string sqlCriteria, string sqlOrderBy = "id") {
-            return createList<PageContentModel>(cp, sqlCriteria, sqlOrderBy);
-        }
-        //
-        //====================================================================================================
-        public static string getRecordName(CPBaseClass cp, int recordId) {
-            return BaseModel.getRecordName<PageContentModel>(cp, recordId);
-        }
-        //
-        //====================================================================================================
-        public static string getRecordName(CPBaseClass cp, string ccGuid) {
-            return BaseModel.getRecordName<PageContentModel>(cp, ccGuid);
-        }
-        //
-        //====================================================================================================
-        public static int getRecordId(CPBaseClass cp, string ccGuid) {
-            return BaseModel.getRecordId<PageContentModel>(cp, ccGuid);
-        }
-        //
-        //====================================================================================================
         // -- a list of sections you have access to
         // -- all sections without blocking, plus section-groups that you are in the group
         public static List<int> getAllowedPageIdList(CPBaseClass cp) {
@@ -167,6 +110,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
                 cs.Close();
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
+                throw;
             }
             return result;
         }
@@ -184,7 +128,7 @@ namespace Contensive.Addons.Menuing.Models.DbModels {
             using (CPCSBaseClass cs = cp.CSNew()) {
                 if (cs.OpenSQL(sql)) {
                     do {
-                        PageContentModel page = create(cp, cs.GetInteger("id"));
+                        PageContentModel page = create<PageContentModel>(cp, cs.GetInteger("id"));
                         if (page != null) { result.Add(page); }
                         cs.GoNext();
                     } while (cs.OK());
