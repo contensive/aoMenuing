@@ -97,34 +97,6 @@ DesignBlockBase
  <param name="imageAspectRatioId"></param>
  <returns></returns>
 </member>
-<member name="M:Contensive.DesignBlockBase.Controllers.LayoutController.cp_layouts_verifyLayout(Contensive.BaseClasses.CPBaseClass,System.String,System.String,System.String)">
- <summary>
- get a design block layout object from the layout record, create the record from layoutCdnPathFilename if invalid.
- There are two typical design block layout patterns:
- 
- 1 - the addon has a single layout. 
- The addon reads it from the layout table by guid (layoutGuid) with the cp.layout.verify() method
- If the layout record is not found or is blank, the layout record is created from content in an html file installed with the collection (defaultLayoutCdnPathFilename).
- The layout record is cached so this read is sub-millisecond. 
- A designer can update the addon's design by replacing the content of the layout record. This update is never overwritten by the collection.
- To restore a layout to its default, delete the layout record.
- 
- 2 - the addon can have multiple layouts that the user can swith between (it only used one layout at a time)
- The addon has a settings record where the user selects the layout to be used. The addon reads the layout from the layout table by the selected ID in the settings record.
- If the layout record is not found or is blank, the verify method returns the 'default layout' for the addon using the verify-by-guid pattern (#1 above).
- The layout record is cached so this read is sub-millisecond. 
- A designer can add new layouts and/or update the addon's default design by replacing the content of the layout record. This update is never overwritten by the collection.
- To restore a layout to its default, delete the layout record.
- 
- </summary>
- <returns></returns>
-</member>
-<member name="M:Contensive.DesignBlockBase.Controllers.LayoutController.updateLayoutFromCdn(Contensive.BaseClasses.CPBaseClass,Contensive.Models.Db.LayoutModel,System.String,System.String,System.String)">
- <summary>
- Create new layout
- </summary>
- <returns></returns>
-</member>
 <member name="P:Contensive.DesignBlockBase.Models.Db.DesignBlockThemeModel.tableMetadata">
  <summary>
 table definition

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Contensive.Addons.Menuing.Models.ViewModels {
-    public class NavbarNavModel : DesignBlockBase.Models.View.DesignBlockViewBaseModel{
+    public class NavbarNavModel : DesignBlockBase.Models.View.DesignBlockViewBaseModel {
         /// <summary>
         /// class for the div wrapper. default blank
         /// </summary>
@@ -65,7 +65,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                     //
                     // -- create toplists
                     foreach (PageContentModel rootPage in MenuPageList) {
-                        bool blockRootPage = rootPage.blockContent & !cp.User.IsAdmin;
+                        bool blockRootPage = rootPage.blockContent & !cp.User.IsAdmin && !menu.includeBlockedFlyoutPages;
                         if (blockRootPage & cp.User.IsAuthenticated) {
                             blockRootPage = !result.allowedPageIdList(cp).Contains(rootPage.id);
                         }
@@ -79,7 +79,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                                 classTopItemAnchor = menu.classTopAnchor,
                                 topItemPageId = rootPage.id,
-                                topItemHref = !string.IsNullOrEmpty( rootPage.link ) ? rootPage.link : cp.Content.GetPageLink(rootPage.id),
+                                topItemHref = !string.IsNullOrEmpty(rootPage.link) ? rootPage.link : cp.Content.GetPageLink(rootPage.id),
                                 topItemName = string.IsNullOrWhiteSpace(topItemName) ? rootPage.name : topItemName,
                                 classItemDraggable = (editMode ? "ccEditWrapper" : ""),
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
@@ -142,7 +142,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");
                 //
                 return result;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }
