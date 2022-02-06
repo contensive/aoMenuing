@@ -90,3 +90,5 @@ rem
 
 del ..\collections\aoMenuing\NavbarNavULDefaultLayout.html
 del ..\collections\aoMenuing\*.dll
+
+pause
