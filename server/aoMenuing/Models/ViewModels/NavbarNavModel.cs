@@ -26,6 +26,10 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         /// id of the top ul list
         /// </summary>
         public string topListHtmlId { get; set; }
+        /// <summary>
+        /// when true, the view is editing
+        /// </summary>
+        public bool isEditing { get; set; }
         //
         //====================================================================================================
         public static NavbarNavModel create(CPBaseClass cp, MenuModel menu) {
@@ -57,7 +61,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                         result.classTopList += " navbar-nav";
                     }
                     result.classTopList += " " + menu.classTopList;
-                    bool editMode = cp.User.IsEditingAnything;
+                    result.isEditing = cp.User.IsEditingAnything;
                     //
                     List<PageContentModel> MenuPageList = PageContentModel.getMenuRootList(cp, menu.id);
                     //
@@ -81,7 +85,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 topItemPageId = rootPage.id,
                                 topItemHref = !string.IsNullOrEmpty(rootPage.link) ? rootPage.link : cp.Content.GetPageLink(rootPage.id),
                                 topItemName = string.IsNullOrWhiteSpace(topItemName) ? rootPage.name : topItemName,
-                                classItemDraggable = (editMode ? "ccEditWrapper" : ""),
+                                classItemDraggable = (result.isEditing ? "ccEditWrapper" : ""),
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
                                 childList = new List<ChildListItemModel>()
                             };
@@ -121,7 +125,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             result.topList.Add(topListItem);
                         }
                     }
-                    if (editMode) {
+                    if (result.isEditing) {
                         result.topList.Add(new NavbarNavTopListItemModel {
                             topItemName = "Add-Page",
                             topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString(),
@@ -131,10 +135,13 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                     }
                     //
                     // -- build new cache
-                    if (!editMode) {
+                    if (!result.isEditing) {
                         //
                         // -- if not editing, save cache
-                        var dependentKeyList = new List<string>() { "page content", "menus", "menu page rules" };
+                        var dependentKeyList = new List<string>() {
+                            cp.Cache.CreateTableDependencyKey(PageContentModel.tableMetadata.tableNameLower), cp.
+                            Cache.CreateTableDependencyKey(MenuModel.tableMetadata.tableNameLower),
+                            cp.Cache.CreateTableDependencyKey(MenuPageRuleModel.tableMetadata.tableNameLower)};
                         cp.Cache.Store(cacheKey, result, DateTime.Now.AddHours(1), dependentKeyList);
                     }
                 }
@@ -142,8 +149,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");
                 //
                 return result;
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;
             }

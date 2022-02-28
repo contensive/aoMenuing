@@ -9,7 +9,7 @@ namespace Contensive.Addons.Menuing.Views {
     /// <summary>
     /// menuing based on pages directly attached to the menu (menuPageRules)
     /// </summary>
-    public class NavbarNavULClass : AddonBaseClass {
+    public class NavbarNavULAddon : AddonBaseClass {
         //
         // ====================================================================================================
         //

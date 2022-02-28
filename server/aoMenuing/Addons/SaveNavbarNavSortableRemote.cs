@@ -7,14 +7,14 @@ namespace Contensive.Addons.Menuing.Views {
     /// <summary>
     /// remote method addon that saves the menu item order called from drag-drop stop event
     /// </summary>
-    public class SaveNavbarNavSortableClass : Contensive.BaseClasses.AddonBaseClass {
+    public class SaveNavbarNavSortableRemote : Contensive.BaseClasses.AddonBaseClass {
         //
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
                 if (!cp.User.IsAdmin) { return string.Empty; }
                 List<string> argList = cp.Doc.GetText("sortlist").Split(',').ToList();
                 if (argList.Count == 0) { return string.Empty; }
-                int menuId = cp.Utils.EncodeInteger(argList.First().Replace("navbarNav", ""));
+                int menuId = cp.Utils.EncodeInteger(argList.First().Replace("menu", ""));
                 if (menuId == 0) { return string.Empty; }
                 //
                 cp.Db.ExecuteNonQuery("update ccmenupagerules set sortorder=null where menuId=" + menuId);
@@ -29,7 +29,7 @@ namespace Contensive.Addons.Menuing.Views {
                 cp.Db.ExecuteNonQuery("delete from ccmenupagerules where (sortorder=null)and(menuId=" + menuId + ")");
                 //
                 // -- clear cache
-                cp.Cache.invalidateTableDependencyKey("ccMenuPageRules");
+                cp.Cache.invalidateTableDependencyKey("ccmenupagerules");
                 return string.Empty;
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);

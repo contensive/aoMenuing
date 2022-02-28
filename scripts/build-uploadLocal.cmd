@@ -1,7 +1,7 @@
 
 rem all paths are relative to the git scripts folder
 
-call Env.cmd
+set appName=menucrm0210
 
 call build.cmd
 
@@ -10,5 +10,3 @@ c:
 cd %collectionPath%
 cc -a %appName% --installFile "%collectionName%.zip"
 cd ..\..\scripts
-
-pause

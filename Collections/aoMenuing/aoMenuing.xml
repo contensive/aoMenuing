@@ -12,7 +12,7 @@
 		<Copy></Copy>
 		<CopyText></CopyText>
 		<ActiveXProgramID></ActiveXProgramID>
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarNavULClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarNavULAddon]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
 		<Filter>No</Filter>
@@ -23,29 +23,36 @@
 		<BlockEditTools>Yes</BlockEditTools>
 		<FormXML></FormXML>
 		<IsInline>No</IsInline>
-		<JavascriptInHead><![CDATA[//
-			// -- child list methods
-			function saveNavbarNavSortable(listId) {
-				console.log("saveNavbarNavSortable");
-				const person = new Object();
-				var e, c, s;
-				s = listId;
-				e = document.getElementById(listId);
-				for (i = 0; i < e.childNodes.length; i++) {
-					c = e.childNodes[i];
-					if (c.id) { s += "," + c.id }
-				}
-				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
-			}
-			$(function () {
-				console.log("binding navbar-nav sortable");
-				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
-					items: "li.ccEditWrapper",
-					stop: function (event, ui) {
-						saveNavbarNavSortable(jQuery(this).attr("id"));
-					}
-				});
-			})]]></JavascriptInHead>
+		<JavascriptInHead><![CDATA[
+//
+// -- child list methods
+function saveNavbarNavSortable(listId) {
+	console.log("saveNavbarNavSortable");
+	var e, c, s;
+	s = listId;
+	e = document.getElementById(listId);
+	for (i = 0; i < e.childNodes.length; i++) {
+		c = e.childNodes[i];
+		if (c.id) { s += "," + c.id }
+	}
+	$.ajax({
+		dataType: "json",
+		type : 'Get',
+		url: '/SaveNavbarNavSortable?sortlist=' + s,
+		success: function(data) { response(data); },
+		error: function(data) { console.log("error in remote method"); }
+	});
+}
+$(function () {
+	console.log("binding navbar-nav sortable");
+	jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+		items: "li.ccEditWrapper",
+		stop: function (event, ui) {
+			console.log("stop-event, this.id [" + this.id + "]");
+			saveNavbarNavSortable(jQuery(this).attr("id"));
+		}
+	});
+})]]></JavascriptInHead>
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
@@ -128,29 +135,36 @@
 		<BlockEditTools>Yes</BlockEditTools>
 		<FormXML></FormXML>
 		<IsInline>No</IsInline>
-		<JavascriptInHead><![CDATA[//
-			// -- child list methods
-			function saveNavbarNavSortable(listId) {
-				console.log("saveNavbarNavSortable");
-				const person = new Object();
-				var e, c, s;
-				s = listId;
-				e = document.getElementById(listId);
-				for (i = 0; i < e.childNodes.length; i++) {
-					c = e.childNodes[i];
-					if (c.id) { s += "," + c.id }
-				}
-				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
-			}
-			$(function () {
-				console.log("binding navbar-nav sortable");
-				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
-					items: "li.ccEditWrapper",
-					stop: function (event, ui) {
-						saveNavbarNavSortable(jQuery(this).attr("id"));
-					}
-				});
-			})]]></JavascriptInHead>
+		<JavascriptInHead><![CDATA[
+//
+// -- child list methods
+function saveNavbarNavSortable(listId) {
+	console.log("saveNavbarNavSortable");
+	const person = new Object();
+	var e, c, s;
+	s = listId;
+	e = document.getElementById(listId);
+	for (i = 0; i < e.childNodes.length; i++) {
+		c = e.childNodes[i];
+		if (c.id) { s += "," + c.id }
+	}
+	$.ajax({
+		dataType: "json",
+		type : 'Get',
+		url: '/SaveNavbarNavSortable?sortlist=' + s,
+		success: function(data) { response(data); },
+		error: function(data) { console.log("error in remote method"); }
+	});
+}
+$(function () {
+	console.log("binding navbar-nav sortable");
+	jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+		items: "li.ccEditWrapper",
+		stop: function (event, ui) {
+			saveNavbarNavSortable(jQuery(this).attr("id"));
+		}
+	});
+})]]></JavascriptInHead>
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
@@ -226,29 +240,36 @@
 		<BlockEditTools>Yes</BlockEditTools>
 		<FormXML></FormXML>
 		<IsInline>No</IsInline>
-		<JavascriptInHead><![CDATA[//
-			// -- child list methods
-			function saveNavbarNavSortable(listId) {
-				console.log("saveNavbarNavSortable");
-				const person = new Object();
-				var e, c, s;
-				s = listId;
-				e = document.getElementById(listId);
-				for (i = 0; i < e.childNodes.length; i++) {
-					c = e.childNodes[i];
-					if (c.id) { s += "," + c.id }
-				}
-				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
-			}
-			$(function () {
-				console.log("binding navbar-nav sortable");
-				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
-					items: "li.ccEditWrapper",
-					stop: function (event, ui) {
-						saveNavbarNavSortable(jQuery(this).attr("id"));
-					}
-				});
-			})]]></JavascriptInHead>
+		<JavascriptInHead><![CDATA[
+//
+// -- child list methods
+function saveNavbarNavSortable(listId) {
+	console.log("saveNavbarNavSortable");
+	const person = new Object();
+	var e, c, s;
+	s = listId;
+	e = document.getElementById(listId);
+	for (i = 0; i < e.childNodes.length; i++) {
+		c = e.childNodes[i];
+		if (c.id) { s += "," + c.id }
+	}
+	$.ajax({
+		dataType: "json",
+		type : 'Get',
+		url: '/SaveNavbarNavSortable?sortlist=' + s,
+		success: function(data) { response(data); },
+		error: function(data) { console.log("error in remote method"); }
+	});
+}
+$(function () {
+	console.log("binding navbar-nav sortable");
+	jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+		items: "li.ccEditWrapper",
+		stop: function (event, ui) {
+			saveNavbarNavSortable(jQuery(this).attr("id"));
+		}
+	});
+})]]></JavascriptInHead>
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
@@ -324,29 +345,36 @@
 		<BlockEditTools>Yes</BlockEditTools>
 		<FormXML></FormXML>
 		<IsInline>No</IsInline>
-		<JavascriptInHead><![CDATA[//
-			// -- child list methods
-			function saveNavbarNavSortable(listId) {
-				console.log("saveNavbarNavSortable");
-				const person = new Object();
-				var e, c, s;
-				s = listId;
-				e = document.getElementById(listId);
-				for (i = 0; i < e.childNodes.length; i++) {
-					c = e.childNodes[i];
-					if (c.id) { s += "," + c.id }
-				}
-				cj.ajax.addon("SaveNavbarNavSortable", "sortlist=" + s)
-			}
-			$(function () {
-				console.log("binding navbar-nav sortable");
-				jQuery(".ccEditWrapper ul.navbar-nav").sortable({
-					items: "li.ccEditWrapper",
-					stop: function (event, ui) {
-						saveNavbarNavSortable(jQuery(this).attr("id"));
-					}
-				});
-			})]]></JavascriptInHead>
+		<JavascriptInHead><![CDATA[
+//
+// -- child list methods
+function saveNavbarNavSortable(listId) {
+	console.log("saveNavbarNavSortable");
+	const person = new Object();
+	var e, c, s;
+	s = listId;
+	e = document.getElementById(listId);
+	for (i = 0; i < e.childNodes.length; i++) {
+		c = e.childNodes[i];
+		if (c.id) { s += "," + c.id }
+	}
+	$.ajax({
+		dataType: "json",
+		type : 'Get',
+		url: '/SaveNavbarNavSortable?sortlist=' + s,
+		success: function(data) { response(data); },
+		error: function(data) { console.log("error in remote method"); }
+	});
+}
+$(function () {
+	console.log("binding navbar-nav sortable");
+	jQuery(".ccEditWrapper ul.navbar-nav").sortable({
+		items: "li.ccEditWrapper",
+		stop: function (event, ui) {
+			saveNavbarNavSortable(jQuery(this).attr("id"));
+		}
+	});
+})]]></JavascriptInHead>
 		<javascriptForceHead>No</javascriptForceHead>
 		<JSHeadScriptSrc></JSHeadScriptSrc>
 		<Content>No</Content>
@@ -489,7 +517,7 @@
 		<RemoteMethod>yes</RemoteMethod>
 	</Addon>
 	<Addon name="SaveNavbarNavSortable" guid="{FE57E908-893F-4F5C-B74D-AF50A75F2E6B}" type="Add-on">
-		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.SaveNavbarNavSortableClass]]></DotNetClass>
+		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.SaveNavbarNavSortableRemote]]></DotNetClass>
 		<RemoteMethod>yes</RemoteMethod>
 	</Addon>
   <CDef Name="Menus"  guid="{10816167-03CB-40ED-BACC-98F8AAF4760D}" >

@@ -96,7 +96,7 @@
   <ItemGroup>
     <Compile Include="Addons\LegacyNavbarULClass.cs" />
     <Compile Include="Addons\OnInstallClass.cs" />
-    <Compile Include="Addons\NavbarNavULClass.cs" />
+    <Compile Include="Addons\NavbarNavULAddon.cs" />
     <Compile Include="Addons\LegacyNavbarLiListClass.cs" />
     <Compile Include="constants.cs" />
     <Compile Include="Controllers\genericController.cs" />
@@ -118,7 +118,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Addons\SaveNavbarNavSortableClass.cs" />
+    <Compile Include="Addons\SaveNavbarNavSortableRemote.cs" />
     <Compile Include="Addons\LegacyNavbarNavClass.cs" />
     <Compile Include="Addons\AddMenuPageClass.cs" />
     <Compile Include="Addons\LegacyMenuPagesClass.cs" />
