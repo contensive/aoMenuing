@@ -16,32 +16,58 @@
         </member>
         <member name="P:Contensive.Models.Db.ActivityLogModel.link">
             <summary>
-            The url of the event
+            The url of the event (video meeting, etc)
             </summary>
         </member>
         <member name="P:Contensive.Models.Db.ActivityLogModel.memberId">
             <summary>
-            the user who the event effects
+            The user who the event affects. In the CRM, this is the lead/customer whose page this activity apears. The user who received the email.
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.ActivityLogModel.typeId">
+            <summary>
+            see ActivityLogTypeEnum, 1=online visit, 2=online purchase, 3=email-to, 4=email-from, 5=call-to, 6=call-from, 7=text-to, 8=text-from, 9=meeting-video, 10=meeting-in-person
             </summary>
         </member>
         <member name="P:Contensive.Models.Db.ActivityLogModel.message">
             <summary>
-            a description of the event
-            </summary>
-        </member>
-        <member name="P:Contensive.Models.Db.ActivityLogModel.organizationId">
-            <summary>
-            the organization effected by the event
+            plain text. a description of the event
             </summary>
         </member>
         <member name="P:Contensive.Models.Db.ActivityLogModel.visitId">
             <summary>
-            The visit session in which the event occured
+            For Tracking only. The visit session in which the event occured
             </summary>
         </member>
         <member name="P:Contensive.Models.Db.ActivityLogModel.visitorId">
             <summary>
-            the visitor in effect when the event occured
+            tracking. the visitor in effect when the event occured
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.ActivityLogModel.scheduledStaffId">
+            <summary>
+            for meetings, this is the person in the staff group who is to meet. 
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.ActivityLogModel.dateScheduled">
+            <summary>
+            If this activity is a future scheduled event, this is the start of the event
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.ActivityLogModel.dateCompleted">
+            <summary>
+            If this activity is a scheduled event, this is when the activity was marked completed.
+            Not necessarily the exact start or end time of the event.
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.ActivityLogModel.dateCanceled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.ActivityLogModel.duration">
+            <summary>
+            If this activity is a future scheduled event, this is the duration of the event in minutes
             </summary>
         </member>
         <member name="T:Contensive.Models.Db.AddonCategoryModel">
@@ -236,6 +262,13 @@
             <param name="cp"></param>
             <param name="recordName"></param>
             <returns></returns>
+        </member>
+        <member name="M:Contensive.Models.Db.AddonModel.setRunNow(Contensive.BaseClasses.CPBaseClass,System.String)">
+            <summary>
+            set an addon execute in the next few seconds
+            </summary>
+            <param name="cp"></param>
+            <param name="addonGuid"></param>
         </member>
         <member name="P:Contensive.Models.Db.AddonPageRuleModel.tableMetadata">
             <summary>
@@ -1120,11 +1153,11 @@
         </member>
         <member name="M:Contensive.Models.Db.DbBaseModel.deleteRows``1(Contensive.BaseClasses.CPBaseClass,System.String)">
             <summary>
-            Delete a selection of records
+            Delete a selection of records. sqlCriteria is required and cannot be blank
             </summary>
             <typeparam name="T"></typeparam>
             <param name="cp"></param>
-            <param name="sqlCriteria"></param>
+            <param name="sqlCriteria">The sql delete statement where criteria. Cannot be blank.</param>
         </member>
         <member name="M:Contensive.Models.Db.DbBaseModel.containsField``1(System.String)">
             <summary>
@@ -1335,10 +1368,14 @@
             the default code to execute for this domain
             </summary>
         </member>
-        <member name="P:Contensive.Models.Db.DomainModel.allowCORS">
+        <member name="M:Contensive.Models.Db.DomainModel.getWildcardDomain(Contensive.BaseClasses.CPBaseClass)">
             <summary>
-            if true, add the default CORS headers
+            Return (do not save) a domain record with name = '*' that can be used when no domain is available.
+            This domain will be used when no other matching domain is found
             </summary>
+            <param name="cp"></param>
+            <param name="requestDomain"></param>
+            <returns></returns>
         </member>
         <member name="P:Contensive.Models.Db.DownloadModel.tableMetadata">
             <summary>
@@ -1635,6 +1672,63 @@
             </summary>
         </member>
         <member name="P:Contensive.Models.Db.GroupRuleModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageGroupRuleModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
+        <member name="T:Contensive.Models.Db.GroupTextMessageModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageModel.body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageModel.testMemberID">
+            <summary>
+            The person who tests it, and receives the confirmation after a send
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageModel.submitted">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageModel.sent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageModel.lastSendTestDate">
+            <summary>
+            The date and time of the last test. Used to detect if the message has been tested
+            </summary>
+        </member>
+        <member name="M:Contensive.Models.Db.GroupTextMessageModel.setSubmitted(Contensive.BaseClasses.CPBaseClass,System.Int32)">
+            <summary>
+            Set a text message submitted
+            </summary>
+            <param name="cp"></param>
+            <param name="recordId"></param>
+        </member>
+        <member name="M:Contensive.Models.Db.GroupTextMessageModel.getGroupTextMessageList(Contensive.BaseClasses.CPBaseClass)">
+            <summary>
+            Return a list of group text messages that need to be sent
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.GroupTextMessageTopicRuleModel.tableMetadata">
             <summary>
             table definition
             </summary>
@@ -1941,6 +2035,11 @@
             if true, email can be sent to the user
             </summary>
         </member>
+        <member name="P:Contensive.Models.Db.PersonModel.blockTextMessage">
+            <summary>
+            if true, text messages can be sent to the person
+            </summary>
+        </member>
         <member name="P:Contensive.Models.Db.PersonModel.allowToolsPanel">
             <summary>
             enable/disable tool panel
@@ -1951,6 +2050,31 @@
             if true, the user allows auto login. It must be enabled on the site as well.
             </summary>
         </member>
+        <member name="P:Contensive.Models.Db.PersonModel.cellPhone">
+            <summary>
+            contact cell-phone, moved here from ecommerce to support SMS interface
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.PersonModel.phone">
+            <summary>
+            content alt-phone, previous phone
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.PersonModel.title">
+            <summary>
+            optional. like CEO or President
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.PersonModel.prefix">
+            <summary>
+            Optional, like Mr, or Ms
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.PersonModel.suffix">
+            <summary>
+            optional, like Jr, or Sr
+            </summary>
+        </member>
         <member name="M:Contensive.Models.Db.PersonModel.createListFromGroupNameList(Contensive.BaseClasses.CPBaseClass,System.Collections.Generic.List{System.String},System.Boolean)">
             <summary>
             return a list of people in a any one of a list of groups. If requireBuldEmail true, the list only includes those with allowBulkEmail.
@@ -1958,6 +2082,15 @@
             <param name="cp"></param>
             <param name="groupNameList"></param>
             <param name="requireBulkEmail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.Models.Db.PersonModel.createListFromGroupSql(Contensive.BaseClasses.CPBaseClass,System.String,System.Boolean)">
+            <summary>
+            return a list of people that match the group criteria. Called from createListFromIdList and createListFromNameList
+            </summary>
+            <param name="cp"></param>
+            <param name="sqlGroups">required. formatted as '(a=1)and(b=2)' </param>
+            <param name="requireBulkEmail">if true, only people with allow group email are included</param>
             <returns></returns>
         </member>
         <member name="M:Contensive.Models.Db.PersonModel.getDisplayName">
@@ -2101,6 +2234,51 @@
             
             </summary>
         </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageGroupRuleModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
+        <member name="T:Contensive.Models.Db.SystemTextMessageModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageModel.body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageModel.testMemberId">
+            <summary>
+            The person who tests it, and receives the confirmation after a send
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageModel.scheduleDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageModel.expireDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageModel.lastSendTestDate">
+            <summary>
+            The date and time of the last test. Used to detect if the message has been tested
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.SystemTextMessageTopicRuleModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
         <member name="P:Contensive.Models.Db.TableModel.tableMetadata">
             <summary>
             table definition
@@ -2161,6 +2339,17 @@
         <member name="P:Contensive.Models.Db.TemplateDomainRuleModel.tableMetadata">
             <summary>
             table definition
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.TextMessageQueueModel.tableMetadata">
+            <summary>
+            table definition
+            </summary>
+        </member>
+        <member name="P:Contensive.Models.Db.TextMessageQueueModel.sendSerialNumber">
+            <summary>
+            assigned during send. The sending process sets this then selects it back to gaurantee the same text isnt sent twice.
+            the dateModified is also set and the serial number expires after 1 minute
             </summary>
         </member>
         <member name="P:Contensive.Models.Db.TopicHabitModel.tableMetadata">

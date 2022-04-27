@@ -24,12 +24,45 @@ DesignBlockBase
 </member>
 <member name="M:Contensive.DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(Contensive.BaseClasses.CPBaseClass,System.String,Contensive.DesignBlockBase.Models.Db.SettingsBaseModel,System.String)">
  <summary>
- Wrap content in the standard Design Block edit wrapper
+ Wrap content in the standard Design Block edit wrapper 
  </summary>
  <param name="cp"></param>
  <param name="innerHtml"></param>
  <param name="settings"></param>
  <param name="contentName"></param>
+ <returns></returns>
+</member>
+<member name="M:Contensive.DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(Contensive.BaseClasses.CPBaseClass,System.String,Contensive.DesignBlockBase.Models.Db.SettingsBaseModel,System.String,System.String)">
+ <summary>
+ Wrap content in the standard Design Block edit wrapper with a custom edit button
+ </summary>
+ <param name="cp"></param>
+ <param name="innerHtml"></param>
+ <param name="settings"></param>
+ <param name="contentName"></param>
+ <returns></returns>
+</member>
+<member name="M:Contensive.DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(Contensive.BaseClasses.CPBaseClass,System.String,Contensive.DesignBlockBase.Models.Db.SettingsBaseModel,System.String,System.Object)">
+ <summary>
+ Wrap content in the standard Design Block edit wrapper. Include the debug view model button.
+ </summary>
+ <param name="cp"></param>
+ <param name="innerHtml"></param>
+ <param name="settings"></param>
+ <param name="contentName"></param>
+ <param name="viewModel"></param>
+ <returns></returns>
+</member>
+<member name="M:Contensive.DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(Contensive.BaseClasses.CPBaseClass,System.String,Contensive.DesignBlockBase.Models.Db.SettingsBaseModel,System.String,System.Object,System.String)">
+ <summary>
+ Wrap content in the standard Design Block edit wrapper. Include the debug view model button and a custom edit button.
+ </summary>
+ <param name="cp"></param>
+ <param name="innerHtml"></param>
+ <param name="settings"></param>
+ <param name="contentName"></param>
+ <param name="viewModel"></param>
+ <param name="customEditCaption"></param>
  <returns></returns>
 </member>
 <member name="M:Contensive.DesignBlockBase.Controllers.DesignBlockController.getSettingsGuid(Contensive.BaseClasses.CPBaseClass,System.String,System.String@)">
@@ -128,7 +161,7 @@ table definition
  <summary>
  convert string into a style "background-image: url(backgroundImage)
  </summary>
- <param name="backgroundImage"></param>
+ <param name="backgroundImagePathFilename"></param>
  <returns></returns>
 </member>
 </members>
