@@ -28,19 +28,17 @@ namespace Contensive.Addons.Menuing.Views {
                 // -- translate the Db model to a view model and mustache it into the layout
                 var viewModel = NavbarNavModel.create(cp, settings);
                 if (viewModel == null) { throw new ApplicationException("Could not create design block view model."); }
-                string layout = cp.Layout.GetLayout(settings.layoutId);
-                if (string.IsNullOrEmpty(layout)) {
+                //
+                // -- if layoutid is valid (returns non-empty html), use it. else
+                string layoutHtml = cp.Layout.GetLayout(settings.layoutId);
+                if (string.IsNullOrEmpty(layoutHtml)) {
                     //
-                    // -- if layout is not valid, create a copy of the default layout
-                    layout = cp.Layout.GetLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
-                    var layoutrecord = Contensive.Models.Db.DbBaseModel.addDefault<Contensive.Models.Db.LayoutModel>(cp);
-                    layoutrecord.name = "Instance " + settings.id + " of " + Constants.nameNavbarNavULDefaultLayout;
-                    layoutrecord.layout.content = layout;
-                    layoutrecord.save(cp);
-                    settings.layoutId = layoutrecord.id;
+                    // -- if layout is not valid, create the layout, then set this menu to the default layout (not a copy of it, designer can reasign if they understand)
+                    layoutHtml = cp.Layout.GetLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
+                    settings.layoutId = cp.Content.GetRecordID(Contensive.Models.Db.LayoutModel.tableMetadata.contentName, Constants.guidNavbarNavULDefaultLayout);
                     settings.save(cp);
                 }
-                result = cp.Mustache.Render(layout, viewModel);
+                result = cp.Mustache.Render(layoutHtml, viewModel);
                 // 
                 // -- if editing enabled, add the link and wrapperwrapper
                 return DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(cp, result, settings, "Menus",viewModel);
