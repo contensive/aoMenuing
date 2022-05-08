@@ -80,7 +80,6 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             string topItemName = (!string.IsNullOrWhiteSpace(rootPage.menuHeadline)) ? rootPage.menuHeadline : (!string.IsNullOrWhiteSpace(rootPage.name)) ? rootPage.name : "Page" + rootPage.id.ToString();
                             var topListItem = new NavbarNavTopListItemModel {
                                 classTopItem = menu.classTopItem.Replace("nav-item", "") + (string.IsNullOrEmpty(rootPage.menuClass) ? "" : " " + rootPage.menuClass),
-                                classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                                 classTopItemAnchor = menu.classTopAnchor,
                                 topItemPageId = rootPage.id,
                                 topItemHref = !string.IsNullOrEmpty(rootPage.link) ? rootPage.link : cp.Content.GetPageLink(rootPage.id),
@@ -88,6 +87,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 classItemDraggable = (result.isEditing ? "ccEditWrapper" : ""),
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
                                 childList = new List<ChildListItemModel>()
+                                //set after cache - classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                             };
                             if (menu.depth == 2) {
                                 List<Models.DbModels.PageContentModel> pageChildList = Contensive.Models.Db.DbBaseModel.createList<PageContentModel>(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
@@ -144,6 +144,13 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             cp.Cache.CreateTableDependencyKey(MenuPageRuleModel.tableMetadata.tableNameLower)};
                         cp.Cache.Store(cacheKey, result, DateTime.Now.AddHours(1), dependentKeyList);
                     }
+                }
+                //
+                // -- set the top list active item (not included in cache)
+                foreach (NavbarNavTopListItemModel topListItem in result.topList) {
+                    topListItem.classTopItemActive = "";
+                    if (topListItem.topItemPageId != cp.Doc.PageId) { continue; }
+                    topListItem.classTopItemActive = "active";
                 }
                 //
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");

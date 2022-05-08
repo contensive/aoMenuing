@@ -2,26 +2,26 @@
 <ul id="menu{{menuId}}" class="navbar-nav mr-auto">
 	{{#topList}}
 	{{#hasChildItems}}
-	<li class="nav-item dropdown {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
-		<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<li class="nav-item dropdown text-nowrap {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
+		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			{{topItemName}}
 			{{#isEditing}}
-			<div class="px-1 float-end float-right"><i title="drag and drop" class="fas fa-grip-horizontal"></i></div>
+			<span class="px-1"><i title="drag and drop" class="fas fa-grip-horizontal"></i></span>
 			{{/isEditing}}
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
 			{{#childList}}
-			<a class="dropdown-item" href="{{childItemHref}}">{{childItemName}}</a>
+			<a class="dropdown-item text-nowrap" href="{{childItemHref}}">{{childItemName}}</a>
 			{{/childList}}
 		</div>
 	</li>
 	{{/hasChildItems}}
 	{{^hasChildItems}}
 	<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
-		<a class="nav-link {{classTopItemAnchor}}" href="{{topItemHref}}">
+		<a class="nav-link text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}">
 			{{topItemName}}
 			{{#isEditing}}
-			<div class="px-1 float-end float-right"><i title="drag and drop" class="fas fa-grip-horizontal"></i></div>
+			<span class="px-1"><i title="drag and drop" class="fas fa-grip-horizontal"></i></span>
 			{{/isEditing}}
 		</a>
 	</li>

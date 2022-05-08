@@ -34,7 +34,7 @@ namespace Contensive.Addons.Menuing.Views {
                     // -- if layout is not valid, create a copy of the default layout
                     layout = cp.Layout.GetLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
                     var layoutrecord = Contensive.Models.Db.DbBaseModel.addDefault<Contensive.Models.Db.LayoutModel>(cp);
-                    layoutrecord.name = "Menu " + settings.id + ", Copy of " + Constants.nameNavbarNavULDefaultLayout;
+                    layoutrecord.name = "Instance " + settings.id + " of " + Constants.nameNavbarNavULDefaultLayout;
                     layoutrecord.layout.content = layout;
                     layoutrecord.save(cp);
                     settings.layoutId = layoutrecord.id;

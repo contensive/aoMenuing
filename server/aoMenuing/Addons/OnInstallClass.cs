@@ -3,6 +3,7 @@ using Contensive.Addons.Menuing.Controllers;
 using Contensive.Addons.Menuing.Models.DbModels;
 using Contensive.Addons.Menuing.Models.ViewModels;
 using Contensive.BaseClasses;
+using Contensive.Models.Db;
 using System;
 
 namespace Contensive.Addons.Menuing.Views {
@@ -15,6 +16,10 @@ namespace Contensive.Addons.Menuing.Views {
         //
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
+                //
+                // -- upgrade the installed layout
+                cp.Db.ExecuteNonQuery("delete from cclayouts where ccguid=" + cp.Db.EncodeSQLText(Constants.guidNavbarNavULDefaultLayout));
+                cp.Layout.GetLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
                 // 
                 // -- some features of mening content moved from base collection to menuing collection, to deprecate
                 int menuingContentId = cp.Content.GetID("menuing");
