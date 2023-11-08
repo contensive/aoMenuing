@@ -12,11 +12,17 @@ namespace Contensive.Addons.Menuing.Views {
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
                 if (!cp.User.IsAdmin) { return string.Empty; }
+                //
+                // -- split comma list
                 List<string> argList = cp.Doc.GetText("sortlist").Split(',').ToList();
                 if (argList.Count == 0) { return string.Empty; }
+                //
+                // -- first element of the list is the menuId prefixed with either 'menu' or 'mavbarNav'
                 int menuId = cp.Utils.EncodeInteger(argList.First().Replace("menu", ""));
+                if (menuId == 0) { menuId = cp.Utils.EncodeInteger(argList.First().Replace("navbarNav", "")); }
                 if (menuId == 0) { return string.Empty; }
                 //
+                // -- iterate through menu-page-rules and set sort-order to the order they appear here
                 cp.Db.ExecuteNonQuery("update ccmenupagerules set sortorder=null where menuId=" + menuId);
                 int ptr = 0;
                 foreach (var arg in argList.Skip(1)) {
@@ -26,6 +32,8 @@ namespace Contensive.Addons.Menuing.Views {
                         ptr++;
                     }
                 }
+                //
+                // -- remove any deleted menu items
                 cp.Db.ExecuteNonQuery("delete from ccmenupagerules where (sortorder=null)and(menuId=" + menuId + ")");
                 //
                 // -- clear cache
