@@ -5,7 +5,6 @@
 	<Addon name="Dynamic Menu" guid="{DB1821B3-F6E4-4766-A46E-48CA6C9E4C6E}" type="Add-on">
 		<Copy></Copy>
 		<CopyText><![CDATA[<AC type="DynamicMenu" Name="Dynamic Menu" QueryString="Menu=$menu name$&amp;MenuNew=$Create New Menu$">]]></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass></DotNetClass>
 		<ArgumentList><![CDATA[Menu Name=Default[list(Dynamic Menus)]
 Create New Menu]]></ArgumentList>
@@ -965,7 +964,6 @@ document.addEventListener("mousedown", amPageClick, true);
 	<Addon name="Menu Javascript" guid="{EC7AEE44-B1AB-4646-A6CE-BCE789F733DB}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>

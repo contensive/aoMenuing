@@ -5,7 +5,6 @@
 	<Addon name="Bootstrap Nav 40" guid="{472f4a83-4c03-48c2-9852-b65e443c160c}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.MenuPages.Views.BootstrapNav40Class]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
@@ -80,7 +79,6 @@
 	<Addon name="Menu Pages" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.MenuPages.Views.MenuPagesClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>

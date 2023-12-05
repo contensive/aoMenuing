@@ -5,7 +5,6 @@
 	<Addon name="Menu" guid="{9A433022-9E81-4498-892C-606B1C3F7C5C}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Menuing.Views.pageMenuClass]]></DotNetClass>
 		<ArgumentList><![CDATA[Menu=[listid(Menus)]]]></ArgumentList>
 		<AsAjax>No</AsAjax>

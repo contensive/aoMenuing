@@ -11,7 +11,6 @@
 		<instanceSettingPrimaryContentId><![CDATA[Menus]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.NavbarNavULAddon]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
@@ -123,7 +122,6 @@ $(function () {
 		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyNavbarULClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
@@ -228,7 +226,6 @@ $(function () {
 		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyNavbarLiListClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
@@ -333,7 +330,6 @@ $(function () {
 		<instanceSettingPrimaryContentId><![CDATA[]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyNavbarNavClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
@@ -438,7 +434,6 @@ $(function () {
 		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID></ActiveXProgramID>
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.LegacyMenuPagesClass]]></DotNetClass>
 		<ArgumentList></ArgumentList>
 		<AsAjax>No</AsAjax>
