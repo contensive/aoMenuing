@@ -31,7 +31,7 @@ namespace Contensive.Addons.Menuing.Views {
                 result = cp.Mustache.Render(Properties.Resources.NavbarLiListLayout, viewModel);
                 //
                 // -- if editing enabled, add the link and wrapperwrapper
-                return DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(cp, result, settings, "Menus", viewModel, "Edit Menu Block");
+                return DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(cp, result, settings, "Menus", viewModel, "Edit Menu Block", false);
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;

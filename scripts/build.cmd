@@ -9,12 +9,13 @@ rem
 rem Setup deployment folder
 rem
 
-set majorVersion=5
-set minorVersion=1
+rem -- Release or Debug
+set DebugRelease=Debug
+
 set collectionName=aoMenuing
 set solutionName=aoMenuing.sln
 set collectionPath=..\collections\aoMenuing\
-set binPath=..\server\aoMenuing\bin\debug\
+set binPath=..\server\aoMenuing\bin\%DebugRelease%\
 set msbuildLocation=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\
 set deploymentFolderRoot=C:\deployments\aoMenuing\Dev\
 
@@ -58,7 +59,7 @@ rem
 echo build 
 rem
 cd ..\server
-"%msbuildLocation%msbuild.exe" %solutionName%
+"%msbuildLocation%msbuild.exe" %solutionName% /property:Configuration=%DebugRelease%
 if errorlevel 1 (
    echo failure building
    pause

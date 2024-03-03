@@ -22,12 +22,10 @@ namespace Contensive.Addons.Menuing.Views {
                 if (string.IsNullOrEmpty(instanceGuid)) { return result; }
                 // 
                 // -- locate or create a data record for this guid
-                var settings = MenuModel.createOrAddDefault(cp, instanceGuid);
-                if (settings == null) { throw new ApplicationException("Could not create design block data record."); }
+                var settings = MenuModel.createOrAddDefault(cp, instanceGuid) ?? throw new ApplicationException("Could not create design block data record.");
                 // 
                 // -- translate the Db model to a view model and mustache it into the layout
-                var viewModel = NavbarNavModel.create(cp, settings);
-                if (viewModel == null) { throw new ApplicationException("Could not create design block view model."); }
+                var viewModel = NavbarNavModel.create(cp, settings) ?? throw new ApplicationException("Could not create design block view model.");
                 //
                 // -- if layoutid is valid (returns non-empty html), use it. else
                 string layoutHtml = cp.Layout.GetLayout(settings.layoutId);
@@ -41,7 +39,7 @@ namespace Contensive.Addons.Menuing.Views {
                 result = cp.Mustache.Render(layoutHtml, viewModel);
                 // 
                 // -- if editing enabled, add the link and wrapperwrapper
-                return DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(cp, result, settings, "Menus",viewModel);
+                return DesignBlockBase.Controllers.DesignBlockController.addDesignBlockEditWrapper(cp, result, settings, "Menus",viewModel, "", false);
             } catch (Exception ex) {
                 cp.Site.ErrorReport(ex);
                 throw;

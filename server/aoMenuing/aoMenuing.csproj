@@ -69,14 +69,14 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ContensiveDbModels, Version=4.1.2.0, Culture=neutral, PublicKeyToken=c014b235a9c6bb22, processorArchitecture=MSIL">
-      <HintPath>..\packages\Contensive.DbModels.22.4.27.5\lib\net472\ContensiveDbModels.dll</HintPath>
+    <Reference Include="ContensiveDbModels, Version=20.0.0.0, Culture=neutral, PublicKeyToken=c014b235a9c6bb22, processorArchitecture=MSIL">
+      <HintPath>..\packages\Contensive.DbModels.24.2.27.4\lib\net472\ContensiveDbModels.dll</HintPath>
     </Reference>
     <Reference Include="CPBase, Version=4.1.2.0, Culture=neutral, PublicKeyToken=10b3c53389b845fb, processorArchitecture=MSIL">
-      <HintPath>..\packages\Contensive.CPBaseClass.22.4.27.5\lib\net472\CPBase.dll</HintPath>
+      <HintPath>..\packages\Contensive.CPBaseClass.24.2.27.4\lib\net472\CPBase.dll</HintPath>
     </Reference>
-    <Reference Include="DesignBlockBase, Version=22.4.27.7, Culture=neutral, PublicKeyToken=81704b61c3d18a5b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Contensive.DesignBlockBase.22.4.27.7\lib\net472\DesignBlockBase.dll</HintPath>
+    <Reference Include="DesignBlockBase, Version=24.2.28.3, Culture=neutral, PublicKeyToken=81704b61c3d18a5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Contensive.DesignBlockBase.24.2.28.3\lib\net472\DesignBlockBase.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />

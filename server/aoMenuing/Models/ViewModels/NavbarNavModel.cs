@@ -66,7 +66,15 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                     List<PageContentModel> MenuPageList = PageContentModel.getMenuRootList(cp, menu.id);
                     //
                     cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList.count [" + MenuPageList.Count + "]");
-                    //
+
+                    if (result.isEditing) {
+                        result.topList.Add(new NavbarNavTopListItemModel {
+                            topItemName = "Edit-Menu",
+                            topItemHref = $"{cp.GetAppConfig().adminRoute}?aa=0&cid={cp.Content.GetID("menus")}&tx=&asf=1&af=4&id={menu.id}",
+                            classTopItemAnchor = menu.classTopAnchor,
+                            classItemDraggable = ""
+                        });
+                    }                    //
                     // -- create toplists
                     foreach (PageContentModel rootPage in MenuPageList) {
                         bool blockRootPage = rootPage.blockContent & !cp.User.IsAdmin && !menu.includeBlockedFlyoutPages;

@@ -124,6 +124,7 @@ namespace Contensive.Addons.Menuing.Views {
                         }
                     }
                     if (cp.User.IsEditing("")) {
+                        topItemList.Append(cp.Html.li(string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", $"?aa=0&cid={cp.Content.GetID("menus")}&tx=&asf=1&af=4&id={menu.id}", "Edit", menu.classTopAnchor), "", menu.classTopItem));
                         topItemList.Append(cp.Html.li(string.Format("<a class=\"{2}\" title=\"{1}\" href=\"{0}\">{1}</a>", "/AddMenuPage?menuId=" + menu.id, "Add-Page", menu.classTopAnchor), "", menu.classTopItem));
                     }
                     hint = "70";

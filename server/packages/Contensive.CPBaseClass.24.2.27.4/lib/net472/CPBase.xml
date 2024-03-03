@@ -4,304 +4,13 @@
         <name>CPBase</name>
     </assembly>
     <members>
-        <member name="T:Contensive.BaseClasses.AddonBaseClass">
-             <summary>
-             The base class for all Contensive add-ons.
-             </summary>
-             <remarks>
-             This is a sample addon created from the AddonBaseClass. To use this add-on, Start a new project and reference CPBase in your Contensive installation.
-             Paste this code into a HelloWorld Class and build the DLL.
-             Copy the DLL into the Contensive\Addon folder.
-             Create a new collection on your site and name it Samples. (Manage Add-ons >> Advanced >> click on collections )
-             Create a new Addon on your site, name it Hello World, set the Samples collection and set the Dot Net Class name to Contensive.Addons.HelloWorldClass
-             Open the Navigator to Manage Add-ons >> Samples >> and click on Hello World
-             
-            <code >
-             Namespace Contensive.Addons
-             '
-             'Hello World
-             '
-             Public Class HelloWorldClass
-                 Inherits BaseClasses.AddonBaseClass
-                 Public Overrides Function Execute(ByVal CP As Contensive.BaseClasses.CPBaseClass) As Object
-                     Return "Hello World 2"
-                 End Function
-            End Class
-            End Namespace
-              </code>
-             </remarks>
-        </member>
         <member name="M:Contensive.BaseClasses.AddonBaseClass.Execute(Contensive.BaseClasses.CPBaseClass)">
             <summary>
-            The only exposed method of an addon. Performs the functions for this part of the the add-on and returns an object, typically a string. For add-ons executing on a web page or as a remove method, the returned string is added to the page where the addon is placed. For addons run as processes, the returned string is logged in the process log.
+            The only exposed method of an addon. The method performs the required work and returns an object, typically a string. For addons executed in web page content, the returned string is added to the page where the addon is placed. When run as a remote method, the result is returned from the endpoint. For addons run as processes, the returned string is logged in the process log.
             </summary>
             <param name="CP">An instance of the CPBaseClass with a valid CP.MyAddon object pointing to the current addon parameters (values for this addon in the database)</param>
             <returns></returns>
             <remarks></remarks>
-        </member>
-        <member name="T:Contensive.BaseClasses.AdminUI.ListReportBaseClass">
-            <summary>
-            A tabular list of data rows with filters on the left.
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.IsOuterContainer">
-            <summary>
-            Set true if this tool is requested directly and not embedded in another AdminUI form
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.reportRowLimit">
-            <summary>
-            Add padding around the body
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.IncludeBodyPadding">
-            <summary>
-            Add padding around the body
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.IncludeBodyColor">
-            <summary>
-            Add background color to the body
-            </summary>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.GetHtml(Contensive.BaseClasses.CPBaseClass)">
-            <summary>
-            Method retrieves the rendered html. Call this method after populating all object elements
-            </summary>
-            <param name="cp"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.HtmlLeftOfTable">
-            <summary>
-            use this area for optional filters
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.HtmlBeforeTable">
-            <summary>
-            optional html before the table
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.HtmlAfterTable">
-            <summary>
-            optional html after the table
-            </summary>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormHidden(System.String,System.String)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="Name"></param>
-            <param name="Value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormHidden(System.String,System.Int32)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormHidden(System.String,System.Double)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormHidden(System.String,System.DateTime)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormHidden(System.String,System.Boolean)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormButton(System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormButton(System.String,System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-            <param name="buttonName"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormButton(System.String,System.String,System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-            <param name="buttonName"></param>
-            <param name="buttonId"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ListReportBaseClass.AddFormButton(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-            <param name="buttonName"></param>
-            <param name="buttonId"></param>
-            <param name="buttonClass"></param>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.FormActionQueryString">
-            <summary>
-            This report will be wrapped in a form tag and the action should send traffic back to the same page. If empty, the form uses cp.Doc.RefreshQueryString
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ListReportBaseClass.FormId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Contensive.BaseClasses.AdminUI.ToolFormBaseClass">
-            <summary>
-            Create a Tool Form. Tool Forms how rows of input elements
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.IncludeBodyPadding">
-            <summary>
-            Add padding around the body
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.IncludeBodyColor">
-            <summary>
-            Add background color to the body
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.IsOuterContainer">
-            <summary>
-            Set true if this tool is requested directly and not embedded in another AdminUI form
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.Title">
-            <summary>
-            The title of the form
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.SuccessMessage">
-            <summary>
-            When an action is requested, use this position to inform success
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.InfoMessage">
-            <summary>
-            When an action is requested, use this position to inform info
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.WarningMessage">
-            <summary>
-            When an action is requested, use this position to inform warn
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.FailMessage">
-            <summary>
-            When an action is requested, use this position to inform error
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.Description">
-            <summary>
-            Description appears right below title
-            </summary>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.GetHtml(Contensive.BaseClasses.CPBaseClass)">
-            <summary>
-            Method retrieves the rendered html. Call this method after populating all object elements
-            </summary>
-            <param name="cp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormHidden(System.String,System.String)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="Name"></param>
-            <param name="Value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormHidden(System.String,System.Int32)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormHidden(System.String,System.Double)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormHidden(System.String,System.DateTime)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormHidden(System.String,System.Boolean)">
-            <summary>
-            Add hidden form input
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormButton(System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormButton(System.String,System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-            <param name="buttonName"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormButton(System.String,System.String,System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-            <param name="buttonName"></param>
-            <param name="buttonId"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.AddFormButton(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add form button
-            </summary>
-            <param name="buttonValue"></param>
-            <param name="buttonName"></param>
-            <param name="buttonId"></param>
-            <param name="buttonClass"></param>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.FormActionQueryString">
-            <summary>
-            This report will be wrapped in a form tag and the action should send traffic back to the same page. If empty, the form uses cp.Doc.RefreshQueryString
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.FormId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.Body">
-            <summary>
-            The main html of the tool form
-            </summary>
-        </member>
-        <member name="P:Contensive.BaseClasses.AdminUI.ToolFormBaseClass.Footer">
-            <summary>
-            html block below the body
-            </summary>
         </member>
         <member name="T:Contensive.BaseClasses.CPAddonBaseClass">
             <summary>
@@ -1733,6 +1442,11 @@
             read and write messages to a standard message queue
             </summary>
         </member>
+        <member name="P:Contensive.BaseClasses.CPBaseClass.MQTT">
+            <summary>
+            publish to an mqtt broker
+            </summary>
+        </member>
         <member name="P:Contensive.BaseClasses.CPBaseClass.Mustache">
             <summary>
             Manage mustache compatible template language operations
@@ -1781,6 +1495,11 @@
             read and write files in a temporary location.
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPBaseClass.Secrets">
+            <summary>
+            exposes base credentials and methods to get/set credentials
+            </summary>
         </member>
         <member name="P:Contensive.BaseClasses.CPBaseClass.SMS">
             <summary>
@@ -2606,7 +2325,8 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetEditLink(System.String,System.String,System.Boolean,System.String,System.Boolean)">
             <summary>
-            Get the system edit link
+            Use GetEditUrl for simple anchor tag href to the edit page for this record.
+            Get the system edit link, including the design graphic
             </summary>
             <param name="contentName"></param>
             <param name="recordId"></param>
@@ -2694,6 +2414,38 @@
             <param name="contentId"></param>
             <param name="recordGuid"></param>
             <param name="customCaption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetEditUrl(System.String,System.Int32)">
+            <summary>
+            Get the url to the admin site edit page
+            </summary>
+            <param name="contentName"></param>
+            <param name="recordId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetEditUrl(System.String,System.String)">
+            <summary>
+            Get the url to the admin site edit page
+            </summary>
+            <param name="contentName"></param>
+            <param name="recordGuid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetEditUrl(System.Int32,System.Int32)">
+            <summary>
+            Get the url to the admin site edit page
+            </summary>
+            <param name="contentId"></param>
+            <param name="recordId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetEditUrl(System.Int32,System.String)">
+            <summary>
+            Get the url to the admin site edit page
+            </summary>
+            <param name="contentId"></param>
+            <param name="recordGuid"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetEditWrapper(System.String)">
@@ -2786,16 +2538,6 @@
             <param name="PageID"></param>
             <param name="QueryStringSuffix">In the case where an add-on is on the page, there may be many unique documents possible from the one pageid. Each possible variation is determined by values in the querystring added by the cpcore.addon. These name=value pairs in Querystring format are used to identify additional link aliases.</param>
             <param name="DefaultLink">If no link alias is found, this value is returned.</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetPageLink(System.Int32,System.String,System.Boolean)">
-            <summary>
-            Return the appropriate link for a page.
-            </summary>
-            <param name="PageID"></param>
-            <param name="QueryStringSuffix">If a link alias exists, this is used to lookup the correct alias. See GetLinkAliasByPageID for details. In other cases, this is added to the querystring.</param>
-            <param name="AllowLinkAlias"></param>
             <returns></returns>
             <remarks></remarks>
         </member>
@@ -2954,6 +2696,16 @@
             </summary>
             <param name="tableName"></param>
             <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPContentBaseClass.GetPageLink(System.Int32,System.String,System.Boolean)">
+            <summary>
+            Return the appropriate link for a page.
+            </summary>
+            <param name="PageID"></param>
+            <param name="QueryStringSuffix">If a link alias exists, this is used to lookup the correct alias. See GetLinkAliasByPageID for details. In other cases, this is added to the querystring.</param>
+            <param name="AllowLinkAlias"></param>
+            <returns></returns>
+            <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPContentBaseClass.getLayout(System.String)">
             <summary>
@@ -4450,7 +4202,7 @@
             <param name="body"></param>
             <param name="sendImmediately"></param>
             <param name="bodyIsHTML"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
             <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.send(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
@@ -4490,7 +4242,7 @@
             <param name="toAddress"></param>
             <param name="fromAddress"></param>
             <param name="subject"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
             <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendForm(System.String,System.String,System.String)">
@@ -4506,7 +4258,7 @@
             Send a list of usernames and passwords to the account(s) that include the given email address. If false, the email could not be sent.
             </summary>
             <param name="userEmailAddress"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
             <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendPassword(System.String)">
@@ -4522,7 +4274,7 @@
             <param name="emailName"></param>
             <param name="additionalCopy"></param>
             <param name="additionalUserID"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
             <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.String,System.String,System.Int32)">
@@ -4553,7 +4305,7 @@
             <param name="emailId"></param>
             <param name="additionalCopy"></param>
             <param name="additionalUserID"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.Int32,System.String,System.Int32)">
             <summary>
@@ -4576,6 +4328,75 @@
             </summary>
             <param name="emailId"></param>
         </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.String,System.String,System.Int32,System.String@,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailName"></param>
+            <param name="additionalCopy"></param>
+            <param name="additionalUserID"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
+            <param name="sendImmediately"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailName"></param>
+            <param name="additionalCopy"></param>
+            <param name="additionalUserID"></param>
+            <param name="sendImmediately"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.String,System.String,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailName"></param>
+            <param name="additionalCopy"></param>
+            <param name="sendImmediately"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.String,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailName"></param>
+            <param name="sendImmediately"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.Int32,System.String,System.Int32,System.String@,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailId"></param>
+            <param name="additionalCopy"></param>
+            <param name="additionalUserID"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
+            <param name="sendImmediately"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.Int32,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailId"></param>
+            <param name="additionalCopy"></param>
+            <param name="additionalUserID"></param>
+            <param name="sendImmediately"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.Int32,System.String,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailId"></param>
+            <param name="additionalCopy"></param>
+            <param name="sendImmediately"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendSystem(System.Int32,System.Boolean)">
+            <summary>
+            Send a system email record. If the EmailIdOrName field contains a number, it is assumed first to be an Id. If false, the email could not be sent
+            </summary>
+            <param name="emailId"></param>
+            <param name="sendImmediately"></param>
+        </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendGroup(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String@)">
             <summary>
             Sends an email to everyone in a group. (legacy support: if groupName is a valid guid it is assumed to be)
@@ -4586,7 +4407,7 @@
             <param name="body"></param>
             <param name="sendImmediately"></param>
             <param name="bodyIsHTML"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
             <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendGroup(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
@@ -4629,7 +4450,7 @@
             <param name="body"></param>
             <param name="sendImmediately"></param>
             <param name="bodyIsHTML"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendGroup(System.Int32,System.String,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
@@ -4671,7 +4492,7 @@
             <param name="body"></param>
             <param name="sendImmediately"></param>
             <param name="bodyIsHTML"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendGroup(System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
@@ -4713,7 +4534,7 @@
             <param name="body"></param>
             <param name="sendImmediately"></param>
             <param name="bodyIsHTML"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendGroup(System.Collections.Generic.List{System.Int32},System.String,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
@@ -4755,7 +4576,7 @@
             <param name="body"></param>
             <param name="sendImmediately"></param>
             <param name="bodyIsHTML"></param>
-            <param name="userErrorMessage"></param>
+            <param name="adminErrorMessage">If not empty, this is an error message appropriate for an administrator, not a public user.</param>
             <remarks></remarks>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.sendUser(System.Int32,System.String,System.String,System.String,System.Boolean,System.Boolean)">
@@ -4790,14 +4611,16 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.validateEmail(System.String)">
             <summary>
-            Send an email a user.
+            validate an email address. 
+            Returns true if email is valid, false if invalid.
             </summary>
             <param name="toAddress"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPEmailBaseClass.validateUserEmail(System.Int32)">
             <summary>
-            Validate a user email
+            validate a user's email address. 
+            Returns true if the user has a valid email address, else returns false.
             </summary>
             <param name="toUserId"></param>
             <returns></returns>
@@ -5244,6 +5067,30 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="M:Contensive.BaseClasses.CPFileSystemBaseClass.IsValidPathFilename(System.String)">
+            <summary>
+            Returns true if filename is valid. 
+            Paths separated by / or \.
+            Simple pathFilenames for compatibility with DOS paths and files, Unix and AWS S3 buckets and keys.
+            Allows 0-9, a-z, A-Z, and "-._"
+            </summary>
+            <param name="pathFilename">
+            pathFilename is the path and filename that are used for all methods, and are relative to the filesystems (cdn,private,temp,www)
+            Path arguments start with a slash, ends with no slash
+            Paths are created with UNIX slash, but accept both slash, / or \
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPFileSystemBaseClass.EncodePathFilename(System.String)">
+            <summary>
+            Change a pathFilename by converting invalid characters to "_". Returns Unix path, but all methods use both Unix and Dos slash.
+            Simple pathFilenames for compatibility with DOS paths and files, Unix and AWS S3 buckets and keys.
+            See isValidPathFilename for description of invalid characters
+            </summary>
+            <param name="pathFilename">See IsValidPathFilename for details.
+            </param>
+            <returns></returns>
+        </member>
         <member name="T:Contensive.BaseClasses.CPGroupBaseClass">
             <summary>
             Methods and Properties for Groups
@@ -5264,7 +5111,7 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPGroupBaseClass.AddUser(System.Int32)">
             <summary>
-            Add the current user to a group.
+            Add the current user to a group. Use verifyGroup(guid,name) to get groupid
             </summary>
             <param name="groupId"></param>
         </member>
@@ -5362,6 +5209,36 @@
             </summary>
             <param name="groupId"></param>
             <param name="userId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPGroupBaseClass.verifyGroup(System.String,System.String)">
+            <summary>
+            Verify a group exists, create it if it does not. Return the id of the group.
+            </summary>
+            <param name="groupGuid"></param>
+            <param name="groupName"></param>
+            <returns>The id of the verified group</returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPGroupBaseClass.verifyGroup(System.String,System.String,System.String)">
+            <summary>
+            Verify a group exists, create it if it does not. Return the id of the group.
+            </summary>
+            <param name="groupGuid"></param>
+            <param name="groupName"></param>
+            <param name="groupCaption"></param>
+            <returns>The id of the verified group</returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPGroupBaseClass.exists(System.String)">
+            <summary>
+            Verify a group exists, create it if it does not
+            </summary>
+            <param name="groupGuid">The guid of the group to be found.</param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPGroupBaseClass.exists(System.String,System.Int32@)">
+            <summary>
+            Verify a group exists, create it if it does not
+            </summary>
+            <param name="groupGuid">The guid of the group to be found.</param>
+            <param name="groupId">If the group exists, the id is returned. if not found, 0 is returned,</param>
         </member>
         <member name="T:Contensive.BaseClasses.CPHtml5BaseClass.EditorContentType">
             <summary>
@@ -5563,24 +5440,97 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:Contensive.BaseClasses.CPImageBaseClass.GetBestFit(System.String,System.Int32,System.Int32,System.Collections.Generic.List{System.String})">
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.ResizeAndCropNoTypeChange(System.String,System.Int32,System.Int32,System.String@,System.Boolean@)">
             <summary>
-            Return an image resized and cropped to best fit the hole. 
+            Return an image resized so its smallest dimension fits the hole, and the other diminsion cropped.
             To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
             To access the file directly, use CP.CdnFiles.
+            The image is never scaled up. If the hole is larger than the image, the original is cropped returned.
+            The source imagePathFilename is expected to be in the CdnFiles filesystem. 
+            The new image is saved back to the same path.
+            
+            </summary>
+            <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
+            <param name="holeWidth">The width of the final image to be returned.</param>
+            <param name="holeHeight">The height of the final image to be returned.</param>
+            <param name="imageAltSizes">A list of image sizes already created. Save this string with the original image URL.</param>
+            <param name="isNewSize">If true, a new size was added and you must save the imageAltSize string back</param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.ResizeAndCropNoTypeChange(System.String,System.Int32,System.Int32)">
+            <summary>
+            Return an image resized so its smallest dimension fits the hole, and the other diminsion cropped.
+            To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
+            To access the file directly, use Cp.CdnFiles.
+            The image is never scaled up. If the hole is larger than the image, the original is cropped returned.
+            The source imagePathFilename is expected to be in the CdnFiles filesystem. 
+            The new image is saved back to the same path.  
+            </summary>
+            <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
+            <param name="holeWidth">The width of the final image to be returned.</param>
+            <param name="holeHeight">The height of the final image to be returned.</param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.ResizeAndCrop(System.String,System.Int32,System.Int32,System.String@,System.Boolean@)">
+            <summary>
+            Return an image in .webP format resized so its smallest dimension fits the hole, and the other diminsion cropped.
+            To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
+            To access the file directly, use Cp.CdnFiles.
             The image is never scaled up. If the hole is larger than the image, the original is returned.
             The source imagePathFilename is expected to be in the CdnFiles filesystem. 
-            New image is saved back to the same path.
+            New image is saved back to the same path.  
+            Use imageAltSizes to determine what sizes have been created. 
+            </summary>
+            <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
+            <param name="holeWidth">The width of the final image to be returned.</param>
+            <param name="holeHeight">The height of the final image to be returned.</param>
+            <param name="imageAltSizes">imageAltSizes is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. </param>
+            <param name="isNewSize">If true, a new size was added and you must save the imageAltSize string back</param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.ResizeAndCrop(System.String,System.Int32,System.Int32)">
+            <summary>
+            Return an image in .webP format resized so its smallest dimension fits the hole, and the other diminsion cropped.
+            To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
+            To access the file directly, use Cp.CdnFiles.
+            The image is never scaled up. If the hole is larger than the image, the original is returned.
+            The source imagePathFilename is expected to be in the CdnFiles filesystem. 
+            New image is saved back to the same path.  
+            </summary>
+            <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
+            <param name="holeWidth">The width of the final image to be returned.</param>
+            <param name="holeHeight">The height of the final image to be returned.</param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.GetResizeAndPad(System.String,System.Int32,System.Int32)">
+            <summary>
+            Return an image in .webP format resized so its largest dimension fits the hole, and the other diminsion padded transparent.
+            To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
+            To access the file directly, use Cp.CdnFiles.
+            The image is never scaled up. If the hole is larger than the image, the original is returned.
+            The source imagePathFilename is expected to be in the CdnFiles filesystem. 
+            New image is saved back to the same path.  
             imageAltSizeList is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. 
             </summary>
             <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
             <param name="holeWidth">The width of the final image to be returned.</param>
             <param name="holeHeight">The height of the final image to be returned.</param>
-            <param name="imageAltSizeList"></param>
         </member>
-        <member name="M:Contensive.BaseClasses.CPImageBaseClass.GetBestFit(System.String,System.Int32,System.Int32)">
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.GetResizeAndPad(System.String,System.Int32,System.Int32,System.String@,System.Boolean@)">
             <summary>
-            Return an image resized and cropped to best fit the hole. 
+            Return an image in .webP format resized so its largest dimension fits the hole, and the other diminsion padded transparent.
+            To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
+            To access the file directly, use Cp.CdnFiles.
+            The image is never scaled up. If the hole is larger than the image, the original is returned.
+            The source imagePathFilename is expected to be in the CdnFiles filesystem. 
+            New image is saved back to the same path.  
+            imageAltSizes is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. 
+            </summary>
+            <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
+            <param name="holeWidth">The width of the final image to be returned.</param>
+            <param name="holeHeight">The height of the final image to be returned.</param>
+            <param name="imageAltSizes">imageAltSizes is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. </param>
+            <param name="isNewSize">If true, a new size was added and you must save the imageAltSize string back</param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.ResizeAndPadNoTypeChange(System.String,System.Int32,System.Int32)">
+            <summary>
+            Return an image resized so its largest dimension fits the hole, and the other diminsion padded transparent.
             To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
             To access the file directly, use Cp.CdnFiles.
             The image is never scaled up. If the hole is larger than the image, the original is returned.
@@ -5591,33 +5541,21 @@
             <param name="holeWidth">The width of the final image to be returned.</param>
             <param name="holeHeight">The height of the final image to be returned.</param>
         </member>
-        <member name="M:Contensive.BaseClasses.CPImageBaseClass.GetBestFitWebP(System.String,System.Int32,System.Int32,System.Collections.Generic.List{System.String})">
+        <member name="M:Contensive.BaseClasses.CPImageBaseClass.ResizeAndPadNoTypeChange(System.String,System.Int32,System.Int32,System.String@,System.Boolean@)">
             <summary>
-            Return an image resized and cropped to best fit the hole, in .webP format.
+            Return an image resized so its largest dimension fits the hole, and the other diminsion padded transparent.
             To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
             To access the file directly, use Cp.CdnFiles.
             The image is never scaled up. If the hole is larger than the image, the original is returned.
             The source imagePathFilename is expected to be in the CdnFiles filesystem. 
             New image is saved back to the same path.  
-            imageAltSizeList is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. 
+            imageAltSizes is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. 
             </summary>
             <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
             <param name="holeWidth">The width of the final image to be returned.</param>
             <param name="holeHeight">The height of the final image to be returned.</param>
-            <param name="imageAltSizeList"></param>
-        </member>
-        <member name="M:Contensive.BaseClasses.CPImageBaseClass.GetBestFitWebP(System.String,System.Int32,System.Int32)">
-            <summary>
-            Return an image resized and cropped to best fit the hole, in .webP format. 
-            To use the returned pathFilename as a link, prefix it with CP.Http.CdnFilePathPrefixAbsolute.
-            To access the file directly, use Cp.CdnFiles.
-            The image is never scaled up. If the hole is larger than the image, the original is returned.
-            The source imagePathFilename is expected to be in the CdnFiles filesystem. 
-            New image is saved back to the same path.  
-            </summary>
-            <param name="imagePathFilename">The source image. The is expected to be in CdnFiles (accessible with CP.CdnFiles methods).</param>
-            <param name="holeWidth">The width of the final image to be returned.</param>
-            <param name="holeHeight">The height of the final image to be returned.</param>
+            <param name="imageAltSizes">imageAltSizes is a list of comma separated strings. the first string is the original filename. The rest are the sizes already created and expected to be in the cdn folder, in the format width + "x" + height. </param>
+            <param name="isNewSize">If true, a new size was added and you must save the imageAltSize string back</param>
         </member>
         <member name="T:Contensive.BaseClasses.CPJSONBaseClass">
             <summary>
@@ -5693,12 +5631,66 @@
             <param name="defaultLayoutCdnPathFilename"></param>
             <returns></returns>
         </member>
+        <member name="M:Contensive.BaseClasses.CPLayoutBaseClass.GetLayout(System.String,System.String,System.String,System.String)">
+            <summary>
+            returns a layout by Guid. 
+            If missing, the layout record is created with the default name and layouts
+            The default layout is used when platform5 is not appropriate (platform not set, set to 4, platform5 layout is blank)
+            The platform5 layout is used for platform5 (sites set to bootstrap 5 platform)
+            </summary>
+            <param name="layoutGuid"></param>
+            <param name="defaultLayoutName"></param>
+            <param name="defaultLayoutCdnPathFilename"></param>
+            <param name="platform5LayoutCdnPathFilename"></param>
+            <returns></returns>
+        </member>
         <member name="M:Contensive.BaseClasses.CPLayoutBaseClass.Transform(System.String)">
             <summary>
             Transform the input html using the data attribute based html transformations. These transformations 
             are typically used to convert a static html design
+            
+            data-mustache-section
+            data-mustache-inverted-section
+            data-body
+            data-layout
+            data-href
+            data-value
+            data-src
+            data-alt
+            data-addon
+            data-innertext
+            data-delete
+            data-mustache-value
+            data-mustache-variable
             </summary>
             <param name="sourceHtml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPLayoutBaseClass.processImportFile(System.String,Contensive.BaseClasses.CPLayoutBaseClass.ImporttypeEnum,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String}@)">
+            <summary>
+            Import a file and process the html. Save the result.
+            </summary>
+            <param name="htmlSourceTempPathFilename"></param>
+            <param name="importTypeId"></param>
+            <param name="layoutId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="pageTemplateId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="emailTemplateId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="emailId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="userMessageList">If there were any processing errors caused by the data, return them here. These can be presented to the user.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPLayoutBaseClass.processImportFile(System.String,Contensive.BaseClasses.CPLayoutBaseClass.ImporttypeEnum,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String}@,System.Int32)">
+            <summary>
+            Import a file and process the html. Save the result.
+            </summary>
+            <param name="htmlSourceTempPathFilename"></param>
+            <param name="importTypeId"></param>
+            <param name="layoutId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="layoutFrameworkId">if 5, import layout as framework 5, else default</param>
+            <param name="pageTemplateId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="emailTemplateId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="emailId">If not 0, the imported html will be saved to the record in this table.</param>
+            <param name="userMessageList">If there were any processing errors caused by the data, return them here. These can be presented to the user.</param>
             <returns></returns>
         </member>
         <member name="T:Contensive.BaseClasses.CPLogBaseClass">
@@ -5779,17 +5771,56 @@
             </summary>
             <param name="logMessage"></param>
         </member>
+        <member name="M:Contensive.BaseClasses.CPLogBaseClass.Warn(System.Exception,System.String)">
+            <summary>
+            Log a message
+            </summary>
+            <param name="ex"></param>
+            <param name="logMessage"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPLogBaseClass.Warn(System.Exception)">
+            <summary>
+            Log a message
+            </summary>
+            <param name="ex"></param>
+        </member>
         <member name="M:Contensive.BaseClasses.CPLogBaseClass.Error(System.String)">
             <summary>
             Log a message
             </summary>
             <param name="logMessage"></param>
         </member>
+        <member name="M:Contensive.BaseClasses.CPLogBaseClass.Error(System.Exception,System.String)">
+            <summary>
+            Log a message
+            </summary>
+            <param name="ex"></param>
+            <param name="logMessage"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPLogBaseClass.Error(System.Exception)">
+            <summary>
+            Log a message
+            </summary>
+            <param name="ex"></param>
+        </member>
         <member name="M:Contensive.BaseClasses.CPLogBaseClass.Fatal(System.String)">
             <summary>
             Log a message
             </summary>
             <param name="logMessage"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPLogBaseClass.Fatal(System.Exception,System.String)">
+            <summary>
+            Log a message
+            </summary>
+            <param name="ex"></param>
+            <param name="logMessage"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPLogBaseClass.Fatal(System.Exception)">
+            <summary>
+            Log a message
+            </summary>
+            <param name="ex"></param>
         </member>
         <member name="M:Contensive.BaseClasses.CPLogBaseClass.Dispose">
             <summary>
@@ -5820,6 +5851,20 @@
             </summary>
             <param name="queueUrl"></param>
             <param name="message"></param>
+        </member>
+        <member name="T:Contensive.BaseClasses.CPMQTTBaseClass">
+            <summary>
+            Message queue
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPMQTTBaseClass.Publish(System.String,System.String,System.String)">
+            <summary>
+            Publish a message to a topic
+            </summary>
+            <param name="message">The message to be sent</param>
+            <param name="topic">The topic for this message</param>
+            <param name="clientId">A unique name of the client that is publishing the message</param>
+            <returns>success</returns>
         </member>
         <member name="T:Contensive.BaseClasses.CPMustacheBaseClass">
             <summary>
@@ -6139,11 +6184,60 @@
             </summary>
             <param name="timeoutSeconds"></param>
         </member>
+        <member name="P:Contensive.BaseClasses.CPSecretsBaseClass.AwsAccessKey">
+            <summary>
+            AWS IAM credential for this application. If config.useSecretManager false, stored in config.json, else Secret Manager
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPSecretsBaseClass.AwsSecretAccessKey">
+            <summary>
+            AWS IAM credential for this application. If config.useSecretManager false, stored in config.json, else Secret Manager
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPSecretsBaseClass.DefaultDataSourceAddress">
+            <summary>
+            url:port for datasource. If config.useSecretManager false, stored in config.json, else Secret Manager
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPSecretsBaseClass.DefaultDataSourceUsername">
+            <summary>
+            credentials for datasource. If config.useSecretManager false, stored in config.json, else Secret Manager
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPSecretsBaseClass.DefaultDataSourcePassword">
+            <summary>
+            credentials for datasource. If config.useSecretManager false, stored in config.json, else Secret Manager
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPSecretsBaseClass.GetSecret(System.String)">
+            <summary>
+            If useSecretManager is true (config.json) values are stored in AWS Secret Manager
+            if false, values are stored in config.json file, app.secrets list
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPSecretsBaseClass.SetSecret(System.String,System.String)">
+            <summary>
+            If useSecretManager is true (config.json) values are stored in AWS Secret Manager
+            if false, values are stored in config.json file, app.secrets list
+            </summary>
+        </member>
         <member name="M:Contensive.BaseClasses.CPSecurityBaseClass.EncryptOneWay(System.String)">
             <summary>
-            return an encrypted string. This is a one way so use it passwords, etc.
+            return an encrypted string. This is a hash.
+            One-way encryption cannot be reversed. 
+            This encrypted string is repeatable, so run the same encryption twice and the encryption will match
             </summary>
             <param name="unencryptedString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPSecurityBaseClass.EncryptOneWay(System.String,System.String)">
+            <summary>
+            return an encrypted string. This is a hash.
+            One-way encryption cannot be reversed. 
+            This encrypted string is repeatable, so run the same encryption twice and the encryption will match
+            </summary>
+            <param name="unencryptedString"></param>
+            <param name="salt"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPSecurityBaseClass.VerifyOneWay(System.String,System.String)">
@@ -6156,14 +6250,18 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPSecurityBaseClass.EncryptTwoWay(System.String)">
             <summary>
-            Return an AES encrypted string.  This is a two way so use it for little sister security, not foreign government security
+            Return an AES encrypted string. This is a symetric encryption.
+            A value encrypted, can be decrypted back to the same string
+            The result is not repeatable. If you encrypt the same source twice, the result may not be the same each time.
             </summary>
             <param name="unencryptedString"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPSecurityBaseClass.DecryptTwoWay(System.String)">
             <summary>
-            Decrypt an AES encrypted string. This is a two way so use it for little sister security, not foreign government security
+            Return an AES decrypted string. This is a symetric encryption.
+            A value encrypted, can be decrypted back to the same string
+            The result is not repeatable. If you encrypt the same source twice, the result may not be the same each time.
             </summary>
             <param name="encryptedString"></param>
             <returns></returns>
@@ -6171,6 +6269,14 @@
         <member name="T:Contensive.BaseClasses.CPSiteBaseClass">
             <summary>
             Application settings and methods
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPSiteBaseClass.htmlPlatformVersion">
+            <summary>
+            The html platform version for this site.
+            replaces the site property html platform version
+            htmlPlatform 0-4 is Bootstrap 4.
+            htmlPlaform 5 is Bootstrap 5.
             </summary>
         </member>
         <member name="P:Contensive.BaseClasses.CPSiteBaseClass.Name">
@@ -6324,52 +6430,52 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPSiteBaseClass.AddActivity(System.String)">
             <summary>
-            Log a simple activity for the current user
+            Add completed activity for online visit by current user, subject saved as message
             </summary>
             <param name="subject">A brief name for the activity to be shown in a list of other activities. Typically 'Call', 'Message', 'Meeting', 'Online Form', etc.</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPSiteBaseClass.AddActivity(System.String,System.String)">
             <summary>
-            Log an activity for the current user
+            Add completed activity for online visit by current user
             </summary>
             <param name="subject">A brief name for the activity to be shown in a list of other activities. Typically 'Call', 'Message', 'Meeting', 'Online Form', etc.</param>
-            <param name="actvityDetails">The details of the activity.</param>
+            <param name="detailsText">The details of the activity, non-html plain text.</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPSiteBaseClass.AddActivity(System.String,System.String,System.Int32)">
             <summary>
-            Log an activity for the specified user
+            Add completed activity for online visit by the selected user
             </summary>
             <param name="subject">A brief name for the activity to be shown in a list of other activities. Typically 'Call', 'Message', 'Meeting', 'Online Form', etc.</param>
-            <param name="actvityDetails">The details of the activity.</param>
+            <param name="detailsText">The details of the activity, non-html plain text.</param>
             <param name="activityUserId"></param>
         </member>
         <member name="M:Contensive.BaseClasses.CPSiteBaseClass.AddActivity(System.String,System.String,System.Int32,System.Int32)">
             <summary>
-            Log an activity for the specified user
+            Add completed activity for specific activity type, by the selected user
             </summary>
             <param name="subject">A brief name for the activity to be shown in a list of other activities. Typically 'Call', 'Message', 'Meeting', 'Online Form', etc.</param>
-            <param name="actvityDetails">The details of the activity.</param>
+            <param name="detailsText">The details of the activity, non-html plain text.</param>
             <param name="activityUserId"></param>
             <param name="typeId">see ActivityLogTypeEnum, 1=visit online, 2=email-to, 3=email-from, 4=call-to, 5=call-from, 6=text-to, 7=text-from, 8=meeting-video, 9=meeting-in-person</param>
         </member>
-        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.addActivity(System.String,System.String,System.Int32,System.Int32,System.DateTime,System.Int32,System.Int32)">
+        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.AddActivity(System.String,System.String,System.Int32,System.Int32,System.DateTime,System.Int32,System.Int32)">
             <summary>
-            Log an activity for the specified user for a scheduled event
+            Add a schedule, non-completed activity for specific activity type, by the selected user
             </summary>
             <param name="subject">A brief name for the activity to be shown in a list of other activities. Typically 'Call', 'Message', 'Meeting', 'Online Form', etc.</param>
-            <param name="actvityDetails">The details of the activity.</param>
+            <param name="detailsText">The details of the activity, non-html plain text.</param>
             <param name="activityUserId"></param>
             <param name="typeId">see ActivityLogTypeEnum, 1=online visit, 2=online purchase, 3=email-to, 4=email-from, 5=call-to, 6=call-from, 7=text-to, 8=text-from, 9=meeting-video, 10=meeting-in-person, </param>
             <param name="dateScheduled"></param>
             <param name="duration"></param>
             <param name="scheduledStaffId"></param>
         </member>
-        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.addActivity(System.String,System.String,System.Int32,System.DateTime,System.Int32,System.Int32)">
+        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.AddActivity(System.String,System.String,System.Int32,System.DateTime,System.Int32,System.Int32)">
             <summary>
-            Log an activity for the specified user for a scheduled event
+            Add a schedule, non-completed activity online-visit activity, by the selected user
             </summary>
             <param name="subject">A brief name for the activity to be shown in a list of other activities. Typically 'Call', 'Message', 'Meeting', 'Online Form', etc.</param>
-            <param name="actvityDetails">The details of the activity.</param>
+            <param name="detailsText">The details of the activity, non-html plain text.</param>
             <param name="activityUserId"></param>
             <param name="dateScheduled"></param>
             <param name="duration"></param>
@@ -6400,14 +6506,20 @@
             </summary>
             <param name="message"></param>
         </member>
-        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.LogWarning(System.String,System.String,System.String,System.String)">
+        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.SetSiteWarning(System.String,System.String)">
             <summary>
-            Log a message to the site-warning log.The site warning log lets admins know there are issues they need to resolve. This is not code bugs, but content or setting relalted issues.
+            Add a site warning that must be removed manually. Log a message to the site-warning log, which displays a Warning indicator in the admin site. This should only be for issues related to content and settings that an admin user can addres. To log code issues, use cp.log. To set the server alarm, use cp.site.LogAlarm() .
             </summary>
             <param name="name"></param>
             <param name="description"></param>
-            <param name="typeOfWarningKey"></param>
-            <param name="instanceKey"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.SetSiteWarning(System.String,System.String,System.Boolean)">
+            <summary>
+            Add or remove a site warning based on the boolean argument. Log a message to the site-warning log, which displays a Warning indicator in the admin site. This should only be for issues related to content and settings that an admin user can addres. To log code issues, use cp.log. To set the server alarm, use cp.site.LogAlarm() .
+            </summary>
+            <param name="name"></param>
+            <param name="description"></param>
+            <param name="addRemove">if true, the warning is added, else the warning is removed</param>
         </member>
         <member name="M:Contensive.BaseClasses.CPSiteBaseClass.LogAlarm(System.String)">
             <summary>
@@ -6581,6 +6693,15 @@
             <param name="link"></param>
             <returns></returns>
         </member>
+        <member name="M:Contensive.BaseClasses.CPSiteBaseClass.LogWarning(System.String,System.String,System.String,System.String)">
+            <summary>
+            Log a message to the site-warning log.The site warning log lets admins know there are issues they need to resolve. This is not code bugs, but content or setting relalted issues.
+            </summary>
+            <param name="name"></param>
+            <param name="description"></param>
+            <param name="typeOfWarningKey"></param>
+            <param name="instanceKey"></param>
+        </member>
         <member name="T:Contensive.BaseClasses.CPSMSBaseClass">
             <summary>
             text messaging (SNS) layer. Provide properties and methods to abstract the service for addons.
@@ -6699,6 +6820,12 @@
             true if the current user is authenticated and their identity is administrator role (checkbox in people record)
             </summary>
         </member>
+        <member name="M:Contensive.BaseClasses.CPUserBaseClass.IsContentManager">
+            <summary>
+            true if the current user is authenticated and their identity is content manager role
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Contensive.BaseClasses.CPUserBaseClass.IsContentManager(System.String)">
             <summary>
             true if the current user is authenticated and their identity is content manager role (in a content manager group)
@@ -6744,7 +6871,7 @@
             <summary>
             Autheticate the current user to the credentials provided. If the site property AllowEmailLogin is true, this method treats the first argument as either email or username. Duplicates and email=username matches are not allowed.
             </summary>
-            <param name="usernameOrEmail"></param>
+            <param name="username"></param>
             <param name="password"></param>
             <param name="setAutoLogin">If true, and allowed on the site, the user will be automatically logged in by their visitor cookie on future visits. Not available to admin or devloper roles.</param>
             <returns></returns>
@@ -6753,7 +6880,7 @@
             <summary>
             Autheticate the current user to the credentials provided. If the site property AllowEmailLogin is true, this method treats the first argument as either email or username. Duplicates and email=username matches are not allowed.
             </summary>
-            <param name="usernameOrEmail"></param>
+            <param name="username"></param>
             <param name="password"></param>
             <returns></returns>
         </member>
@@ -6776,7 +6903,7 @@
             <summary>
             returns true if the credentials provided are valid for a user in the system.
             </summary>
-            <param name="usernameOrEmail"></param>
+            <param name="username"></param>
             <param name="password"></param>
             <returns></returns>
         </member>
@@ -6810,7 +6937,12 @@
         </member>
         <member name="P:Contensive.BaseClasses.CPUserBaseClass.Id">
             <summary>
-            If autheticated, the current user's id
+            The user's id. If session tracking is disable, requesting the id will create a new guest user.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.CPUserBaseClass.IdInSession">
+            <summary>
+            The user's id. If session tracking is disable, requesting the id will return 0.
             </summary>
         </member>
         <member name="P:Contensive.BaseClasses.CPUserBaseClass.Name">
@@ -6984,6 +7116,40 @@
             <param name="key"></param>
             <param name="value"></param>
             <param name="userId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPUserBaseClass.SetPassword(System.String)">
+            <summary>
+            Set the current user's password. If in plain-text password mode, the password field is populated, else the passwordHash field is populated.
+            Return true if the password meets password policies.
+            </summary>
+            <param name="password"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPUserBaseClass.SetPassword(System.String,System.String@)">
+            <summary>
+            Set the current user's password. If in plain-text password mode, the password field is populated, else the passwordHash field is populated.
+            Return true if the password meets password policies.
+            If error, return a user appropriate error message.
+            </summary>
+            <param name="password"></param>
+            <param name="userErrorMessage"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPUserBaseClass.SetPassword(System.String,System.Int32)">
+            <summary>
+            Set the specific user's password. If in plain-text password mode, the password field is populated, else the passwordHash field is populated.
+            Return true if the password meets password policies.
+            </summary>
+            <param name="password"></param>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPUserBaseClass.SetPassword(System.String,System.Int32,System.String@)">
+            <summary>
+            Set the specific user's password. If in plain-text password mode, the password field is populated, else the passwordHash field is populated.
+            Return true if the password meets password policies.
+            If error, return a user appropriate error message.
+            </summary>
+            <param name="password"></param>
+            <param name="userId"></param>
+            <param name="userErrorMessage"></param>
         </member>
         <member name="T:Contensive.BaseClasses.CPUserErrorBaseClass">
             <summary>
@@ -7392,6 +7558,25 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.GetRandomInteger(System.Int32)">
+            <summary>
+            Return a random integer between 0 and maxValue
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.GetRandomDouble">
+            <summary>
+            Return a random double between 0.0 and 1.0
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.GetRandomString(System.Int32)">
+            <summary>
+            generate a random alphanumeric string, upper and lower case text and numerics (0...9, a...z, A...Z, no special characters)
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.isGuid(System.String)">
             <summary>
             returns true if the string is a guid (start/end with brace, char count, check dashes
@@ -7481,7 +7666,7 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyLinkQueryString(System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
-            Update or add a key=value pair within a url like "/path/page?key=value&amp;key=value"
+            Update or add a key=value pair within a url, like "/path/page?key=value&amp;key=value"
             </summary>
             <param name="url"></param>
             <param name="key"></param>
@@ -7491,7 +7676,7 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyLinkQueryString(System.String,System.String,System.DateTime)">
             <summary>
-            Update or add a key=value pair within a url like "/path/page?key=value&amp;key=value"
+            Update or add a key=value pair within a url, like "/path/page?key=value&amp;key=value"
             </summary>
             <param name="url"></param>
             <param name="key"></param>
@@ -7500,7 +7685,7 @@
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyLinkQueryString(System.String,System.String,System.DateTime,System.Boolean)">
             <summary>
-            Update or add a key=value pair within a url like "/path/page?key=value&amp;key=value"
+            Update or add a key=value pair within a url, like "/path/page?key=value&amp;key=value"
             </summary>
             <param name="url"></param>
             <param name="key"></param>
@@ -7512,102 +7697,102 @@
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
-            <param name="AddIfMissing"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="addIfMissing"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.String)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.Int32)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
-            <param name="AddIfMissing"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="addIfMissing"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.Double)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.Double,System.Boolean)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
-            <param name="AddIfMissing"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="aAddIfMissing"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.Boolean)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
-            <param name="AddIfMissing"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="addIfMissing"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.DateTime)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.ModifyQueryString(System.String,System.String,System.DateTime,System.Boolean)">
             <summary>
             Update or add a key=value pair within key value pair string like "key=value&amp;key=value"
             </summary>
-            <param name="WorkingQuery"></param>
-            <param name="QueryName"></param>
-            <param name="QueryValue"></param>
-            <param name="AddIfMissing"></param>
+            <param name="sourceQueryString"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="addIfMissing"></param>
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.SeparateURL(System.String,System.String@,System.String@,System.String@,System.String@,System.String@)">
             <summary>
             return the components of a url
             </summary>
-            <param name="url"></param>
+            <param name="sourceUrl"></param>
             <param name="return_protocol"></param>
             <param name="return_domain"></param>
             <param name="return_path"></param>
@@ -7618,7 +7803,7 @@
             <summary>
             return the components of a url
             </summary>
-            <param name="url"></param>
+            <param name="sourceUrl"></param>
             <param name="return_protocol"></param>
             <param name="return_domain"></param>
             <param name="return_port"></param>
@@ -7670,10 +7855,10 @@
             <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.GetDateTimeMockable">
-             <summary>
+            <summary>
             Returns current DateTime.Now if cp.Mock.DateTime is not set, else returns Mock.DateTime
-             </summary>
-             <returns></returns>
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Contensive.BaseClasses.CPUtilsBaseClass.DecodeHTML(System.String)">
             <summary>
@@ -8326,6 +8511,773 @@
             set the visit property to force the mobile state true
             </summary>
         </member>
+        <member name="T:Contensive.BaseClasses.LayoutBuilder.EllipseMenuDataModel">
+            <summary>
+                ''' data to populate HamburburgerMenuLayout
+                ''' </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.blockFormTag">
+            <summary>
+            if true, the optional form tag will be blocked. The form tag is added automaatically if buttons, hiddens or a form-action is added
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.includeBodyPadding">
+            <summary>
+            if true, the container between the button rows will include default padding
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.includeBodyColor">
+            <summary>
+            if true, the container between the button rows will include the default background color. Else it is transparent.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.isOuterContainer">
+            <summary>
+            if true, this layoutBuilder will not be contained in other layoutBuilder content. This is used by the default getHtml() to include an outer div with the htmlId "afw", and the styles and javascript
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.title">
+            <summary>
+            The headline at the top of the form
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.warningMessage">
+            <summary>
+            message displayed as a warning message. Not an error, but an issue of some type
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.failMessage">
+            <summary>
+            message displayed as a fail message. Data is wrong
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.infoMessage">
+            <summary>
+            message displayed as an informational message. Nothing is wrong, but the user should know
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.successMessage">
+            <summary>
+            message displayed as a success message.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.description">
+            <summary>
+            simple description text. Will be wrapped in an html paragraph tag.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.styleSheet">
+            <summary>
+            The default Layoutbuilder styles. Override to customize.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.javascript">
+            <summary>
+            The default Layoutbuilder script. Override to customize.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.portalSubNavTitle">
+            <summary>
+            Optional. If set, this value will populate the title in the subnav of the portalbuilder
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.csvDownloadFilename">
+            <summary>
+            A virtual filename to a download of the report data. Leave blank to prevent download file
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.getHtml(Contensive.BaseClasses.CPBaseClass)">
+            <summary>
+            The default body. Typically you would create a layout by adding content to the individual elements and calling this method. Oveerride this method and consider using HtmlController.getReportDoc()
+            </summary>
+            <param name="cp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.String,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.Int32,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.Int32)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.Double,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.Double)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.DateTime,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.DateTime)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.Boolean,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormHidden(System.String,System.Boolean)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addLinkButton(System.String,System.String)">
+            <summary>
+            Create a button with a link that does not submit a form. When clicked it anchors to the link
+            </summary>
+            <param name="buttonCaption"></param>
+            <param name="link"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addLinkButton(System.String,System.String,System.String)">
+            <summary>
+            Create a button with a link that does not submit a form. When clicked it anchors to the link
+            </summary>
+            <param name="buttonCaption"></param>
+            <param name="link"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addLinkButton(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a button with a link that does not submit a form. When clicked it anchors to the link
+            </summary>
+            <param name="buttonCaption"></param>
+            <param name="link"></param>
+            <param name="htmlId"></param>
+            <param name="htmlClass"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormButton(System.String)">
+            <summary>
+            add a form button to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="buttonValue"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormButton(System.String,System.String)">
+            <summary>
+            add a form button to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormButton(System.String,System.String,System.String)">
+            <summary>
+            add a form button to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+            <param name="buttonId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.addFormButton(System.String,System.String,System.String,System.String)">
+            <summary>
+            add a form button to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+            <param name="buttonId"></param>
+            <param name="buttonClass"></param>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.formActionQueryString">
+            <summary>
+            The action attribute of the form element that wraps the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.body">
+            <summary>
+            The body of the layout.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.htmlLeftOfTable">
+            <summary>
+            An html block added to the left of the table. Typically used for filters.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.htmlBeforeTable">
+            <summary>
+            An html block added above the table. Typically used for filters.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.htmlAfterTable">
+            <summary>
+            An html block added below the table. Typically used for filters.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.refreshQueryString">
+            <summary>
+            Include all nameValue pairs required to refresh the page if someone clicks on a header. For example, if there is a filter dateTo that is not empty, add dateTo=1/1/2000 to the RQS
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.warning">
+            <summary>
+            deprecated. Use warningMessage instead
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.footer">
+            <summary>
+            deprecated. Use htmlAfterTable instead
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderBaseClass.formid">
+            <summary>
+            deprecated. Use warningMessage instead
+            </summary>
+        </member>
+        <member name="T:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass">
+            <summary>
+            A tabular list of data rows with filters on the left.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.isOuterContainer">
+            <summary>
+            Set true if this tool is requested directly and not embedded in another AdminUI form
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.reportRowLimit">
+            <summary>
+            Add padding around the body
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.includeBodyPadding">
+            <summary>
+            Add padding around the body
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.includeBodyColor">
+            <summary>
+            Add background color to the body
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.getHtml(Contensive.BaseClasses.CPBaseClass)">
+            <summary>
+            Method retrieves the rendered html. Call this method after populating all object elements
+            </summary>
+            <param name="cp"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.htmlLeftOfTable">
+            <summary>
+            use this area for optional filters
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.htmlBeforeTable">
+            <summary>
+            optional html before the table
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.htmlAfterTable">
+            <summary>
+            optional html after the table
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.String)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.Int32)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.Double)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.DateTime)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.Boolean)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormButton(System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormButton(System.String,System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormButton(System.String,System.String,System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+            <param name="buttonId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormButton(System.String,System.String,System.String,System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+            <param name="buttonId"></param>
+            <param name="buttonClass"></param>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.formActionQueryString">
+            <summary>
+            This report will be wrapped in a form tag and the action should send traffic back to the same page. If empty, the form uses cp.Doc.RefreshQueryString
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.formId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addColumn(Contensive.BaseClasses.LayoutBuilder.ReportListColumnBaseClass)">
+            
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.blockFormTag">
+            <summary>
+            if true, the optional form tag will be blocked. The form tag is added automaatically if buttons, hiddens or a form-action is added
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.warningMessage">
+            <summary>
+            message displayed as a warning message. Not an error, but an issue of some type
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.failMessage">
+            <summary>
+            message displayed as a fail message. Data is wrong
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.infoMessage">
+            <summary>
+            message displayed as an informational message. Nothing is wrong, but the user should know
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.successMessage">
+            <summary>
+            message displayed as a success message.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.styleSheet">
+            <summary>
+            The default Layoutbuilder styles. Override to customize.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.javascript">
+            <summary>
+            The default Layoutbuilder script. Override to customize.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.portalSubNavTitle">
+            <summary>
+            Optional. If set, this value will populate the title in the subnav of the portalbuilder
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.csvDownloadFilename">
+            <summary>
+            A virtual filename to a download of the report data. Leave blank to prevent download file
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.String,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.Int32,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.Double,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.DateTime,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addFormHidden(System.String,System.Boolean,System.String)">
+            <summary>
+            add a form hidden input to the layout. This will also create a form around the layout. Set blockForm to true to block the automatic form.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addLinkButton(System.String,System.String)">
+            <summary>
+            Create a button with a link that does not submit a form. When clicked it anchors to the link
+            </summary>
+            <param name="buttonCaption"></param>
+            <param name="link"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addLinkButton(System.String,System.String,System.String)">
+            <summary>
+            Create a button with a link that does not submit a form. When clicked it anchors to the link
+            </summary>
+            <param name="buttonCaption"></param>
+            <param name="link"></param>
+            <param name="htmlId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.addLinkButton(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a button with a link that does not submit a form. When clicked it anchors to the link
+            </summary>
+            <param name="buttonCaption"></param>
+            <param name="link"></param>
+            <param name="htmlId"></param>
+            <param name="htmlClass"></param>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.body">
+            <summary>
+            The body of the layout.
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderListBaseClass.refreshQueryString">
+            <summary>
+            Include all nameValue pairs required to refresh the page if someone clicks on a header. For example, if there is a filter dateTo that is not empty, add dateTo=1/1/2000 to the RQS
+            </summary>
+        </member>
+        <member name="T:Contensive.BaseClasses.LayoutBuilder.ReportListColumnBaseClass">
+            <summary>
+            The data used to build a column
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.ReportListColumnBaseClass.columnWidthPercent">
+            <summary>
+            set as an integer between 1 and 100. This value will be added as the width of the column in a style tag
+            </summary>
+        </member>
+        <member name="T:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass">
+            <summary>
+            Create a Tool Form. Tool Forms how rows of input elements
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.IncludeBodyPadding">
+            <summary>
+            Add padding around the body
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.IncludeBodyColor">
+            <summary>
+            Add background color to the body
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.IsOuterContainer">
+            <summary>
+            Set true if this tool is requested directly and not embedded in another AdminUI form
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.Title">
+            <summary>
+            The title of the form
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.SuccessMessage">
+            <summary>
+            When an action is requested, use this position to inform success
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.InfoMessage">
+            <summary>
+            When an action is requested, use this position to inform info
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.WarningMessage">
+            <summary>
+            When an action is requested, use this position to inform warn
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.FailMessage">
+            <summary>
+            When an action is requested, use this position to inform error
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.Description">
+            <summary>
+            Description appears right below title
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.GetHtml(Contensive.BaseClasses.CPBaseClass)">
+            <summary>
+            Method retrieves the rendered html. Call this method after populating all object elements
+            </summary>
+            <param name="cp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormHidden(System.String,System.String)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormHidden(System.String,System.Int32)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormHidden(System.String,System.Double)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormHidden(System.String,System.DateTime)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormHidden(System.String,System.Boolean)">
+            <summary>
+            Add hidden form input
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormButton(System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormButton(System.String,System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormButton(System.String,System.String,System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+            <param name="buttonId"></param>
+        </member>
+        <member name="M:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.AddFormButton(System.String,System.String,System.String,System.String)">
+            <summary>
+            Add form button
+            </summary>
+            <param name="buttonValue"></param>
+            <param name="buttonName"></param>
+            <param name="buttonId"></param>
+            <param name="buttonClass"></param>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.FormActionQueryString">
+            <summary>
+            This report will be wrapped in a form tag and the action should send traffic back to the same page. If empty, the form uses cp.Doc.RefreshQueryString
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.FormId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.Body">
+            <summary>
+            The main html of the tool form
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderToolFormBaseClass.Footer">
+            <summary>
+            html block below the body
+            </summary>
+        </member>
+        <member name="T:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderTwoColumnRightBaseClass">
+            <summary>
+            layout split right and left, right larger
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderTwoColumnRightBaseClass.contentRight">
+            <summary>
+            The content added the the right side
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderTwoColumnRightBaseClass.contentLeft">
+            <summary>
+            The content added to the left side
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.LayoutBuilder.LayoutBuilderTwoColumnRightBaseClass.headline">
+            <summary>
+            deprecated, Use title
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.includeBodyPadding">
+            <summary>
+            if true, background padding added
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.includeBodyColor">
+            <summary>
+            if true, background color added
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.isOuterContainer">
+            <summary>
+            if true, styles and js are added on return
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.title">
+            <summary>
+            title added to the Nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.subNavTitle">
+            <summary>
+            optional title added to the subnav. Example, if the main nav item is a list of accounts. Click on an account takes user to a child feature. The subnav appears for the child features and the subNavTitle could be Account 92
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.warning">
+            <summary>
+            warning message added below nav
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.addNav">
+            <summary>
+            Add a navigation entry. The navCaption and navLink should be set after creating a new entry. The first nav entry does not need to be added.
+            </summary>
+        </member>
+        <member name="M:Contensive.BaseClasses.PortalBuilder.PortalBuilderClass.addPortalNav">
+            <summary>
+            Add a navigation entry. The navCaption and navLink should be set after creating a new entry. The first nav entry does not need to be added.
+            </summary>
+        </member>
+        <member name="T:Contensive.BaseClasses.PortalBuilder.PortalBuilderNavItemViewModel">
+            <summary>
+            mustache view model for list of nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderNavItemViewModel.caption">
+            <summary>
+            the displayed text on teh nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderNavItemViewModel.link">
+            <summary>
+            if present, this link goes on the nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderNavItemViewModel.active">
+            <summary>
+            if true, the view is currently on this nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderNavItemViewModel.isPortalLink">
+            <summary>
+            if true, this nav goes to another portal
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderNavItemViewModel.linkTarget">
+            <summary>
+            _blank for links outside of portal, else empty
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderSubNavItemViewModel.subCaption">
+            <summary>
+            the displayed text on teh nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderSubNavItemViewModel.subLink">
+            <summary>
+            if present, this link goes on the nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderSubNavItemViewModel.subActive">
+            <summary>
+            if true, the view is currently on this nav
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderSubNavItemViewModel.subIsPortalLink">
+            <summary>
+            if true, this nav goes to another portal
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseClasses.PortalBuilder.PortalBuilderSubNavItemViewModel.sublinkTarget">
+            <summary>
+            _blank for links outside of portal, else empty
+            </summary>
+        </member>
         <member name="T:Contensive.BaseModels.AppConfigBaseModel">
             <summary>
             Configuration of an application
@@ -8440,6 +9392,13 @@
         <member name="P:Contensive.BaseModels.AppConfigBaseModel.adminLimit">
             <summary>
             limit to the number of content managers
+            </summary>
+        </member>
+        <member name="P:Contensive.BaseModels.AppConfigBaseModel.secrets">
+            <summary>
+            if serverconfig.useSecretManager if true, this is not used.
+            if false, app secrets are stored here.
+            values stored in secrets override properties in server and app config.
             </summary>
         </member>
         <member name="T:Contensive.BaseModels.AppConfigBaseModel.AppModeEnum">
