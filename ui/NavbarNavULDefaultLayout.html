@@ -6,7 +6,9 @@
 		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			{{topItemName}}
 			{{#isEditing}}
+			{{#includeDragableIcon}}
 			<span class="px-1"><i title="drag and drop" class="fas fa-grip-horizontal"></i></span>
+			{{/includeDragableIcon}}
 			{{/isEditing}}
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
