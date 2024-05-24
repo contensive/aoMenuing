@@ -72,7 +72,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             topItemName = "Edit-Menu",
                             topItemHref = $"{cp.GetAppConfig().adminRoute}?aa=0&cid={cp.Content.GetID("menus")}&tx=&asf=1&af=4&id={menu.id}",
                             classTopItemAnchor = menu.classTopAnchor,
-                            classItemDraggable = ""
+                            classItemDraggable = "",
+                            includeDragableIcon = false
                         });
                     }                    //
                     // -- create toplists
@@ -94,7 +95,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 topItemName = string.IsNullOrWhiteSpace(topItemName) ? rootPage.name : topItemName,
                                 classItemDraggable = (result.isEditing ? "ccEditWrapper" : ""),
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
-                                childList = new List<ChildListItemModel>()
+                                childList = new List<ChildListItemModel>(),
+                                includeDragableIcon = true
                                 //set after cache - classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                             };
                             if (menu.depth == 2) {
@@ -138,7 +140,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                             topItemName = "Add-Page",
                             topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString(),
                             classTopItemAnchor = menu.classTopAnchor,
-                            classItemDraggable = ""
+                            classItemDraggable = "",
+                            includeDragableIcon = false
                         });
                     }
                     //

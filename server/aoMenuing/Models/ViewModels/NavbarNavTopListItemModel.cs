@@ -50,6 +50,11 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         /// the link for this menu item
         /// </summary>
         public string topItemHtmlId { get; set; } = "";
+        /// <summary>
+        /// indicates whether this item should include the dragable icon
+        /// </summary>
+        public bool includeDragableIcon { get; set; } = false;
+
     }
 }
 

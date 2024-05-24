@@ -15,6 +15,7 @@ namespace Contensive.Addons.Menuing.Views {
                 //
                 // -- split comma list
                 List<string> argList = cp.Doc.GetText("sortlist").Split(',').ToList();
+                
                 if (argList.Count == 0) { return string.Empty; }
                 //
                 // -- first element of the list is the menuId prefixed with either 'menu' or 'mavbarNav'
