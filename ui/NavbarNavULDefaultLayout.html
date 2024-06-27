@@ -1,9 +1,9 @@
-<!-- ul configured as content within bootstrap 4, navbar,navbar-collapse elsement  -->
-<ul id="menu{{menuId}}" class="navbar-nav mr-auto">
+<!-- ul configured as content within bootstrap 5+4, navbar,navbar-collapse elsement  -->
+<ul id="menu{{menuId}}" class="navbar-nav me-auto mr-auto">
 	{{#topList}}
 	{{#hasChildItems}}
 	<li class="nav-item dropdown text-nowrap {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
-		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			{{topItemName}}
 			{{#isEditing}}
 			{{#includeDragableIcon}}
