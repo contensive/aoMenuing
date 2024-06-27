@@ -39,7 +39,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                 // -- use cache
                 NavbarNavModel result = null;
                 string cacheKey = cp.Cache.CreateKey("menu-" + menu.id + "-user=" + cp.User.Id.ToString());
-                if (!cp.User.IsEditingAnything) {
+                if (!cp.User.IsEditing()) {
                     result = cp.Cache.GetObject<NavbarNavModel>(cacheKey);
                 }
                 if (result == null) {
@@ -61,21 +61,24 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                         result.classTopList += " navbar-nav";
                     }
                     result.classTopList += " " + menu.classTopList;
-                    result.isEditing = cp.User.IsEditingAnything;
+                    result.isEditing = cp.User.IsEditing();
                     //
                     List<PageContentModel> MenuPageList = PageContentModel.getMenuRootList(cp, menu.id);
                     //
                     cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList.count [" + MenuPageList.Count + "]");
-
-                    if (result.isEditing) {
-                        result.topList.Add(new NavbarNavTopListItemModel {
-                            topItemName = "Edit-Menu",
-                            topItemHref = $"{cp.GetAppConfig().adminRoute}?aa=0&cid={cp.Content.GetID("menus")}&tx=&asf=1&af=4&id={menu.id}",
-                            classTopItemAnchor = menu.classTopAnchor,
-                            classItemDraggable = "",
-                            includeDragableIcon = false
-                        });
-                    }                    //
+                    //
+                    // -- remove the extra 'edit' link added to the front of the menu and go back to edit tag and border
+                    //if (result.isEditing && !cp.Site.GetBoolean("allow edit modal beta", false)) {
+                    //    //
+                    //    // -- add edit link if is editing, and not in edit-modal mode
+                    //    result.topList.Add(new NavbarNavTopListItemModel {
+                    //        topItemName = "Edit-Menu",
+                    //        topItemHref = $"{cp.GetAppConfig().adminRoute}?aa=0&cid={cp.Content.GetID("menus")}&tx=&asf=1&af=4&id={menu.id}",
+                    //        classTopItemAnchor = menu.classTopAnchor,
+                    //        classItemDraggable = "",
+                    //        includeDragableIcon = false
+                    //    });
+                    //}                    //
                     // -- create toplists
                     foreach (PageContentModel rootPage in MenuPageList) {
                         bool blockRootPage = rootPage.blockContent & !cp.User.IsAdmin && !menu.includeBlockedFlyoutPages;

@@ -7,7 +7,7 @@ using Contensive.Addons.Menuing.Models;
 using Contensive.Addons.Menuing.Views;
 
 namespace Contensive.Addons.Menuing.Controllers {
-    public static class genericController {
+    public static class GenericController {
         //
         //====================================================================================================
         /// <summary>
@@ -56,9 +56,6 @@ namespace Contensive.Addons.Menuing.Controllers {
                 return source.Year + "-" + source.Month.ToString().PadLeft(2, '0') + "-" + source.Day.ToString().PadLeft(2, '0');
             }
         }
-        //
-        //====================================================================================================
-        public static string serializeObject(CPBaseClass cp, object dataObject) => (new System.Web.Script.Serialization.JavaScriptSerializer()).Serialize(dataObject);//return Newtonsoft.Json.JsonConvert.SerializeObject(dataObject);
         // 
         // ====================================================================================================
         /// <summary>
@@ -125,7 +122,7 @@ namespace Contensive.Addons.Menuing.Controllers {
         //}
         // 
         public static string addEditWrapper(CPBaseClass cp, string innerHtml, int recordId, string contentName, string caption) {
-            if ((!cp.User.IsEditingAnything)) { return innerHtml; }
+            if (!cp.User.IsEditing()) { return innerHtml; }
             string header = cp.Content.GetEditLink(contentName, recordId.ToString(), false, caption, true);
             string content = cp.Html.div(innerHtml, "", "dbSettingWrapper");
             return cp.Html.div(header + content,"", "ccEditWrapper");

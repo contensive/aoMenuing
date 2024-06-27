@@ -22,7 +22,9 @@ namespace Contensive.Addons.Menuing.Views {
             string hint = "enter";
             try {
                 this.cp = cp;
-                string result;
+                string result = "";
+                //
+                cp.Log.Warn($"Legacy menu LegacyMenuPagesClass in use on page {cp.Request.PathPage}");
                 //
                 // -- determine controlling record in MenuModel
                 MenuModel menu = null;
@@ -131,7 +133,7 @@ namespace Contensive.Addons.Menuing.Views {
                     result = cp.Html.ul(topItemList.ToString(), "menu" + menu.id.ToString() + "List", menu.classTopList);
                     // 
                     // -- if editing enabled, add the link and wrapperwrapper
-                    result = genericController.addEditWrapper(cp, result, menu.id, MenuModel.contentName, menu.name);
+                    result = GenericController.addEditWrapper(cp, result, menu.id, MenuModel.contentName, menu.name);
                     //
                     // -- container
                     result = cp.Html.div(result, "", "menuPagesCon" + ((string.IsNullOrWhiteSpace(menu.classTopWrapper) ? "" : " " + menu.classTopWrapper)));

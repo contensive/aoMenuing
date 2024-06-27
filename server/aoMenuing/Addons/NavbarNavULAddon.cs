@@ -18,7 +18,7 @@ namespace Contensive.Addons.Menuing.Views {
                 // 
                 // -- read instanceId, guid created uniquely for this instance of the addon on a page
                 var result = string.Empty;
-                string instanceGuid = genericController.getInstanceGuid(cp, "Navbar-UL", ref result);
+                string instanceGuid = GenericController.getInstanceGuid(cp, "Navbar-UL", ref result);
                 if (string.IsNullOrEmpty(instanceGuid)) { return result; }
                 // 
                 // -- locate or create a data record for this guid

@@ -108,7 +108,7 @@
     <Compile Include="Addons\NavbarNavULAddon.cs" />
     <Compile Include="Addons\LegacyNavbarLiListClass.cs" />
     <Compile Include="constants.cs" />
-    <Compile Include="Controllers\genericController.cs" />
+    <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Models\DbModels\MenuModel.cs" />
     <Compile Include="Models\DbModels\SiteSectionsModel.cs" />
     <Compile Include="Models\DbModels\PageContentModel.cs" />

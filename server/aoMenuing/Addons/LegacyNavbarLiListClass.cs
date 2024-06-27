@@ -15,19 +15,19 @@ namespace Contensive.Addons.Menuing.Views {
         //
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
-                // 
+                //
+                cp.Log.Warn($"Legacy menu LegacyNavbarLiListClass in use on page {cp.Request.PathPage}");
+                //
                 // -- read instanceId, guid created uniquely for this instance of the addon on a page
                 var result = string.Empty;
-                string instanceGuid = genericController.getInstanceGuid(cp, "Navbar-Li-List", ref result);
+                string instanceGuid = GenericController.getInstanceGuid(cp, "Navbar-Li-List", ref result);
                 if (string.IsNullOrEmpty(instanceGuid)) { return result; }
                 // 
                 // -- locate or create a data record for this guid
-                var settings = MenuModel.createOrAddDefault(cp, instanceGuid);
-                if (settings == null) { throw new ApplicationException("Could not create design block data record."); }
+                var settings = MenuModel.createOrAddDefault(cp, instanceGuid) ?? throw new ApplicationException("Could not create design block data record.");
                 // 
                 // -- translate the Db model to a view model and mustache it into the layout
-                var viewModel = NavbarNavModel.create(cp, settings);
-                if (viewModel == null) { throw new ApplicationException("Could not create design block view model."); }
+                var viewModel = NavbarNavModel.create(cp, settings) ?? throw new ApplicationException("Could not create design block view model.");
                 result = cp.Mustache.Render(Properties.Resources.NavbarLiListLayout, viewModel);
                 //
                 // -- if editing enabled, add the link and wrapperwrapper
