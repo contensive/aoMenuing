@@ -48,8 +48,8 @@
 			}
 			document.addEventListener("DOMContentLoaded", function(event) { 
 				console.log("binding navbar-nav sortable");
-				jQuery("ul.sortable").sortable({
-					items: "li.ccEditWrapper",
+				jQuery("ul.sortable,div.sortable").sortable({
+					items: "li.ccEditWrapper,div.ccEditWrapper",
 					stop: function (event, ui) {
 						console.log("stop-event, this.id [" + this.id + "]");
 						saveNavbarNavSortable(jQuery(this).attr("id"));

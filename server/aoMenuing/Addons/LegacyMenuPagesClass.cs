@@ -24,7 +24,7 @@ namespace Contensive.Addons.Menuing.Views {
                 this.cp = cp;
                 string result = "";
                 //
-                cp.Log.Warn($"Legacy menu LegacyMenuPagesClass in use on page {cp.Request.PathPage}");
+                // cp.Site.SetSiteWarning($"Legacy menu add-on", $"Legacy menu LegacyMenuPagesClass in use on page {cp.Request.PathPage}"); }
                 //
                 // -- determine controlling record in MenuModel
                 MenuModel menu = null;

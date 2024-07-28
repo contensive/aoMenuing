@@ -16,7 +16,7 @@ namespace Contensive.Addons.Menuing.Views {
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
                 //
-                cp.Log.Warn($"Legacy menu LegacyNavbarLiListClass in use on page {cp.Request.PathPage}");
+                // cp.Site.SetSiteWarning($"Legacy menu add-on", $"Legacy menu LegacyNavbarLiListClass in use on page {cp.Request.PathPage}");
                 //
                 // -- read instanceId, guid created uniquely for this instance of the addon on a page
                 var result = string.Empty;
