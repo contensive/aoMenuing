@@ -39,7 +39,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                 // -- use cache
                 NavbarNavModel result = null;
                 string cacheKey = cp.Cache.CreateKey("menu-" + menu.id + "-user=" + cp.User.Id.ToString());
-                if (!cp.User.IsEditing()) {
+                if (!cp.User.IsEditing("")) {
                     result = cp.Cache.GetObject<NavbarNavModel>(cacheKey);
                 }
                 if (result == null) {
@@ -61,7 +61,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                         result.classTopList += " navbar-nav";
                     }
                     result.classTopList += " " + menu.classTopList;
-                    result.isEditing = cp.User.IsEditing();
+                    result.isEditing = cp.User.IsEditing("");
                     //
                     List<PageContentModel> MenuPageList = PageContentModel.getMenuRootList(cp, menu.id);
                     //

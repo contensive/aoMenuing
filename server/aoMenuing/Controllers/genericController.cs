@@ -122,7 +122,7 @@ namespace Contensive.Addons.Menuing.Controllers {
         //}
         // 
         public static string addEditWrapper(CPBaseClass cp, string innerHtml, int recordId, string contentName, string caption) {
-            if (!cp.User.IsEditing()) { return innerHtml; }
+            if (!cp.User.IsEditing("")) { return innerHtml; }
             string header = cp.Content.GetEditLink(contentName, recordId.ToString(), false, caption, true);
             string content = cp.Html.div(innerHtml, "", "dbSettingWrapper");
             return cp.Html.div(header + content,"", "ccEditWrapper");
