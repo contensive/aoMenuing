@@ -2,7 +2,7 @@
 <Collection name="Menuing" guid="{237805fb-fcc4-42e5-a1b5-5383850085d5}" system="No" updatable="Yes" blockNavigatorNode="No" onInstallAddonGuid="{77ABB6C0-D659-4F52-BEA5-4999551FFFEE}">
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
 	<Help></Help>
-	<Addon name="Menuing Install" guid="{77ABB6C0-D659-4F52-BEA5-4999551FFFEE}" type="Add-on">
+	<Addon name="Menuing OnInstall" guid="{77ABB6C0-D659-4F52-BEA5-4999551FFFEE}" type="Add-on">
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.OnInstallClass]]></DotNetClass>
 	</Addon>
 	<!--
