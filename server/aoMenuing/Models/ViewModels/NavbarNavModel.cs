@@ -40,7 +40,10 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                 NavbarNavModel result = null;
                 string cacheKey = cp.Cache.CreateKey("menu-" + menu.id + "-user=" + cp.User.Id.ToString());
                 if (!cp.User.IsEditing("")) {
-                    result = cp.Cache.GetObject<NavbarNavModel>(cacheKey);
+                    string resultJson = cp.Cache.GetText(cacheKey);
+                    if (!string.IsNullOrEmpty(resultJson)) {
+                        result = cp.JSON.Deserialize<NavbarNavModel>(resultJson);
+                    }
                 }
                 if (result == null) {
                     result = new NavbarNavModel {
@@ -100,7 +103,6 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 topItemHtmlId = "m" + menu.id + "p" + rootPage.id,
                                 childList = new List<ChildListItemModel>(),
                                 includeDragableIcon = true
-                                //set after cache - classTopItemActive = (rootPage.id.Equals(cp.Doc.PageId)) ? "active" : string.Empty,
                             };
                             if (menu.depth == 2) {
                                 List<Models.DbModels.PageContentModel> pageChildList = Contensive.Models.Db.DbBaseModel.createList<PageContentModel>(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
@@ -111,6 +113,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                         topListItem.childList.Add(new ChildListItemModel {
                                             childItemHref = topListItem.topItemHref,
                                             childItemName = topListItem.topItemName,
+                                            childPageId = rootPage.id,
                                             childItemClass = rootPage.menuClass
                                         });
                                     }
@@ -125,7 +128,8 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                             topListItem.childList.Add(new ChildListItemModel {
                                                 childItemHref = !string.IsNullOrEmpty(childPage.link) ? childPage.link : cp.Content.GetPageLink(childPage.id),
                                                 childItemName = !string.IsNullOrWhiteSpace(childPage.menuHeadline) ? childPage.menuHeadline : !string.IsNullOrWhiteSpace(childPage.name) ? childPage.name : "Page" + childPage.id.ToString(),
-                                                childItemClass = childPage.menuClass
+                                                childPageId = childPage.id,
+                                                childItemClass = "" 
                                             });
                                         }
                                     }
@@ -153,18 +157,28 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                         //
                         // -- if not editing, save cache
                         var dependentKeyList = new List<string>() {
-                            cp.Cache.CreateTableDependencyKey(PageContentModel.tableMetadata.tableNameLower), cp.
-                            Cache.CreateTableDependencyKey(MenuModel.tableMetadata.tableNameLower),
-                            cp.Cache.CreateTableDependencyKey(MenuPageRuleModel.tableMetadata.tableNameLower)};
-                        cp.Cache.Store(cacheKey, result, DateTime.Now.AddHours(1), dependentKeyList);
+                            cp.Cache.CreateTableDependencyKey(PageContentModel.tableMetadata.tableNameLower), 
+                            cp.Cache.CreateTableDependencyKey(MenuModel.tableMetadata.tableNameLower),
+                            cp.Cache.CreateTableDependencyKey(MenuPageRuleModel.tableMetadata.tableNameLower)
+                        };
+                        string resultJson = cp.JSON.Serialize(result);
+                        cp.Cache.Store(cacheKey, resultJson, DateTime.Now.AddHours(1), dependentKeyList);
                     }
                 }
                 //
-                // -- set the top list active item (not included in cache)
+                // -- set active item (not included in cache)
+                int pageId = cp.Doc.PageId;
                 foreach (NavbarNavTopListItemModel topListItem in result.topList) {
-                    topListItem.classTopItemActive = "";
-                    if (topListItem.topItemPageId != cp.Doc.PageId) { continue; }
-                    topListItem.classTopItemActive = "active";
+                    if (topListItem.topItemPageId == pageId) {
+                        topListItem.classTopItemActive = "active";
+                    }
+                    foreach (ChildListItemModel childItem in topListItem.childList) {
+                        if (childItem.childPageId == pageId) {
+                            topListItem.classTopItemActive = "active";
+                            childItem.childItemClass += " active";
+                            break;
+                        }
+                    }
                 }
                 //
                 cp.Utils.AppendLog("BootstrapNav40ViewModel, MenuPageList exit");

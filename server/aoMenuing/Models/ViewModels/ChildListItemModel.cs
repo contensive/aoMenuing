@@ -10,6 +10,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         public string childItemName { get; set; }
         public string childItemHref { get; set; }
         public string childItemClass { get; set; }
+        public int childPageId { get; set; }
     }
 }
 

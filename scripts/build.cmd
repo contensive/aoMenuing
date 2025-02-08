@@ -16,7 +16,7 @@ set collectionName=aoMenuing
 set solutionName=aoMenuing.sln
 set collectionPath=..\collections\aoMenuing\
 set binPath=..\server\aoMenuing\bin\%DebugRelease%\
-set msbuildLocation=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\
+set msbuildLocation=C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\
 set deploymentFolderRoot=C:\deployments\aoMenuing\Dev\
 
 set deploymentNumber=%1
@@ -76,9 +76,6 @@ rem copy UI files
 rem
 
 copy ..\UI\NavbarNavULDefaultLayout.html ..\collections\aoMenuing
-
-
-pause
 
 rem ==============================================================
 rem

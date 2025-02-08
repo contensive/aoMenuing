@@ -2,8 +2,8 @@
 <ul id="menu{{menuId}}" class="sortable navbar-nav me-auto mr-auto">
 	{{#topList}}
 	{{#hasChildItems}}
-	<li id="{{topItemHtmlId}}" class="nav-item dropdown text-nowrap {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
-		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<li id="{{topItemHtmlId}}" class="nav-item dropdown text-nowrap {{classTopItem}} {{classItemDraggable}}">
+		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}} {{classTopItemActive}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			{{topItemName}}
 			{{#isEditing}}
 			{{#includeDragableIcon}}
@@ -13,14 +13,14 @@
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
 			{{#childList}}
-			<a class="dropdown-item text-nowrap" href="{{childItemHref}}">{{childItemName}}</a>
+			<a class="dropdown-item text-nowrap {{childItemClass}}" href="{{childItemHref}}">{{childItemName}}</a>
 			{{/childList}}
 		</div>
 	</li>
 	{{/hasChildItems}}
 	{{^hasChildItems}}
-	<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}}">
-		<a class="nav-link text-nowrap {{classTopItemAnchor}}" href="{{topItemHref}}">
+	<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classItemDraggable}}">
+		<a class="nav-link text-nowrap {{classTopItemAnchor}} {{classTopItemActive}}" href="{{topItemHref}}">
 			{{topItemName}}
 			{{#isEditing}}
 			{{#includeDragableIcon}}
