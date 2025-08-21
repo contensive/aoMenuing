@@ -18,16 +18,7 @@ namespace Contensive.Addons.Menuing.Views {
             try {
                 //
                 // -- upgrade the installed layout (but keep the same id if it exists)
-                LayoutModel layout = DbBaseModel.create<LayoutModel>(cp, Constants.guidNavbarNavULDefaultLayout);
-                if (layout == null) {
-                    layout = DbBaseModel.addDefault<LayoutModel>(cp);
-                    layout.name = Constants.nameNavbarNavULDefaultLayout;
-                    layout.ccguid = Constants.guidNavbarNavULDefaultLayout;
-                }
-                if (layout != null) {
-                    layout.layout.content = cp.CdnFiles.Read(Constants.pathFilenameNavbarNavULDefaultLayout);
-                    layout.save(cp);
-                }
+                cp.Layout.updateLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
                 // 
                 // -- some features of mening content moved from base collection to menuing collection, to deprecate
                 int menuingContentId = cp.Content.GetID("menuing");
