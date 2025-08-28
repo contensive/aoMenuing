@@ -13,6 +13,7 @@ namespace Contensive.Addons.Menuing.Views {
         public override object Execute(Contensive.BaseClasses.CPBaseClass cp) {
             try {
                 if ( !cp.User.IsAdmin) { return errMessage;  }
+                //
                 var page = Contensive.Models.Db.DbBaseModel.addDefault<PageContentModel>(cp);
                 var menuPageRule = Contensive.Models.Db.DbBaseModel.addDefault<MenuPageRuleModel>(cp);
                 menuPageRule.pageId = page.id;
@@ -22,6 +23,9 @@ namespace Contensive.Addons.Menuing.Views {
                 adminUrl = cp.Utils.ModifyLinkQueryString(adminUrl, "af", "4");
                 adminUrl = cp.Utils.ModifyLinkQueryString(adminUrl, "cid", cp.Content.GetID("page content").ToString());
                 adminUrl = cp.Utils.ModifyLinkQueryString(adminUrl, "id", page.id.ToString());
+                //
+                // -- after editing, return to the page that called this addon
+                adminUrl = cp.Utils.ModifyLinkQueryString(adminUrl, "editreferer", cp.Request.Referer);
                 cp.Response.Redirect(adminUrl);
                 return string.Empty;
             } catch (Exception ex) {

@@ -1,4 +1,5 @@
 <!-- ul configured as content within bootstrap 5+4, navbar,navbar-collapse elsement  -->
+ <!-- classItemDraggable used for edit wrapper class-->
 <ul id="menu{{menuId}}" class="sortable navbar-nav me-auto mr-auto">
 	{{#topList}}
 	{{#hasChildItems}}
@@ -31,4 +32,11 @@
 	</li>
 	{{/hasChildItems}}
 	{{/topList}}
+	{{#isEditing}}
+	<li id="" class="nav-item">
+		<a class="nav-link text-nowrap nav-link " href="{{}}">
+			Add Page
+		</a>
+	</li>
+	{{/isEditing}}
 </ul>

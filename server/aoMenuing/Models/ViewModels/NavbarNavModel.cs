@@ -30,6 +30,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         /// when true, the view is editing
         /// </summary>
         public bool isEditing { get; set; }
+        public string  addItemUrl { get; set; }
         //
         //====================================================================================================
         public static NavbarNavModel create(CPBaseClass cp, MenuModel menu) {
@@ -143,13 +144,18 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                         }
                     }
                     if (result.isEditing) {
-                        result.topList.Add(new NavbarNavTopListItemModel {
-                            topItemName = "Add-Page",
-                            topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString(),
-                            classTopItemAnchor = menu.classTopAnchor,
-                            classItemDraggable = "",
-                            includeDragableIcon = false
-                        });
+                        //
+                        // -- add the add page link method, to create both the page and menu entry
+                        result.addItemUrl = $"/AddMenuPage?menuId={menu.id}";
+                        ////
+                        //// -- legacy add page link
+                        //result.topList.Add(new NavbarNavTopListItemModel {
+                        //    topItemName = "Add-Page",
+                        //    topItemHref = "/AddMenuPage?menuId=" + menu.id.ToString(),
+                        //    classTopItemAnchor = menu.classTopAnchor,
+                        //    classItemDraggable = "",
+                        //    includeDragableIcon = false
+                        //});
                     }
                     //
                     // -- build new cache
