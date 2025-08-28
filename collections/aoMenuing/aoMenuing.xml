@@ -77,6 +77,8 @@
 		<Styles></Styles>
 		<styleslinkhref></styleslinkhref>
 		<Scripting Language="VBScript" EntryPoint="" Timeout="5000"/>
+		<IncludeAddon name="Bootstrap" guid="{EF1FD66C-D62F-4BD2-BF07-38F47996EBB3}"/>
+		<IncludeAddon name="Jquery UI" guid="{840B9AEF-9470-4599-BD47-7EC0C9298614}"/>
 	</Addon>
 	<!--
 		remote method to support add menu entry button
