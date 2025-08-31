@@ -32,9 +32,12 @@ namespace Contensive.Addons.Menuing.Views {
                 if (string.IsNullOrEmpty(layoutHtml)) {
                     //
                     // -- if layout is not valid, create the layout, then set this menu to the default layout (not a copy of it, designer can reasign if they understand)
+                    //
+                    // -- weird case. Sometimes the layout gets flipped back to the default. Noticed in log that there were also errors where blank layouts were being rendered. 
+                    // -- maybe the layout text-file is returning a blank (?)
                     layoutHtml = cp.Layout.GetLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
-                    settings.layoutId = cp.Content.GetRecordID(Contensive.Models.Db.LayoutModel.tableMetadata.contentName, Constants.guidNavbarNavULDefaultLayout);
-                    settings.save(cp);
+                    //settings.layoutId = cp.Content.GetRecordID(Contensive.Models.Db.LayoutModel.tableMetadata.contentName, Constants.guidNavbarNavULDefaultLayout);
+                    //settings.save(cp);
                 }
                 result = cp.Mustache.Render(layoutHtml, viewModel);
                 // 
