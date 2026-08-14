@@ -15,10 +15,6 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
         /// </summary>
         public string classTopItemActive { get; set; } = "";
         /// <summary>
-        /// if this top list item has a drop-down list, this is the word "dropdown"
-        /// </summary>
-        public string classTopItemDropdown { get; set; } = "";
-        /// <summary>
         /// The class in the top list items anchor, if the item has a child list, "dropdown-toggle", else blank
         /// </summary>
         public string classTopItemAnchor { get; set; } = "";

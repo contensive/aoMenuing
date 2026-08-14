@@ -10,7 +10,7 @@ using System.Text;
 using System.Reflection;
 using Contensive.BaseClasses;
 
-namespace Contensive.Addons.MenuPages.Models.ViewModels {
+namespace Contensive.Addons.Menuing.Models.ViewModels {
     public class MenuPagesViewModel {
         public string classItemFirst { get; set; }
         //public string classItemHover { get; set; }

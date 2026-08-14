@@ -44,7 +44,6 @@ Create New Menu]]></ArgumentList>
 	<Addon name="Menu" guid="{9A433022-9E81-4498-892C-606B1C3F7C5C}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID><![CDATA[aoMenuing.liMenuClass]]></ActiveXProgramID>
 		<DotNetClass></DotNetClass>
 		<ArgumentList><![CDATA[Create New Menu=
 Use Existing Menu=[listid(dynamic menus)]]]></ArgumentList>
@@ -476,7 +475,6 @@ function lmGetListItem(event) {
 	<Addon name="Menu-Data" guid="{DC58B95B-1D7C-4133-80C5-2A9A43067AE9}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID><![CDATA[aoMenuing.SiteTreeClass]]></ActiveXProgramID>
 		<DotNetClass></DotNetClass>
 		<ArgumentList><![CDATA[Menu=Default[list(Dynamic Menus)]
 MenuNew=]]></ArgumentList>
@@ -512,7 +510,6 @@ MenuNew=]]></ArgumentList>
 	<Addon name="Menu-Legacy" guid="{FD3FE4D7-96B5-4447-A25F-D13392FB5446}" type="Add-on">
 		<Copy></Copy>
 		<CopyText></CopyText>
-		<ActiveXProgramID><![CDATA[aoMenuing.AMenuClass]]></ActiveXProgramID>
 		<DotNetClass></DotNetClass>
 		<ArgumentList><![CDATA[Create New Menu=
 Use Existing Menu=[listid(dynamic menus)]]]></ArgumentList>

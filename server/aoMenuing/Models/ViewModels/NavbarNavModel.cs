@@ -136,7 +136,6 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                     }
                                 }
                                 if (!topListItem.childList.Count.Equals(0)) {
-                                    topListItem.classTopItemDropdown = "dropdown";
                                     topListItem.hasChildItems = true;
                                 }
                             }
