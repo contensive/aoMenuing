@@ -94,16 +94,11 @@ namespace Contensive.Addons.Menuing.Views {
                                 childPageList = new List<PageContentModel>();
                             }
                             //
-                            // -- add the root page to the tier flyout as needed
+                            // -- add visible child pages to the tier flyout
                             string classTierItem = menu.classTierItem;
                             classTierItem += " " + menu.classItemFirst;
                             if (childPageList.Count == 0) { classTierItem += " " + menu.classItemLast; }
-                            if (menu.addRootToTier) {
-                                cp.Utils.AppendLog("menuAddRootToTier1" + menu.addRootToTier.ToString());
-                                itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());
-                                tierItemList.Append(cp.Html.li(getAnchor(cp, rootPage, menu.classTierAnchor), "", classTopItem, itemHtmlId));
-                            }
-                            cp.Utils.AppendLog("menuAddRootToTier2" + menu.addRootToTier.ToString());
+                            bool hasVisibleChildren = false;
                             foreach (PageContentModel childPage in childPageList) {
                                 hint = "50";
                                 bool blockPage = childPage.blockContent;
@@ -112,12 +107,19 @@ namespace Contensive.Addons.Menuing.Views {
                                 }
                                 if (!blockPage) {
                                     hint = "55";
+                                    hasVisibleChildren = true;
                                     if (childPage == childPageList.Last()) { classTierItem += " " + menu.classItemLast; }
                                     if (!string.IsNullOrEmpty(childPage.menuClass)) { classTierItem += " " + childPage.menuClass; }
                                     if (childPage.id == activePageId) { classTierItem += " " + menu.classItemActive; }
-                                    itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), childPage.id.ToString());
+                                    itemHtmlId = $"menu{menu.id}Page{childPage.id}";
                                     tierItemList.Append(cp.Html.li(getAnchor(cp, childPage, menu.classTierAnchor), "", classTierItem, itemHtmlId));
                                 }
+                            }
+                            //
+                            // -- add root page to tier flyout only if there are visible child pages
+                            if (menu.addRootToTier && hasVisibleChildren) {
+                                itemHtmlId = $"menu{menu.id}Page{rootPage.id}";
+                                tierItemList.Insert(0, cp.Html.li(getAnchor(cp, rootPage, menu.classTierAnchor), "", classTopItem, itemHtmlId));
                             }
                             hint = "60";
                             itemHtmlId = string.Format("menu{0}Page{1}", menu.id.ToString(), rootPage.id.ToString());

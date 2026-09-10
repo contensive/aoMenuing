@@ -109,17 +109,7 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                 List<Models.DbModels.PageContentModel> pageChildList = Contensive.Models.Db.DbBaseModel.createList<PageContentModel>(cp, "(ParentID=" + rootPage.id + ")and(AllowInMenus>0)", "sortOrder,id");
                                 if (pageChildList.Count > 0) {
                                     //
-                                    // -- add root page as a child page
-                                    if (menu.addRootToTier) {
-                                        topListItem.childList.Add(new ChildListItemModel {
-                                            childItemHref = topListItem.topItemHref,
-                                            childItemName = topListItem.topItemName,
-                                            childPageId = rootPage.id,
-                                            childItemClass = rootPage.menuClass
-                                        });
-                                    }
-                                    //
-                                    // -- add child pages 
+                                    // -- add visible child pages
                                     foreach (var childPage in pageChildList) {
                                         bool blockPage = childPage.blockContent && !menu.includeBlockedFlyoutPages;
                                         if (blockPage & cp.User.IsAuthenticated) {
@@ -128,11 +118,21 @@ namespace Contensive.Addons.Menuing.Models.ViewModels {
                                         if (!blockPage) {
                                             topListItem.childList.Add(new ChildListItemModel {
                                                 childItemHref = !string.IsNullOrEmpty(childPage.link) ? childPage.link : cp.Content.GetPageLink(childPage.id),
-                                                childItemName = !string.IsNullOrWhiteSpace(childPage.menuHeadline) ? childPage.menuHeadline : !string.IsNullOrWhiteSpace(childPage.name) ? childPage.name : "Page" + childPage.id.ToString(),
+                                                childItemName = !string.IsNullOrWhiteSpace(childPage.menuHeadline) ? childPage.menuHeadline : !string.IsNullOrWhiteSpace(childPage.name) ? childPage.name : $"Page{childPage.id}",
                                                 childPageId = childPage.id,
-                                                childItemClass = "" 
+                                                childItemClass = ""
                                             });
                                         }
+                                    }
+                                    //
+                                    // -- add root page to flyout only if there are visible child pages
+                                    if (menu.addRootToTier && topListItem.childList.Count > 0) {
+                                        topListItem.childList.Insert(0, new ChildListItemModel {
+                                            childItemHref = topListItem.topItemHref,
+                                            childItemName = topListItem.topItemName,
+                                            childPageId = rootPage.id,
+                                            childItemClass = rootPage.menuClass
+                                        });
                                     }
                                 }
                                 if (!topListItem.childList.Count.Equals(0)) {
