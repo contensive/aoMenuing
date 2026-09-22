@@ -24,18 +24,24 @@ namespace Contensive.Addons.Menuing.Views {
                 if (menuId == 0) { return string.Empty; }
                 //
                 // -- iterate through menu-page-rules and set sort-order to the order they appear here
-                cp.Db.ExecuteNonQuery("update ccmenupagerules set sortorder=null where menuId=" + menuId);
+                // -- Validate menuId is an integer (already done by EncodeInteger, but explicit check for security)
+                if (menuId <= 0) { return string.Empty; }
+
+                // -- Clear all sort orders for this menu
+                cp.Db.ExecuteNonQuery($"update ccmenupagerules set sortorder=null where menuId={menuId}");
+
                 int ptr = 0;
                 foreach (var arg in argList.Skip(1)) {
                     int pageId = cp.Utils.EncodeInteger(arg.Replace("m" + menuId + "p", ""));
                     if (pageId > 0) {
-                        cp.Db.ExecuteNonQuery("update ccmenupagerules set sortorder='" + ptr.ToString("0000") + "' where (menuId=" + menuId + ")and(pageid=" + pageId + ")");
+                        string sortOrder = ptr.ToString("0000");
+                        cp.Db.ExecuteNonQuery($"update ccmenupagerules set sortorder='{sortOrder}' where (menuId={menuId})and(pageid={pageId})");
                         ptr++;
                     }
                 }
                 //
-                // -- remove any deleted menu items
-                cp.Db.ExecuteNonQuery("delete from ccmenupagerules where (sortorder=null)and(menuId=" + menuId + ")");
+                // -- remove any deleted menu items (use 'is null' for proper SQL NULL comparison)
+                cp.Db.ExecuteNonQuery($"delete from ccmenupagerules where (sortorder is null)and(menuId={menuId})");
                 //
                 // -- clear cache
                 cp.Cache.invalidateTableDependencyKey("ccmenupagerules");

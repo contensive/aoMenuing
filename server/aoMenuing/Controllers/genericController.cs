@@ -120,12 +120,17 @@ namespace Contensive.Addons.Menuing.Controllers {
         //    if ( contentId==0 ) { return string.Empty;  }
         //    return "<a href=\"/admin?af=4&aa=2&ad=1&cid=" + contentId + "&id=" + recordId + "\" class=\"ccRecordEditLink\"><span style=\"color:#0c0\"><i title=\"edit\" class=\"fas fa-cog\"></i></span></a>";
         //}
-        // 
+        //
         public static string addEditWrapper(CPBaseClass cp, string innerHtml, int recordId, string contentName, string caption) {
-            if (!cp.User.IsEditing("")) { return innerHtml; }
-            string header = cp.Content.GetEditLink(contentName, recordId.ToString(), false, caption, true);
-            string content = cp.Html.div(innerHtml, "", "dbSettingWrapper");
-            return cp.Html.div(header + content,"", "ccEditWrapper");
+            try {
+                if (!cp.User.IsEditing("")) { return innerHtml; }
+                string header = cp.Content.GetEditLink(contentName, recordId.ToString(), false, caption, true);
+                string content = cp.Html.div(innerHtml, "", "dbSettingWrapper");
+                return cp.Html.div(header + content, "", "ccEditWrapper");
+            } catch (Exception ex) {
+                cp.Site.ErrorReport(ex, "GenericController.addEditWrapper");
+                throw;
+            }
         }
         //// 
         //// 

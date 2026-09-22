@@ -567,7 +567,7 @@
 		Legacy menuing
 		included to support old installations. Do not use.
 	-->
-	<Addon name="Menu (legacy)" guid="{57f513d1-9787-4edd-b652-2fee23c100fe}" type="Add-on">
+	<Addon name="Menu (legacy)" guid="{735FC93D-7DC8-4CA0-9CD5-480E7395065E}" type="Add-on">
     	<AliasList>Menu,Menu Pages</AliasList>
 		<instanceSettingPrimaryContentId><![CDATA[Calls To Action]]></instanceSettingPrimaryContentId>
 		<Copy></Copy>

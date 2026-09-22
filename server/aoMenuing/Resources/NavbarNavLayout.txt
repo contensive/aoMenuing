@@ -1,5 +1,5 @@
 ﻿<!-- nav within navbar -->
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown{{menuId}}" aria-controls="navbarNavDropdown{{menuId}}" aria-expanded="false" aria-label="Toggle navigation">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown{{menuId}}" aria-controls="navbarNavDropdown{{menuId}}" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 </button>
 <div class="{{classTopWrapper}}" id="navbarNavDropdown{{menuId}}">
@@ -8,7 +8,7 @@
 		{{#topList}}
 		{{#hasChildItems}}
 		<li id="{{topItemHtmlId}}" class="nav-item {{classTopItem}} {{classTopItemActive}} {{classItemDraggable}} {{classTopItemDropdown}}">
-			<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{topItemName}}</a>
+			<a class="nav-link dropdown-toggle {{classTopItemAnchor}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{topItemName}}</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink{{topItemPageId}}">
 				{{#childList}}
 				<a class="dropdown-item {{childItemClass}}" href="{{childItemHref}}">{{childItemName}}</a>

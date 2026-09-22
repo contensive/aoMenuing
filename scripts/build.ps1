@@ -85,6 +85,6 @@ Invoke-ContensiveBuild `
                            "$projectRoot\server\aoMenuing\obj"
                        ) `
     -UiPath            "$projectRoot\ui" `
-    -HelpFilesPath     "$projectRoot\help" `
+    -HelpFilesPath     "$projectRoot\helpFiles" `
     -LocalDeployTarget  $LocalDeployTarget `
     -RemoteDeployTarget $RemoteDeployTarget

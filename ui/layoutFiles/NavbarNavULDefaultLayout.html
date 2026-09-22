@@ -1,10 +1,10 @@
 <!-- ul configured as content within bootstrap 5+4, navbar,navbar-collapse elsement  -->
  <!-- classItemDraggable used for edit wrapper class-->
-<ul id="menu{{menuId}}" class="sortable navbar-nav me-auto mr-auto {{classTopList}}">
+<ul id="menu{{menuId}}" class="sortable navbar-nav me-auto {{classTopList}}">
 	{{#topList}}
 	{{#hasChildItems}}
 	<li id="{{topItemHtmlId}}" class="nav-item dropdown text-nowrap {{classTopItem}} {{classItemDraggable}}">
-		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}} {{classTopItemActive}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<a class="nav-link dropdown-toggle text-nowrap {{classTopItemAnchor}} {{classTopItemActive}}" href="{{topItemHref}}" id="navbarDropdownMenuLink{{topItemPageId}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			{{topItemName}}
 			{{#isEditing}}
 			{{#includeDragableIcon}}
