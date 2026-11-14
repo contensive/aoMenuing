@@ -3,41 +3,16 @@ using Contensive.BaseClasses;
 using Contensive.Models.Db;
 
 namespace Contensive.Addons.Menuing.Models.DbModels {
-    public class MenuModel : DesignBlockBase.Models.Db.SettingsBaseModel {
+    /// <summary>
+    /// Menu model for aoMenuing addon. Inherits all properties from base Contensive.Models.Db.MenuModel.
+    /// All menu fields are now defined in the base platform collection (aoBase51.xml).
+    /// </summary>
+    public class MenuModel : Contensive.Models.Db.MenuModel {
         //
         //====================================================================================================
         //-- const
         public const string contentName = "menus";
         public const string contentTableName = "ccMenus";
-        //
-        public static DbBaseTableMetadataModel tableMetadata { get; } = new DbBaseTableMetadataModel(contentName, contentTableName);
-        //
-        //====================================================================================================
-        //// -- instance properties
-        //public string classFlyoutParent { get; set; }
-        //public string classItemActive { get; set; }
-        public string classItemFirst { get; set; }
-        //public string classItemHover { get; set; }
-        public string classItemLast { get; set; }
-        public string classTierItem { get; set; }
-        public string classTierAnchor { get; set; }
-        public string classTierList { get; set; }
-        public string classTopItem { get; set; }
-        public string classTopParentItem { get; set; }
-        public string classTopAnchor { get; set; }
-        public string classTopParentAnchor { get; set; }
-        public string dataToggleTopParentAnchor { get; set; }
-        public string classTopList { get; set; }
-        public string classTopWrapper { get; set; }
-        public string classItemActive { get; set; }
-        public string classItemHover { get; set; }
-        public int depth { get; set; }
-        public bool addRootToTier { get; set; }
-        public bool includeBlockedFlyoutPages { get; set; }
-        /// <summary>
-        /// The layout assigned to this instance of the menu. If missing, a copy of the default is assigned to it.
-        /// </summary>
-        public int layoutId { get; set; }
         //
         //====================================================================================================
         public static MenuModel createOrAddDefault(CPBaseClass cp, string instanceGuid) {
