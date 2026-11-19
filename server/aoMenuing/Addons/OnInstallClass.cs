@@ -21,7 +21,7 @@ namespace Contensive.Addons.Menuing.Views {
                 cp.Layout.updateLayout(Constants.guidNavbarNavULDefaultLayout, Constants.nameNavbarNavULDefaultLayout, Constants.pathFilenameNavbarNavULDefaultLayout);
                 //
                 // -- some features of mening content moved from base collection to menuing collection, to deprecate
-                int menuingContentId = cp.Content.GetID("menuing");
+                int menuingContentId = cp.Content.GetID("menus");
                 if (menuingContentId <= 0) {
                     cp.Site.ErrorReport("OnInstallClass: Could not find Menus content definition");
                     return "Installation error - Menus content not found";

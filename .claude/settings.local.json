@@ -5,7 +5,8 @@
       "Bash(test:*)",
       "Bash(./scripts/build.cmd:*)",
       "Bash(powershell -NoProfile -ExecutionPolicy Bypass -File \"./scripts/build.ps1\")",
-      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -File \"/c/Git/aoMenuing/scripts/build.ps1\":*)"
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -File \"/c/Git/aoMenuing/scripts/build.ps1\":*)",
+      "Bash(npx --yes resvg-cli:*)"
     ]
   }
 }

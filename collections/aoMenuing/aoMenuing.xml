@@ -4,7 +4,7 @@
   xsi:noNamespaceSchemaLocation="https://contensive.s3.amazonaws.com/xsd/Collection.xsd"
 >
 	<HelpLink>http://wiki.kmacloud.net/index.php?title=Menuing</HelpLink>
-	<Help></Help>
+	<Help>Create Bootstrap-ready navigation menus with drag-and-drop reordering and inline page management. This collection provides a modern menu system that automatically generates Bootstrap-compatible HTML from your page hierarchy, with support for multi-level dropdowns, permission-based visibility, and customizable CSS classes. Administrators can directly add new pages to menus and reorder items without leaving the page editor, while the system intelligently handles active states, blocked pages, and nested navigation structures. Perfect for building responsive navigation bars that work seamlessly with Bootstrap 4 and 5 themes.</Help>
 	<Addon name="Menuing OnInstall" guid="{77ABB6C0-D659-4F52-BEA5-4999551FFFEE}" type="Add-on">
 		<DotNetClass><![CDATA[Contensive.Addons.Menuing.Views.OnInstallClass]]></DotNetClass>
 	</Addon>
